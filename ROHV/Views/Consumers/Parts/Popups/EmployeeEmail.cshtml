@@ -1,0 +1,50 @@
+﻿@using ROHV.WebApi.ViewModels;
+@{
+    var lists = (Dictionary<String, List<ItemListViewModel>>)ViewData["Lists"];
+    var servicesList = (List<ItemListViewModel>)lists["ServicesList"];
+}
+<script id="pop-template-employee-email" type="text/html">
+    <div class="modal-dialog">
+        <div class="modal-content overlay-wrapper">            
+            <div class="modal-header alert-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Sending email</h4>
+            </div>
+            <div class="modal-body">
+                <form id="employee-email-form">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <div class="form-group">
+                                <label for="ContactId">Employee</label>
+                                 <div>
+                                    @Html.Raw(@"<%=model.get(""ContactName"")%> (<b><%=model.get(""Email"")%></b>)")
+                                 </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-12">
+                            <div class="form-group">
+                                <label for="Subject">Subject</label>
+                                <input class="form-control" id="Subject" name="Subject" placeholder="Email subject ...">
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-md-12">
+                            <div class="form-group">
+                                <label for="Message">Message</label>
+                                <textarea name="Message" id="Message" class="form-control" rows="7" placeholder="Email message ..."></textarea>
+                            </div>
+                        </div>                     
+                    </div>
+                </form>
+            </div><!-- /.modal-body -->
+            <div class="modal-footer">
+                <button type="button" class="btn  btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="button" id="save-modal" class="btn btn-primary">Send email</button>
+            </div>
+            <div class="overlay" id="overlay-dialog" style="display:none;">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+            </div>
+        </div><!-- /.modal-content -->
+      
+    </div><!-- /.modal-dialog -->
+</script>

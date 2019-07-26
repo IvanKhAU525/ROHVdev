@@ -1,0 +1,41 @@
+﻿<script id="rate-tab-template" type="text/html">
+    <form id="rate-form">
+        <div class="row">
+            <div class="col-xs-6 col-md-6">
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <div class="form-group">
+                            <label for="Rate">Rate($)</label>
+                            <input value="<%=model.get('Rate')%>" class="form-control" id="Rate" name="Rate" placeholder="Enter rate per hour...">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12">
+                        <div class="form-group">
+                            <label for="MaxHoursPerWeek">Max hours per week</label>
+                            <input value="<%=model.get('MaxHoursPerWeek')%>" class="form-control" id="MaxHoursPerWeek" name="MaxHoursPerWeek" placeholder="Enter max hours per week...">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12">
+                        <div class="form-group">
+                            <label for="MaxHoursPerYear">Max hours per year</label>
+                            <input value="<%=model.get('MaxHoursPerWeek')%>" class="form-control" id="MaxHoursPerYear" name="MaxHoursPerYear" placeholder="Enter max hours per  year...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-6">
+                <div class="form-group">
+                    <label for="RateNote">Note</label>
+                    <textarea name="RateNote" id="RateNote" class="form-control" rows="7" placeholder="Enter note for rate ..."><%=model.get('RateNote')%></textarea>
+                </div>
+                <div class="input-group" style="float:right;display:none;" id="save-rate-hours-container">
+                    <button class="btn  btn-primary" href="javascript:void(0);" style="width:auto;" id="save-rate-hours">
+                        <i class="fa fa-save"></i>&nbsp;&nbsp;&nbsp;
+                        Save Rate/Hours changes
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</script>

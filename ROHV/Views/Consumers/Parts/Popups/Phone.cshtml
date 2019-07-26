@@ -1,0 +1,70 @@
+﻿@using ROHV.WebApi.ViewModels;
+@{
+    var lists = (Dictionary<String, List<ItemListViewModel>>)ViewData["Lists"];
+    var phoneTypesList = (List<ItemListViewModel>)lists["PhoneTypesList"];
+}
+<script id="pop-template-phone" type="text/html">
+    <div class="modal-dialog modal-sm">    
+        <div class="modal-content overlay-wrapper">
+            @Html.Raw(@"<%
+                var isEdit = model.get(""ConsumerPhoneId"")!=null;
+                var title = isEdit? ""Edit contact phone"": ""Add contact phone"";
+                var btnTitle = isEdit? ""Save changes"": ""Add contact phone"";
+            %>")
+            <div class="modal-header alert-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><%=title%></h4>
+            </div>
+            <div class="modal-body">
+                <form id="phone-form">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <div class="form-group">
+                                <label for="PhoneTypeId">Phone type</label>
+                                <select id="PhoneTypeId" class="selectpicker"
+                                        name="PhoneTypeId"
+                                        title="Select phone type....">
+                                    @foreach (var item in phoneTypesList)
+                                    {
+                                        @:<% var value = @item.Value;%>
+                                        <option value="@item.Value"
+                                                @Html.Raw(@"<%if(model.get(""PhoneTypeId"")==value){%> selected   <%}%>")>
+                                            @item.Name
+                                        </option>
+                                    }
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-12">
+                            <div class="form-group">
+                                <label for="PhoneFormated">Phone</label>
+                                <input value="<%=model.get('PhoneFormated')%>" class="form-control" id="PhoneFormated" name="PhoneFormated" placeholder="Enter phone...">
+                            </div>
+                        </div>                                     
+                        <div class="col-xs-12 col-md-12">
+                            <div class="form-group">
+                                <label for="Extension">Extension</label>
+                                <input value="<%=model.get('Extension')%>" class="form-control" id="Extension" name="Extension" placeholder="Enter contact name...">
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-md-12">
+                            <div class="form-group">
+                                <label for="Note">Note</label>
+                                <input value="<%=model.get('Note')%>" class="form-control" id="Note" name="Note" placeholder="Enter note">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">                
+                <button type="button" class="btn  btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="button" id="save-modal" class="btn btn-primary"><%=btnTitle%></button>                
+            </div>     
+            <div class="overlay" id="overlay-dialog" style="display:none;">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+            </div>       
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</script>

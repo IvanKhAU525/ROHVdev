@@ -1,0 +1,71 @@
+@using ROHV.WebApi.ViewModels;
+@{
+ 
+}
+<script id="pop-template-medicaid-numbers" type="text/html">
+    <div class="modal-dialog modal-sm">    
+        <div class="modal-content overlay-wrapper">
+            @Html.Raw(@"<%
+                var isEdit = model.get(""Id"")!=null;
+                var title = isEdit? ""Edit Medicaid number"": ""Add Medicaid number"";
+                var btnTitle = isEdit? ""Save changes"": ""Add Medicaid number"";
+            %>")
+            <div class="modal-header alert-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><%=title%></h4>
+            </div>
+            <div class="modal-body">
+                <form id="medicaid-number-form">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <div class="form-group">
+                                <label for="MedicaidNo">
+                                    MedicaidNo
+                                </label>
+                                <input id="MedicaidNo" 
+                                       name="MedicaidNo"
+                                       value="<%=model.get('MedicaidNo')%>" model.get"
+                                       type="text"
+                                       class="form-control pull-right"
+                                       placeholder = "Enter MedicaidNo."/>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-12">
+                            <div class="form-group">
+                                <label for="FromDate">From Date</label>
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input value="<%=model.get('FromDate')%>" model.get" type="text" class="form-control pull-right"
+                                           data-inputmask="'alias': 'mm/dd/yyyy'" data-mask=""
+                                           id="FromDate" name="FromDate" placeholder="Enter from date..." />
+                                </div>
+                            </div>
+                        </div>                        
+                        <div class="col-xs-12 col-md-12">
+                            <div class="form-group">
+                                <label for="ToDate">To Date</label>
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input value="<%=model.get('ToDate')%>" model.get" type="text" class="form-control pull-right"
+                                           data-inputmask="'alias': 'mm/dd/yyyy'" data-mask=""
+                                           id="ToDate" name="ToDate" placeholder="Enter to date ..." />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">                
+                <button type="button" class="btn  btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="button" id="save-modal" class="btn btn-primary"><%=btnTitle%></button>                
+            </div>     
+            <div class="overlay" id="overlay-dialog" style="display:none;">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+            </div>       
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</script>

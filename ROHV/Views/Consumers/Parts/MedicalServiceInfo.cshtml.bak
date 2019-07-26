@@ -1,0 +1,85 @@
+﻿@using ROHV.WebApi.ViewModels;
+@{
+    var lists = (Dictionary<String, List<ItemListViewModel>>)ViewData["Lists"];
+    var agencyList = (List<ItemListViewModel>)lists["AgencyName"];
+}
+
+<div class="box  box-solid box-default box-container-internal">
+    <div class="box-header  with-border box-internal">
+        <h6 class="box-title">Medical Service Coordinator</h6>
+    </div><!-- /.box-header -->
+    <div class="box-body">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="form-group">
+                    <label for="TABSNo">Tabs No.</label>
+                    <input value="<%=model.get('TABSNo')%>" class="form-control" id="TABSNo" name="TABSNo" placeholder="Tabs No">
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-12">
+                <div class="form-group">
+                    <label for="AgencyName">Agency Name</label>
+                    <input value="<%=model.get('AgencyName')%>" class="form-control" id="AgencyName" name="AgencyName" placeholder="Agency name"/>                    
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-12">
+                <div class="form-group">
+                    <label for="ServiceCoordinatorId">MSC 
+                        <a href="coordinator-info" class="info-icon" data-id="ServiceCoordinatorId">
+                            <i class="fa fa-info-circle"></i> 
+                            <span></span>
+                        </a>
+                    </label>
+                    <select id="ServiceCoordinatorId" class="selectpicker"
+                            name="ServiceCoordinatorId"
+                            title="Select service coordinator"
+                            data-live-search="true">
+
+                            @Html.Raw(@"
+                                <%var sc=model.get(""ServiceCoordinator"");%>
+                                <%if(sc!=null&&sc[""Id""]!=null){%>
+                                    <option  data-icon=""glyphicon-user""  value=""<%=sc[""Id""]%>"" data-subtext=""<%=sc[""Company""]%>""  selected >
+                                            <%=sc[""Name""]%>
+                                    </option>
+                             <%}%>")
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="DHCoordinatorId">DH coordinator
+                    <a href="coordinator-info" class="info-icon" data-id="DHCoordinatorId">
+                        <i class="fa fa-info-circle"></i>
+                        <span></span>
+                    </a>
+                </label>
+                <select id="DHCoordinatorId" name="DHCoordinatorId" class="selectpicker" data-live-search="true" placeholder="Select dh coordinator">
+                    @Html.Raw(@"
+                                <%var sc=model.get(""DH"");%>
+                                <%if(sc!=null&&sc[""Id""]!=null){%>
+                                    <option  data-icon=""glyphicon-user""  value=""<%=sc[""Id""]%>"" data-subtext=""<%=sc[""Company""]%>""  selected >
+                                            <%=sc[""Name""]%>
+                                    </option>
+                             <%}%>")
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="CHCoordinatorId">CH coordinator
+                    <a href="coordinator-info" class="info-icon" data-id="CHCoordinatorId">
+                        <i class="fa fa-info-circle"></i>
+                        <span></span>
+                    </a>
+                </label>
+                <select id="CHCoordinatorId" name="CHCoordinatorId" class="selectpicker" data-live-search="true" placeholder="Select employee name">
+                    @Html.Raw(@"
+                                <%var sc=model.get(""CH"");%>
+                                <%if(sc!=null&&sc[""Id""]!=null){%>
+                                    <option  data-icon=""glyphicon-user""  value=""<%=sc[""Id""]%>"" data-subtext=""<%=sc[""Company""]%>""  selected >
+                                            <%=sc[""Name""]%>
+                                    </option>
+                             <%}%>")
+                </select>
+            </div>
+
+        </div>
+    </div><!-- /.box-body -->
+</div><!-- /.box -->                

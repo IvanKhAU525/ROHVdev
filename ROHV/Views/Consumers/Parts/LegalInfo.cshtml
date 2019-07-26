@@ -1,0 +1,45 @@
+﻿<div class="box  box-solid box-default box-container-internal">
+    <div class="box-header  with-border box-internal">
+        <h6 class="box-title">Legal Info</h6>
+    </div><!-- /.box-header -->
+    <div class="box-body">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="form-group">
+                    <label for="ParentName">Parent name</label>
+                    <input value="<%=model.get('ParentName')%>" class="form-control" id="ParentName" name="ParentName" placeholder="Enter Parent Name">
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-12">
+                <div class="form-group">
+                    <label for="Сc2">СС2</label>
+                    <input value="<%=model.get('Cc2')%>" class="form-control" id="Cc2" name="Cc2" placeholder="Enter СС2">
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-12">
+                <div class="form-group">
+                    <label for="AdvocateId">Advocate <a href="advocate-info" class="info-icon"><i class="fa fa-info-circle"></i> <span></span></a></label>
+                    <select id="AdvocateId" class="selectpicker" name="AdvocateId" data-live-search="true" title="Select advocate">
+                        @Html.Raw(@"
+                            <%if(model.get(""AdvocateId"")!=null){%>
+                                    <option value=""<%=model.get(""AdvocateId"")%>""  data-icon=""glyphicon-user""  selected >
+                                            <%=model.get(""AdvocateName"")%>
+                                    </option>
+                                <%}%>")
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="AdvocatePaperId">Paper Advocate <a href="advocate-paper-info" class="info-icon"><i class="fa fa-info-circle"></i> <span></span></a></label>
+                    <select id="AdvocatePaperId" class="selectpicker" name="AdvocatePaperId" data-live-search="true" title="Select paper advocate">
+                        @Html.Raw(@"
+                            <%if(model.get(""AdvocatePaperId"")!=null){%>
+                                    <option value=""<%=model.get(""AdvocatePaperId"")%>""  data-icon=""glyphicon-user""  selected >
+                                            <%=model.get(""AdvocatePaperName"")%>
+                                    </option>
+                                <%}%>")
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.box-body -->
+</div><!-- /.box -->                

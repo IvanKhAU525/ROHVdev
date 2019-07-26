@@ -1,0 +1,262 @@
+﻿@using ROHV.WebApi.ViewModels;
+@{
+    var lists = (Dictionary<String, List<ItemListViewModel>>)ViewData["Lists"];
+    var durations = (List<ItemListViewModel>)lists["HabPlanDurations"];
+    var frequencies = (List<ItemListViewModel>)lists["HabPlanFrequencies"];
+    var statuses = (List<ItemListViewModel>)lists["HabPlanStatuses"];
+    var services = (List<ItemListViewModel>)lists["ServicesList"];
+    var QIDP = ViewData["QIDP"];
+}
+<script id="pop-template-habplan" type="text/html">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content overlay-wrapper">
+            @Html.Raw(@"<%
+                var isEdit = model.get(""ConsumerHabPlanId"")!=null;
+                var title = isEdit? ""Edit hab plan"": ""Add hab plan"";
+                var btnTitle = isEdit? ""Save changes"": ""Add hab plan"";
+                var QIDP = !isEdit?""" + QIDP + @""": model.get(""QMRP"");
+            %>")
+            <div class="modal-header alert-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><%=title%></h4>
+            </div>
+            <div class="modal-body">
+                <form id="hab-plan-form">
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="Name">Name</label>
+                                        <input placeholder="Please enter name..." class="form-control" id="Name" name="Name" value="<%=model.get("Name")%>" >
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="HabServiceId">Service</label>
+                                        <select id="HabServiceId"
+                                                name="HabServiceId"
+                                                class="selectpicker"
+                                                title="Select service...">
+                                            @foreach (var item in services)
+            {
+                                                @:<% var value = @item.Value;%>
+                                                <option value="@item.Value"
+                                                        @Html.Raw(@"<%if(model.get(""HabServiceId"")==value){%> selected   <%}%>")>
+                                                    @item.Name
+                                                </option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="CoordinatorId">Coordinator</label>
+                                        <select id="CoordinatorId" name="CoordinatorId" class="selectpicker" data-live-search="true" title="Select employee name...">
+                                            @Html.Raw(@"
+                                            <%if(model.get(""CoordinatorId"")!=null){%>
+                                                    <option value=""<%=model.get(""CoordinatorId"")%>""  data-icon=""glyphicon-user"" data-subtext=""<%=model.get(""CoordinatorCompany"")%>"" >
+                                                            <%=model.get(""CoordinatorName"")%>
+                                                    </option>
+                                             <%}%>")
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="FrequencyId">Frequency</label>
+                                        <select id="FrequencyId"
+                                                name="FrequencyId"
+                                                class="selectpicker"
+                                                title="Select frequency...">
+                                            @foreach (var item in frequencies)
+                                            {
+                                                @:<% var value = @item.Value;%>
+                                                <option value="@item.Value"
+                                                        @Html.Raw(@"<%if(model.get(""FrequencyId"")==value){%> selected   <%}%>")>
+                                                    @item.Name
+                                                </option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="DurationId">Duraiton</label>
+                                        <select id="DurationId"
+                                                name="DurationId"
+                                                class="selectpicker"
+                                                title="Select duration...">
+                                            @foreach (var item in durations)
+                                            {
+                                                @:<% var value = @item.Value;%>
+                                                <option value="@item.Value"
+                                                        @Html.Raw(@"<%if(model.get(""DurationId"")==value){%> selected   <%}%>")>
+                                                    @item.Name
+                                                </option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="QMRP">QIDP</label>
+                                        <input placeholder="Please enter QIDP..." class="form-control" id="QMRP" name="QMRP" value="<%=QIDP%>">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-6">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="StatusId">Status</label>
+                                        <select id="StatusId"
+                                                name="StatusId"
+                                                class="selectpicker"
+                                                title="Select status...">
+                                            @foreach (var item in statuses)
+                                            {
+                                                @:<% var value = @item.Value;%>
+                                                <option value="@item.Value"
+                                                        @Html.Raw(@"<%if(model.get(""DurationId"")==value){%> selected   <%}%>")>
+                                                    @item.Name
+                                                </option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="EnrolmentDate">Enrolment date</label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input value="<%=model.get('EnrolmentDate')%>" model.get" type="text" class="form-control pull-right"
+                                                   data-inputmask="'alias': 'mm/dd/yyyy'" data-mask=""
+                                                   id="EnrolmentDate" name="EnrolmentDate" placeholder="Enter enrolment date..." />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="DatePlan">Date of plan</label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input value="<%=model.get('DatePlan')%>" model.get" type="text" class="form-control pull-right"
+                                                   data-inputmask="'alias': 'mm/dd/yyyy'" data-mask=""
+                                                   id="DatePlan" name="DatePlan" placeholder="Enter date of plan..." />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="EffectivePlan">Effective date</label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input value="<%=model.get('EffectivePlan')%>" model.get" type="text" class="form-control pull-right"
+                                                   data-inputmask="'alias': 'mm/dd/yyyy'" data-mask=""
+                                                   id="EffectivePlan" name="EffectivePlan" placeholder="Enter effective date..." />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+               
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">                        
+                        <div>
+                            <button type="button" class="btn btn-primary btn-sm pull-left" style="margin-top:10px;" data-action="add-valued-outcome">Add valued outcome</button>
+                        </div>
+                        <div style="clear:both; margin-bottom:5px;"></div>
+
+                        <form id="hab-plan-valued-form" >
+                            <div data-container="valued-outcomes" style="overflow-y:auto;"></div>
+                        </form>
+                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <div>
+                            <button type="button" class="btn btn-primary btn-sm pull-left" style="margin-top:10px;" data-action="add-safeguard">Add safeguard</button>
+                        </div>
+                        <div style="clear:both; margin-bottom:5px;"></div>
+                        <form id="hab-plan-safeguard-form">
+                            <div data-container="safeguards" style="overflow-y:auto;"></div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn  btn-default pull-left" data-dismiss="modal">Close</button>                
+                <button type="button" id="save-modal" class="btn btn-primary"><%=btnTitle%></button>
+                <%if(isEdit){%>
+                    <button type="button" id="save-as-new-modal" class="btn btn-primary">Save as new</button>
+                <%}%>
+            </div>
+            <div class="overlay" id="overlay-dialog" style="display:none;">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</script>
+
+<script id="template-hab-plan-valued-outcome" type="text/html">
+    <fieldset style="text-align:left; margin-top:20px;" data-container-valued-id="<%=model.Id%>" >
+        <legend><b>Valued outcome <%=num%></b></legend>
+        <button type="button" class="btn btn-danger btn-sm pull-right" data-id="<%=model.Id%>" style="margin-bottom:5px;" data-action="remove-valued-outcome">Remove valued outcome</button>
+        <div class="form-group" style="margin-bottom: 0px;">
+            <label for="valued-outcome-<%=model.Id%>">Value outcome</label>
+            <input type="text" class="form-control" name="valued-outcome-<%=model.Id%>" data-id="<%=model.Id%>" value="<%=model.ValuedOutcome%>"  placeholder="Please enter valued outcome..."/>
+        </div>
+        <fieldset style="text-align:left;">
+            <legend><small>Staff server & actions</small></legend>
+            <div data-container="actions">
+                <%=htmlActions%>
+            </div>
+            <div>
+                <button type="button" class="btn btn-primary btn-sm pull-right" data-vo-id="<%=model.Id%>" data-action="add-new-action">Add new action</button>
+            </div>
+        </fieldset>
+    </fieldset>
+</script>
+<script id="template-hab-plan-action" type="text/html">
+    <div style="position:relative;" data-container-action-id="<%=model.Id%>">
+        <div class="form-group pull-left" style="width:90%; margin-bottom: 5px;">
+            <label for="vo-<%=parentId%>-action-<%=model.Id%>">Action <%=num%></label>
+            <input class="form-control" type="text" name="vo-<%=parentId%>-action-<%=model.Id%>" data-id="<%=model.Id%>" data-vo-id="<%=parentId%>" value="<%=model.ServeAndAction%>"  placeholder="Please enter action..." />
+        </div>
+        <button type="button" class="btn btn-danger btn-sm pull-right" data-id="<%=model.Id%>" data-vo-id="<%=parentId%>" style="margin-top:26px;" data-action="remove-action">Remove</button>
+    </div>
+    <div style="clear:both;"></div>
+</script>
+
+
+<script id="template-hab-plan-safeguard" type="text/html">
+    <div style="position:relative;" data-container-safeguard-id="<%=model.Id%>">
+        <div class="form-group pull-left" style="width:90%; margin-bottom: 5px;">
+            <label for="safeguard-<%=model.Id%>">Safeguard <%=num%></label>
+            <input class="form-control" type="text" name="safeguard-<%=model.Id%>" 
+                   data-id="<%=model.Id%>"
+                   value="<%=model.Item%>" placeholder="Please enter safeguard..." />
+        </div>
+        <button type="button" class="btn btn-danger btn-sm pull-right" data-id="<%=model.Id%>" 
+                 style="margin-top:26px;" data-action="remove-safeguard">Remove</button>
+    </div>
+    <div style="clear:both;"></div>    
+</script>

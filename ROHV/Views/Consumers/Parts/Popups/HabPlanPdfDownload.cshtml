@@ -1,0 +1,43 @@
+﻿@using ROHV.WebApi.ViewModels;
+@{
+ 
+}
+
+<script id="pop-template-report-pdf-download" type="text/html">
+    <div class="modal-dialog modal-md" style="margin-top: 300px">
+        <div class="modal-content overlay-wrapper">
+            <div class="modal-header alert-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Download <%model.get("reportName")%> Report</h4>
+            </div>
+            
+            <div class="modal-body" style="text-align: center">
+                <form id="hab-plan-print-form">
+                    <div class="col-xs-12 col-md-12">
+                        <div class="form-group">
+                            <label for="ReportTemplate">Report template</label>
+                            <select id="ReportTemplate"
+                                    name="ReportTemplate"
+                                    class="selectpicker"
+                                    title="Select template...">
+                                
+                                    @Html.Raw(@"
+                                    <% const reportTemplates = model.get(""reportTemplates"");
+                                        for(let t of reportTemplates){
+                                        %>
+                                            <option value='<%=t.StartDate %>'
+                                                <%if(t.IsSelected){%> selected <%}%>)>
+                                                <%=t.Description%>
+                                            </option>
+                                    <%}%>")
+                            </select>
+                        </div>
+                    </div>
+                </form>
+                <button data-action="generate-report" type="button" class="btn btn-danger btn-md">
+                    <span class="glyphicon glyphicon-download-alt"></span>&nbsp;&nbsp;Generate report
+                </button>&nbsp;&nbsp;&nbsp;
+            </div>
+        </div>
+    </div>
+</script>

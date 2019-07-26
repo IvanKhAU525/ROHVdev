@@ -1,0 +1,247 @@
+﻿@using ROHV.WebApi.ViewModels;
+@{
+    var lists = (Dictionary<String, List<ItemListViewModel>>) ViewData["Lists"];
+    var stateList = (List<ItemListViewModel>) lists["States"];
+    var typeList = (List<ItemListViewModel>) lists["Types"];
+    var deptList = (List<ItemListViewModel>) lists["Depts"];
+    var categoryList = (List<ItemListViewModel>) lists["Categories"];
+}
+
+<script id="employee-form-template" type="text/html">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+@Html.Raw(@"<%
+                var isEdit = model.get(""ContactId"")!=null;
+                var title = isEdit? ""Edit employee info"": ""Add employee to the system"";
+                var btnTitle = isEdit? ""Save changes"": ""Add employee"";
+            %>")
+<div class="modal-header alert-primary">
+
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title"><%=title%></h4>
+</div>
+<div class="modal-body">
+    <form id="employee-form">
+        <div class="row">
+            <div class="col-xs-6 col-md-6">
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <div class="form-group">                            
+                            <label for="FileNumber">File Number</label>
+                            <input value="<%=model.get('FileNumber')%>" class="form-control" id="FileNumber" name="FileNumber" placeholder="Enter File Number...">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12">
+                        <div class="form-group">
+                            <label for="Salutation">Salutation</label>
+                            <input value="<%=model.get('Salutation')%>" class="form-control" id="Salutation" name="Salutation" placeholder="Enter salutation...">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12">
+                        <div class="form-group">
+                            <label for="FirstName">First name</label>
+                            <input value="<%=model.get('FirstName')%>" class="form-control" id="FirstName" name="FirstName" placeholder="Enter first name...">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12">
+                        <div class="form-group">
+                            <label for="MiddleName">Middle name</label>
+                            <input value="<%=model.get('MiddleName')%>" class="form-control" id="LastName" name="MiddleName" placeholder="Enter middle name...">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12">
+                        <div class="form-group">
+                            <label for="LastName">Last name</label>
+                            <input value="<%=model.get('LastName')%>" class="form-control" id="LastName" name="LastName" placeholder="Enter last name...">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12">
+                        <div class="form-group">
+                            <label for="CompanyName">Company name</label>
+                            <input value="<%=model.get('CompanyName')%>" class="form-control" id="CompanyName" name="CompanyName" placeholder="Enter company name...">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12">
+                        <div class="form-group">
+                            <label for="CCO">CCO</label>
+                            <input value="<%=model.get('CCO')%>" class="form-control" id="CCO" name="CCO" placeholder="Enter CCO...">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12">
+                        <div class="form-group">
+                            <label for="Address1">Address</label>
+                            <input value="<%=model.get('Address1')%>" class="form-control" id="Address1" name="Address1" placeholder="Enter Address Line 1...">
+                        </div>
+                        <div class="form-group">
+                            <input value="<%=model.get('Address2')%>" class="form-control" id="Address2" name="Address2" placeholder="Enter Address Line 2...">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12">
+                        <label for="City">City, state, zip</label>
+                        <div class="row">
+                            <div class="col-xs-5 col-md-5 form-group" style="padding-right: 5px !important;">
+                                <input value="<%=model.get('City')%>" class="form-control" id="City" name="City" placeholder="City...">
+                            </div>
+                            <div class="col-xs-4 col-md-4 form-group" style="padding-left: 5px !important; padding-right: 5px !important;">
+                                <select id="State" class="selectpicker"
+                                        name="State"
+                                        title="State...">
+                                    @foreach (var item in stateList)
+                    {
+                        @:<% var value = '@item.Value';%>
+                        <option value="@item.Value"
+                                @Html.Raw(@"<%if(model.get(""State"")==value){%> selected   <%}%>")>
+                            @item.Name
+                        </option>
+    }
+                                </select>
+                            </div>
+                            <div class="col-xs-3 col-md-3 form-group" style="padding-left: 5px !important;">
+                                <input value="<%=model.get('Zip')%>" class="form-control" id="Zip" name="Zip" placeholder="Zip...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12">
+                        <label for="Signature">Signature file</label>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-5">
+                                <span class="btn btn-default btn-file">
+                                    Select signature file... <input type="file" name="Signature" id="Signature">
+                                </span>
+                                <div id="signature-img" class="has-error" style="margin-top: 5px;"></div>
+                            </div>
+                            <div class="col-xs-6 col-md-6" id="signatureContainer">
+                                <a class="btn btn-danger" href="javascript:void(0);" style="width: auto; margin-right: 10px;" data-action="remove-file-signature">
+                                    <i class="fa fa-remove">&nbsp;&nbsp;&nbsp;Remove&nbsp;signature</i>
+                                </a> <br /> &nbsp;
+                                <!--div class="form-group">
+                    <input value="" type="password" class="form-control" id="SignaturePassword" name="SignaturePassword" placeholder="Signature password..." />
+                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-6">
+                <div class="col-xs-12 col-md-12">
+                    <div class="form-group">
+                        <label for="CategoryId">Category</label>
+                        <select id="CategoryId" class="selectpicker"
+                                name="CategoryId"
+                                title="Contact category...">
+                            @foreach (var item in categoryList)
+                            {
+                                @:<% var value = '@item.Value';%>
+                                <option value="@item.Value" @Html.Raw(@"<%if(model.get(""CategoryId"")==value){%> selected   <%}%>")>
+                                    @item.Name
+                                </option>
+                            }
+                        </select>
+
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-12">
+                    <div class="form-group">
+                        <label for="ContactTypeId">Type</label>
+                        <select id="ContactTypeId" class="selectpicker"
+                                name="ContactTypeId"
+                                title="Contact type...">
+                            @foreach (var item in typeList)
+                            {
+                                @:<% var value = '@item.Value';%>
+                                <option value="@item.Value"
+                                        @Html.Raw(@"<%if(model.get(""ContactTypeId"")==value){%> selected   <%}%>")>
+                                    @item.Name
+                                </option>
+                            }
+                        </select>
+
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-12">
+                    <div class="form-group">
+                        <label for="JobTitle">Job Title</label>
+                        <input value="<%=model.get('JobTitle')%>" class="form-control" id="JobTitle" name="JobTitle" placeholder="Enter job title...">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-12">
+                    <div class="form-group">
+                        <label for="DepartmentId">Dept</label>
+                        <select id="DepartmentId" class="selectpicker"
+                                name="DepartmentId"
+                                title="Department ...">
+                            @foreach (var item in deptList)
+                            {
+                                @:<% var value = '@item.Value';%>
+                                <option value="@item.Value"
+                                        @Html.Raw(@"<%if(model.get(""DepartmentId"")==value){%> selected   <%}%>")>
+                                    @item.Name
+                                </option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-12">
+                    <div class="checkbox">
+                        <label style="font-weight: bold;"><input value="1" @Html.Raw(@"<%if(model.get(""IsServiceCoordinator"")==true){%> checked=""checked""<%}%>") id="IsServiceCoordinator" name="IsServiceCoordinator" type="checkbox" /> Is Service Coordinator? </label>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-12">
+                    <div class="row">
+                        <div class="col-xs-9 col-md-9">
+                            <div class="form-group">
+                                <label for="Phone">Phone</label>
+                                <input value="<%=model.get('Phone')%>" class="form-control" id="Phone" name="Phone" placeholder="Enter phone...">
+                            </div>
+                        </div>
+                        <div class="col-xs-3 col-md-3">
+                            <div class="form-group">
+                                <label for="PhoneExtension">Ext</label>
+                                <input value="<%=model.get('PhoneExtension')%>" class="form-control" id="PhoneExtension" name="PhoneExtension" placeholder="Enter phone extentions...">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-xs-12 col-md-12">
+                    <div class="form-group">
+                        <label for="MobilePhone">Mobile Phone</label>
+                        <input value="<%=model.get('MobilePhone')%>" class="form-control" id="MobilePhone" name="MobilePhone" placeholder="Enter mobile phone...">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-12">
+                    <div class="form-group">
+                        <label for="Fax">Fax</label>
+                        <input value="<%=model.get('Fax')%>" class="form-control" id="Fax" name="Fax" placeholder="Enter fax...">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-12">
+                    <div class="form-group">
+                        <label for="EmailAddress">Email</label>
+                        <input value="<%=model.get('EmailAddress')%>" class="form-control" id="EmailAddress" name="EmailAddress" placeholder="Enter email...">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-12">
+                    <div class="form-group">
+                        <label for="Notes">Notes</label>
+                        <textarea class="form-control" id="Notes" name="Notes" placeholder="Enter notes..."><%=model.get('Notes')%></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn  btn-default pull-left" data-dismiss="modal">Close</button>
+    <button type="button" id="save-modal" class="btn btn-primary"><%=btnTitle%></button>
+</div>
+<div class="overlay" id="overlay-dialog" style="display: none;">
+    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+</div>
+</div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</script>

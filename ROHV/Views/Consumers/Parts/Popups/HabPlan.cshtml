@@ -1,0 +1,325 @@
+﻿@using ROHV.WebApi.ViewModels;
+@using ROHV.Controllers;
+@{
+    var controller = ViewContext.Controller as BaseController;
+    var lists = (Dictionary<String, List<ItemListViewModel>>)ViewData["Lists"];
+    var durations = (List<ItemListViewModel>)lists["HabPlanDurations"];
+    var frequencies = (List<ItemListViewModel>)lists["HabPlanFrequencies"];
+    var statuses = (List<ItemListViewModel>)lists["HabPlanStatuses"];
+    var services = (List<ItemListViewModel>)lists["ServicesList"];
+    var QIDP = ViewData["QIDP"];
+}
+<script id="pop-template-habplan" type="text/html">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content overlay-wrapper">
+            @Html.Raw(@"<%
+                var isEdit = model.get(""ConsumerHabPlanId"")!=null;
+                var title = isEdit? ""Edit hab plan"": ""Add hab plan"";
+                var btnTitle = isEdit? ""Save changes"": ""Add hab plan"";
+                var QIDP = !isEdit?""" + QIDP + @""": model.get(""QMRP"");
+            %>")
+            <div class="modal-header alert-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><%=title%></h4>
+            </div>
+            <div class="modal-body">
+                <form id="hab-plan-form">
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="Name">Name</label>
+                                        <input type="text" class="mockhidden" />
+                                        <input type="password" class="mockhidden" />
+                                        <input placeholder="Please enter name..." class="form-control" id="Name" type="text"  name="Name" value="<%=model.get('Name')%>">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="HabServiceId">Service</label>
+                                        <select id="HabServiceId"
+                                                name="HabServiceId"
+                                                class="selectpicker"
+                                                title="Select service...">
+                                            @foreach (var item in services)
+                                            {
+                                                @:<% var value = @item.Value;%>
+                                                <option value="@item.Value"
+                                                        @Html.Raw(@"<%if(model.get(""HabServiceId"")==value){%> selected   <%}%>")>
+                                                    @item.Name
+                                                </option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="CoordinatorId">Coordinator</label>
+                                        <select id="CoordinatorId" name="CoordinatorId" class="selectpicker" data-live-search="true" title="Select employee name...">
+                                            @Html.Raw(@"
+                                            <% var coordinator = model.get(""Coordinator"");
+                                              if(coordinator!=null){
+                                             %>
+                                                    <option value='<%=coordinator.ContactId %>'
+                                                            data-icon='glyphicon-user'
+                                                            data-subtext='<%=coordinator.CompanyName%>' >
+                                                        <%=coordinator.Name%>
+                                                    </option>
+                                             <%}%>")
+                                        </select>
+                                        <div class="auto-signature">
+                                            <label class="acheckbox">
+                                                <input value="1" id="IsAutoSignature" name="IsAutoSignature" @Html.Raw(@"<%if(model.get(""IsAutoSignature"")==true){%> checked=""checked""<%}%>") type="checkbox" /> Use auto signature
+                                            </label>
+                                            <div id="signature-password" style="display: none; width: 60%;">
+                                                <input type="password" style="" placeholder="Signature password..." class="form-control apassword" id="SignaturePassword" name="SignaturePassword" />
+                                                <button type="button" class="abutton btn btn-danger btn-sm" data-action="confirmPassword">Confirm</button>
+                                                <span id="SignaturePassword-error" style="color:red;display:none;" class="help-block">Password is wrong...</span>
+                                            </div>
+                                            <div id="SignaturePassword-confirmed" style="display:none;width: 60%;margin-top: 7px;">
+                                                <span style="color:green;" class="help-block">The signature was confirmed...</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="FrequencyId">Frequency</label>
+                                        <select id="FrequencyId"
+                                                name="FrequencyId"
+                                                class="selectpicker"
+                                                title="Select frequency...">
+                                            @foreach (var item in frequencies)
+                                            {
+                                                @:<% var value = @item.Value;%>
+                                                <option value="@item.Value"
+                                                        @Html.Raw(@"<%if(model.get(""FrequencyId"")==value){%> selected   <%}%>")>
+                                                    @item.Name
+                                                </option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="DurationId">Duraiton</label>
+                                        <select id="DurationId"
+                                                name="DurationId"
+                                                class="selectpicker"
+                                                title="Select duration...">
+                                            @foreach (var item in durations)
+                                            {
+                                                @:<% var value = @item.Value;%>
+                                                <option value="@item.Value"
+                                                        @Html.Raw(@"<%if(model.get(""DurationId"")==value){%> selected   <%}%>")>
+                                                    @item.Name
+                                                </option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="QMRP">QIDP</label>
+                                        <input placeholder="Please enter QIDP..." class="form-control" id="QMRP" name="QMRP" value="<%=QIDP%>">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-6">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="StatusId">Status</label>
+                                        <select id="StatusId"
+                                                name="StatusId"
+                                                class="selectpicker"
+                                                title="Select status...">
+                                            @foreach (var item in statuses)
+                                            {
+                                                @:<% var value = @item.Value;%>
+                                                <option value="@item.Value"
+                                                        @Html.Raw(@"<%if(model.get(""DurationId"")==value){%> selected   <%}%>")>
+                                                    @item.Name
+                                                </option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="EnrolmentDate">Enrolment date</label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input value="<%=model.get('EnrolmentDate')%>" type="text" class="form-control pull-right"
+                                                   data-inputmask="'alias': 'mm/dd/yyyy'" data-mask=""
+                                                   id="EnrolmentDate" name="EnrolmentDate" placeholder="Enter enrolment date..." />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="DatePlan">Date of plan</label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input value="<%=model.get('DatePlan')%>" type="text" class="form-control pull-right"
+                                                   data-inputmask="'alias': 'mm/dd/yyyy'" data-mask=""
+                                                   id="DatePlan" name="DatePlan" placeholder="Enter date of plan..." />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="EffectivePlan">Effective date</label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input value="<%=model.get('EffectivePlan')%>" type="text" class="form-control pull-right"
+                                                   data-inputmask="'alias': 'mm/dd/yyyy'" data-mask=""
+                                                   id="EffectivePlan" name="EffectivePlan" placeholder="Enter effective date..." />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="SignatureDate">Signature date</label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input @(controller.ApplicationUser.IsSuperAdmin() ? "" : "readonly='readonly'")
+                                                   value="<%=model.get('SignatureDate')%>" type="text" class="form-control pull-right"
+                                                   data-inputmask="'alias': 'mm/dd/yyyy'" data-mask=""
+                                                   id="SignatureDate" name="SignatureDate" placeholder="Signature date..." />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <div>
+                            <button type="button" class="btn btn-primary btn-sm pull-left" style="margin-top:10px;" data-action="add-valued-outcome">Add valued outcome</button>
+                        </div>
+                        <div style="clear:both; margin-bottom:5px;"></div>
+
+                        <form id="hab-plan-valued-form">
+                            <div data-container="valued-outcomes" style="overflow-y:auto;"></div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <div>
+                            <button type="button" class="btn btn-primary btn-sm pull-left" style="margin-top:10px;" data-action="add-safeguard">Add safeguard</button>
+                        </div>
+                        <div style="clear:both; margin-bottom:5px;"></div>
+                        <form id="hab-plan-safeguard-form">
+                            <div data-container="safeguards" style="overflow-y:auto;"></div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn  btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="button" id="save-modal" class="btn btn-primary"><%=btnTitle%></button>
+                <%if(isEdit){%>
+                <button type="button" id="save-as-new-modal" class="btn btn-primary">Save as new</button>
+                <%}%>
+            </div>
+            <div class="overlay" id="overlay-dialog" style="display:none;">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</script>
+
+<script id="template-hab-plan-valued-outcome" type="text/html">
+    <fieldset style="text-align:left; margin-top:20px;" data-container-valued-id="<%=model.Id%>">
+        <legend><b>Valued outcome <%=num%></b></legend>
+        <button type="button" class="btn btn-danger btn-sm pull-right" data-id="<%=model.Id%>" style="margin-bottom:5px;" data-action="remove-valued-outcome">Remove valued outcome</button>
+        <div class="form-group" style="margin-bottom: 0px;">
+            <label for="is-ipop-<%=model.Id%>">Is IPOP</label>
+            <input <%if (model.IsIPOP == true) { %>checked='checked'<% }%> data-id="<%=model.Id%>" id="is-ipop-<%=model.Id%>" name="is-ipop-<%=model.Id%>" type="checkbox" />
+        </div>
+
+        <div class="form-group" style="margin-bottom: 0px;">
+            <label for="cqlpom-goal-<%=model.Id%>">CQL POMs Goal</label>
+            <input type="text" class="form-control rohv-not-required" name="cqlpom-goal-<%=model.Id%>" data-id="<%=model.Id%>" value="<%=model.CQLPOM%>" placeholder="Please enter CQL POMs Goal..." />
+        </div>
+        <div class="form-group" style="margin-bottom: 0px;">
+            <label for="mygoal-<%=model.Id%>">My Goal</label>
+            <input type="text" class="form-control rohv-not-required" name="mygoal-<%=model.Id%>" data-id="<%=model.Id%>" value="<%=model.MyGoal%>" placeholder="Please enter My Goal..." />
+        </div>
+        <div class="form-group" style="margin-bottom: 0px;">
+            <label for="valued-outcome-<%=model.Id%>">Value outcome (provider assigned goal)</label>
+            <input type="text" class="form-control" name="valued-outcome-<%=model.Id%>" data-id="<%=model.Id%>" value="<%=model.ValuedOutcome%>" placeholder="Please enter valued outcome..." />
+        </div>
+        <fieldset style="text-align:left;">
+            <legend><small>Staff server & actions</small></legend>
+            <div data-container="actions">
+                <%=htmlActions%>
+            </div>
+            <div>
+                <button type="button" class="btn btn-primary btn-sm pull-right" data-vo-id="<%=model.Id%>" data-action="add-new-action">Add new action</button>
+            </div>
+        </fieldset>
+    </fieldset>
+</script>
+<script id="template-hab-plan-action" type="text/html">
+    <div style="position:relative;" data-container-action-id="<%=model.Id%>">
+        <div class="form-group pull-left" style="width:90%; margin-bottom: 5px;">
+            <label for="vo-<%=parentId%>-action-<%=model.Id%>">Action <%=num%></label>
+            <input class="form-control" type="text" name="vo-<%=parentId%>-action-<%=model.Id%>" data-id="<%=model.Id%>" data-vo-id="<%=parentId%>" value="<%=model.ServeAndAction%>" placeholder="Please enter action..." />
+        </div>
+        <button type="button" class="btn btn-danger btn-sm pull-right" data-id="<%=model.Id%>" data-vo-id="<%=parentId%>" style="margin-top:26px;" data-action="remove-action">Remove</button>
+    </div>
+    <div style="clear:both;"></div>
+</script>
+
+
+<script id="template-hab-plan-safeguard" type="text/html">
+    <div style="position:relative;" data-container-safeguard-id="<%=model.Id%>">
+        <div class="form-group pull-left" style="width:90%; margin-bottom: 5px;">
+            <label for="safeguard-item-<%=model.Id%>">Safeguard <%=num%></label>
+            <div class="form-group" style="margin-bottom: 0px;">
+                <label for="safeguard-is-ipop-<%=model.Id%>">Is IPOP</label>
+                <input class="rohv-not-required" <%if (model.IsIPOP == true) { %>checked='checked'<% }%> data-id="<%=model.Id%>" id="safeguard-is-ipop-<%=model.Id%>" name="safeguard-is-ipop-<%=model.Id%>" type="checkbox" />
+            </div>
+            <div class="form-group" style="margin-bottom: 0px;">
+                <label for="safeguard-item-<%=model.Id%>">Item</label>
+                <input class="form-control" type="text" name="safeguard-item-<%=model.Id%>"
+                       data-id="<%=model.Id%>"
+                       value="<%=model.Item%>" placeholder="Please enter safeguard item..." />
+            </div>
+            <div class="form-group" style="margin-bottom: 0px;">
+                <label for="safeguard-action-<%=model.Id%>">Action</label>
+                <input class="form-control rohv-not-required" type="text" name="safeguard-action-<%=model.Id%>"
+                       data-id="<%=model.Id%>"
+                       value="<%=model.Action%>" placeholder="Please enter safeguard action..." />
+            </div>
+        </div>
+        <button type="button" class="btn btn-danger btn-sm pull-right" data-id="<%=model.Id%>"
+                style="margin-top:26px;" data-action="remove-safeguard">
+            Remove
+        </button>
+    </div>
+    <div style="clear:both;"></div>
+</script>

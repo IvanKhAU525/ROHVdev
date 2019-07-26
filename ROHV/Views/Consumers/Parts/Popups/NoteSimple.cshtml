@@ -1,0 +1,43 @@
+﻿@using ROHV.WebApi.ViewModels;
+@{
+    var lists = (Dictionary<String, List<ItemListViewModel>>)ViewData["Lists"];
+}
+<script id="pop-template-simple-note" type="text/html">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content overlay-wrapper">
+            @Html.Raw(@"<%
+                var isEdit = model.get(""ConsumerNoteId"")!=null;
+                var title = isEdit? ""Edit note"": ""Add note"";
+                var btnTitle = isEdit? ""Save changes"": ""Add note"";
+            %>")
+            <div class="modal-header alert-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><%=title%></h4>
+            </div>
+            <div class="modal-body">
+                <form id="note-form">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <div class="row">                             
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="Notes">Note:</label>
+                                        <textarea name="Notes" id="Notes" class="form-control" rows="2" placeholder="Enter note ..."><%=model.get('Notes')%></textarea>
+                                    </div>
+                                </div>
+             
+                            </div>
+                        </div>                       
+                    </div>
+                </form>               
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn  btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="button" id="save-modal" class="btn btn-primary"><%=btnTitle%></button>
+            </div>
+            <div class="overlay" id="overlay-dialog" style="display:none;">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</script>

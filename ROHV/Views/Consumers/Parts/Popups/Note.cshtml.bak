@@ -1,0 +1,110 @@
+﻿@using ROHV.WebApi.ViewModels;
+@{
+    var lists = (Dictionary<String, List<ItemListViewModel>>)ViewData["Lists"];
+    var types = (List<ItemListViewModel>)lists["NoteTypes"];
+    var typesFrom = (List<ItemListViewModel>)lists["NoteFromTypes"];
+}
+<script id="pop-template-note" type="text/html">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content overlay-wrapper">
+            @Html.Raw(@"<%
+                var isEdit = model.get(""ConsumerNoteId"")!=null;
+                var title = isEdit? ""Edit note"": ""Add note"";
+                var btnTitle = isEdit? ""Save changes"": ""Add note"";
+            %>")
+            <div class="modal-header alert-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><%=title%></h4>
+            </div>
+            <div class="modal-body">
+                <form id="note-form">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="ContactId">Contact</label>
+                                        <select id="ContactId" name="ContactId" class="selectpicker" data-live-search="true" placeholder="Select employee name...">
+                                            @Html.Raw(@"
+                                            <%if(model.get(""ContactId"")!=null){%>
+                                                    <option value=""<%=model.get(""ContactId"")%>""  data-icon=""glyphicon-user"" data-subtext=""<%=model.get(""CoordinatorCompany"")%>"" selected >
+                                                            <%=model.get(""ContactName"")%>
+                                                    </option>
+                                             <%}%>")
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="TypeId">Note type</label>
+                                        <select id="TypeId"
+                                                name="TypeId"
+                                                class="selectpicker"
+                                                title="Select type...">
+                                            @foreach (var item in types)
+                                            {
+                                                @:<% var value = @item.Value;%>
+                                                <option value="@item.Value"
+                                                        @Html.Raw(@"<%if(model.get(""TypeId"")==value){%> selected   <%}%>")>
+                                                    @item.Name
+                                                </option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="TypeFromId">From dept.</label>
+                                        <select id="TypeFromId"
+                                                name="TypeFromId"
+                                                class="selectpicker"
+                                                title="Select from dept...">
+                                            @foreach (var item in typesFrom)
+                                            {
+                                                @:<% var value = @item.Value;%>
+                                                <option value="@item.Value"
+                                                        @Html.Raw(@"<%if(model.get(""TypeFromId"")==value){%> selected   <%}%>")>
+                                                    @item.Name
+                                                </option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="Date">Date:</label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input value="<%=model.get('Date')%>" model.get" type="text" class="form-control pull-right"
+                                                   data-inputmask="'alias': 'mm/dd/yyyy'" data-mask=""
+                                                   id="Date" name="Date" placeholder="Enter note's date..." />
+                                        </div>
+                                    </div>
+                                </div>
+                              
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="Notes">Notes:</label>
+                                        <textarea name="Notes" id="Notes" class="form-control" rows="2" placeholder="Enter note ..."><%=model.get('Notes')%></textarea>
+                                    </div>
+                                </div>
+             
+                            </div>
+                        </div>                       
+                    </div>
+                </form>               
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn  btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="button" id="save-modal" class="btn btn-primary"><%=btnTitle%></button>
+            </div>
+            <div class="overlay" id="overlay-dialog" style="display:none;">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</script>

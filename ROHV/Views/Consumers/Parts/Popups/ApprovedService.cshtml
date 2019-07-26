@@ -1,0 +1,200 @@
+﻿@using ROHV.WebApi.ViewModels;
+@{
+    var lists = (Dictionary<String, List<ItemListViewModel>>)ViewData["Lists"];
+    var unitQuantitiesList = (List<ItemListViewModel>)lists["UnitQuantitiesList"];
+
+    var fullServicesListData = (List<ServicesListViewModel>)ViewData["FullDataServicesList"];
+}
+<script id="pop-template-approved-service" type="text/html">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content overlay-wrapper">
+            @Html.Raw(@"<%
+                var isEdit = model.get(""ConsumerServiceId"")!=null;
+                var title = isEdit? ""Edit approved service"": ""Add approved service"";
+                var btnTitle = isEdit? ""Save changes"": ""Add approved service"";
+            %>")
+            <div class="modal-header alert-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><%=title%></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form id="aproved-service-form">
+                        <div class="col-xs-6 col-md-6">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="ServiceId">Service</label>
+                                        <select id="ServiceId" class="selectpicker"
+                                                name="ServiceId"
+                                                title="Select service...">
+                                            @foreach (var item in fullServicesListData)
+                                            {
+                                                @:<% var value = @item.ServiceId;%>
+                                                <option value="@item.ServiceId" r-minutes-in-unit="@item.MinutesInUnit"
+                                                        @Html.Raw(@"<%if(model.get(""ServiceId"")==value){%> selected   <%}%>")>
+                                                    @item.ServiceDescription
+                                                </option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="EffectiveDate">Effective date</label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input value="<%=model.get('EffectiveDate')%>" model.get" type="text" class="form-control pull-right rohv-date"
+                                                   data-inputmask="'alias': 'mm/dd/yyyy'" data-mask=""
+                                                   id="EffectiveDate" name="EffectiveDate" placeholder="Enter effective date..." />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="AgencyDate">Rayim date</label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input value="<%=model.get('AgencyDate')%>" model.get" type="text" class="form-control pull-right rohv-date"
+                                                   data-inputmask="'alias': 'mm/dd/yyyy'" data-mask=""
+                                                   id="AgencyDate" name="AgencyDate" placeholder="Enter rayim date..." />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="Extension">Annual units</label>
+                                        <input value="<%=model.get('AnnualUnits')%>" class="form-control" id="AnnualUnits" name="AnnualUnits" placeholder="Enter annual units...">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-12" style="display:none">
+                                    <div class="form-group">
+                                        <label for="UnitQuantities">Unit quantity</label>
+                                        <select id="UnitQuantities" class="selectpicker"
+                                                name="UnitQuantities"
+                                                title="Select unit quantity....">
+                                            @foreach (var item in unitQuantitiesList)
+                                            {
+                                                @:<% var value = @item.Value;%>
+                                                <option value="@item.Value"
+                                                        @Html.Raw(@"<%if(model.get(""UnitQuantities"")==value){%> selected   <%}%>")>
+                                                    @item.Name
+                                                </option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="TotalHours">Total Hours</label>
+                                        <input class="form-control" id="TotalHours" name="TotalHours" value="<%=model.get('TotalHours')%>" />
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="Inactive">Inactive</label>
+                                        <input <%if (model.get('Inactive')==true) { %>checked='checked'<% }%>  id="Inactive" name="Inactive" type="checkbox" />
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-12">
+                                    <label for="DateInactive">Inactive date</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input value="<%=model.get('DateInactive')%>" model.get" type="text" class="form-control pull-right rohv-date"
+                                               data-inputmask="'alias': 'mm/dd/yyyy'" data-mask=""
+                                               id="DateInactive" name="DateInactive" placeholder="Enter inactive date..." />
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-12" style="margin-top: 10px">
+                                    <div class="row">
+                                        <div class="col-xs-6 col-md-6">
+                                            <label for="FileId">File</label>
+                                            <div>
+                                                <div>
+                                                    <input type="hidden" name="FileId" id="FileId" value="<%=model.get('FileId')%>">
+                                                    <div id="dropzone" class="dropzone">
+                                                        <div class="dz-default dz-message">
+                                                            <span>Drop file here or click to upload</span>
+                                                        </div>
+                                                        <div class="fallback">
+                                                            <input type="FileDataInput" name="FileDataInput">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="file-name"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 col-md-6" style="margin-top:27px;">
+                                            <button class="btn  btn-primary btn-sm" href="javascript:void(0);" style="width:auto;" data-action="download-file-popup">
+                                                <i class="glyphicon glyphicon-download-alt"></i>&nbsp;&nbsp;&nbsp;
+                                                Download current file
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xs-6 col-md-6">
+                            <label for="direct-workers-grid">Direct care workers</label>
+                            <table id="direct-workers-grid" style="width:100%;" class="table table-bordered table-hover"></table>
+                        </div>
+                        <div class="col-xs-6 col-md-6">
+                            <div class="form-group">
+                                <label for="Notes">Notes</label>
+                                <textarea class="form-control" id="Notes" name="Notes" placeholder="Enter notes..." rows="10"><%=model.get('Notes')%></textarea>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-6">
+                            <div class="form-group">
+                                <label for="UsedHours">Used Hours</label>
+                                <input readonly="readonly" class="form-control" id="UsedHours" name="UsedHours" value="<%=model.get('UsedHours')%>" />
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-3">
+                            <div class="form-group">
+                                <label for="UsedHoursStartDate">Start Date</label>
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input value="<%=model.get('UsedHoursStartDate')%>" model.get" type="text" class="form-control pull-right rohv-date"
+                                           data-inputmask="'alias': 'mm/dd/yyyy'" data-mask=""
+                                           id="UsedHoursStartDate" name="UsedHoursStartDate" placeholder="Enter start date..." />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-3">
+                            <div class="form-group">
+                                <label for="UsedHoursEndDate">End Date</label>
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input value="<%=model.get('UsedHoursEndDate')%>" model.get" type="text" class="form-control pull-right rohv-date"
+                                           data-inputmask="'alias': 'mm/dd/yyyy'" data-mask=""
+                                           id="UsedHoursEndDate" name="UsedHoursEndDate" placeholder="Enter end date..." />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn  btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="button" id="save-modal" class="btn btn-primary"><%=btnTitle%></button>
+            </div>
+            <div class="overlay" id="overlay-dialog" style="display:none;">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</script>

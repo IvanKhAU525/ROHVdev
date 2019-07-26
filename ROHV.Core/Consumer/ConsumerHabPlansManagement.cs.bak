@@ -1,0 +1,374 @@
+﻿using ROHV.Core.Database;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Threading.Tasks;
+using System;
+using ROHV.Core.Services;
+using ROHV.Controllers;
+using Microsoft.Reporting.WebForms;
+using System.IO;
+using System.Globalization;
+
+namespace ROHV.Core.Consumer
+{
+    public class ConsumerHabPlansManagement : BaseModel
+    {
+        public ConsumerHabPlansManagement(RayimContext context) : base(context)
+        {
+        }
+
+        public async Task<List<ConsumerHabPlan>> GetHabPlans(Int32 consumerId)
+        {
+            var habPlans = await _context.ConsumerHabPlans.Where(x => x.ConsumerId == consumerId)
+                .OrderByDescending(x => x.DateCreated).ToListAsync();
+            return habPlans;
+        }
+
+        public async Task<List<ConsumerHabPlanStatus>> GetStatuses()
+        {
+            var result = await _context.ConsumerHabPlanStatuses.ToListAsync();
+            return result;
+        }
+
+        public async Task<List<ConsumerHabPlanDuration>> GetDurations()
+        {
+            var result = await _context.ConsumerHabPlanDurations.ToListAsync();
+            return result;
+        }
+
+        public async Task<List<ConsumerHabPlanFrequency>> GetFrequencies()
+        {
+            var result = await _context.ConsumerHabPlanFrequencies.ToListAsync();
+            return result;
+        }
+
+        public async Task<Int32> Save(ConsumerHabPlan dbModel, List<ConsumerHabPlanValuedOutcome> outcomes,
+            List<ConsumerHabPlanVOServeAction> actions, List<ConsumerHabPlanSafeguard> safeguards)
+        {
+            if (dbModel.ConsumerHabPlanId == 0)
+            {
+                _context.ConsumerHabPlans.Add(dbModel);
+            }
+            else
+            {
+                var model = await _context.ConsumerHabPlans.SingleOrDefaultAsync(x =>
+                    x.ConsumerHabPlanId == dbModel.ConsumerHabPlanId);
+                if (model != null)
+                {
+                    model.ConsumerId = dbModel.ConsumerId;
+                    model.HabServiceId = dbModel.HabServiceId;
+                    model.CoordinatorId = dbModel.CoordinatorId;
+                    model.FrequencyId = dbModel.FrequencyId;
+                    model.DurationId = dbModel.DurationId;
+                    model.StatusId = dbModel.StatusId;
+                    model.AddedById = dbModel.AddedById;
+                    model.UpdatedById = dbModel.UpdatedById;
+                    model.Name = dbModel.Name;
+                    model.QMRP = dbModel.QMRP;
+                    model.EnrolmentDate = dbModel.EnrolmentDate;
+                    model.SignatureDate = dbModel.SignatureDate;
+                    model.DatePlan = dbModel.DatePlan;
+                    model.EffectivePlan = dbModel.EffectivePlan;
+                    model.IsAproved = dbModel.IsAproved;
+                    model.IsAutoSignature = dbModel.IsAutoSignature;
+                    model.DateCreated = dbModel.DateCreated;
+                    model.DateUpdated = dbModel.DateUpdated;
+                    var outcomes_old =
+                        _context.ConsumerHabPlanValuedOutcomes.Where(x => x.HabPlanId == dbModel.ConsumerHabPlanId);
+                    var actions_old = _context.ConsumerHabPlanVOServeActions.Where(x =>
+                        outcomes_old.Any(z => z.Id == x.HabPlanValuedOutcomeId));
+                    var safeguards_old =
+                        _context.ConsumerHabPlanSafeguards.Where(x => x.ConsumerHabPlanId == dbModel.ConsumerHabPlanId);
+                    _context.ConsumerHabPlanVOServeActions.RemoveRange(actions_old);
+                    _context.ConsumerHabPlanValuedOutcomes.RemoveRange(outcomes_old);
+                    _context.ConsumerHabPlanSafeguards.RemoveRange(safeguards_old);
+
+                }
+            }
+            await _context.SaveChangesAsync();
+            if (outcomes.Count > 0)
+            {
+                foreach (var outcome in outcomes)
+                {
+                    outcome.HabPlanId = dbModel.ConsumerHabPlanId;
+                    Int32 tempId = outcome.Id;
+                    outcome.Id = 0;
+                    _context.ConsumerHabPlanValuedOutcomes.Add(outcome);
+                    await _context.SaveChangesAsync();
+                    foreach (var action in actions)
+                    {
+                        if (action.HabPlanValuedOutcomeId == tempId && tempId < 0)
+                        {
+                            action.HabPlanValuedOutcomeId = outcome.Id;
+                            _context.ConsumerHabPlanVOServeActions.Add(action);
+                        }
+                    }
+                }
+                await _context.SaveChangesAsync();
+            }
+
+            if (safeguards.Count > 0)
+            {
+                foreach (var safeguard in safeguards)
+                {
+                    safeguard.ConsumerHabPlanId = dbModel.ConsumerHabPlanId;
+                    safeguard.ConsumerHabPlanSafeguardId = 0;
+                    _context.ConsumerHabPlanSafeguards.Add(safeguard);
+                }
+                await _context.SaveChangesAsync();
+            }
+            return dbModel.ConsumerHabPlanId;
+        }
+        public async Task<Boolean> Delete(Int32 id)
+        {
+            var model = await _context.ConsumerHabPlans.SingleOrDefaultAsync(x => x.ConsumerHabPlanId == id);
+            if (model != null)
+            {
+                var outcomes_old = _context.ConsumerHabPlanValuedOutcomes.Where(x => x.HabPlanId == id);
+                var actions_old =
+                    _context.ConsumerHabPlanVOServeActions.Where(x =>
+                        outcomes_old.Any(z => z.Id == x.HabPlanValuedOutcomeId));
+                var safeguards_old = _context.ConsumerHabPlanSafeguards.Where(x => x.ConsumerHabPlanId == id);
+                _context.ConsumerHabPlanVOServeActions.RemoveRange(actions_old);
+                _context.ConsumerHabPlanValuedOutcomes.RemoveRange(outcomes_old);
+                _context.ConsumerHabPlanSafeguards.RemoveRange(safeguards_old);
+                ;
+                _context.ConsumerHabPlans.Remove(model);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            return false;
+
+        }
+
+        public async Task DeleteAll(Int32 consumerId)
+        {
+            var models = _context.ConsumerHabPlans.Where(x => x.ConsumerId == consumerId);
+            if (models.Count() > 0)
+            {
+                var safeguards_old = _context.ConsumerHabPlanSafeguards.Where(x =>
+                    models.Any(z => z.ConsumerHabPlanId == x.ConsumerHabPlanId));
+                _context.ConsumerHabPlanSafeguards.RemoveRange(safeguards_old);
+                var vos = _context.ConsumerHabPlanValuedOutcomes.Where(x =>
+                    models.Any(z => z.ConsumerHabPlanId == x.HabPlanId));
+                if (vos.Count() > 0)
+                {
+                    var actions =
+                        _context.ConsumerHabPlanVOServeActions.Where(
+                            x => vos.Any(z => z.Id == x.HabPlanValuedOutcomeId));
+                    if (actions.Count() > 0)
+                    {
+                        _context.ConsumerHabPlanVOServeActions.RemoveRange(actions);
+                    }
+                    _context.ConsumerHabPlanValuedOutcomes.RemoveRange(vos);
+                }
+                _context.ConsumerHabPlans.RemoveRange(models);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public ConsumerHabPlan GetHabPLan(Int32 id)
+        {
+            var model = _context.ConsumerHabPlans.SingleOrDefault(x => x.ConsumerHabPlanId == id);
+            return model;
+        }
+        private Byte[] RenderPDF(ReportViewer reportViewer)
+        {
+            Warning[] warnings;
+            String[] streamids;
+            String mimeType,
+                encoding,
+                extension;
+
+            return reportViewer.LocalReport.Render("PDF", null, out mimeType, out encoding, out extension,
+                out streamids, out warnings);
+        }
+        public String ConvertInvalidFilePathChars(String value)
+        {
+            var invalidChars = new List<Char>(Path.GetInvalidFileNameChars());
+            invalidChars.Add('№');
+
+            foreach (var symbol in invalidChars)
+            {
+                value = value.Replace(symbol.ToString(), " ");
+            }
+
+            return value;
+        }
+        public String GetName(Core.Database.Consumer consumer)
+        {
+            String result = "";
+            if (!String.IsNullOrEmpty(consumer.MI))
+            {
+                result += consumer.FirstName + " " + consumer.MI + " " + consumer.LastName;
+            }
+            else
+            {
+                result += consumer.FirstName + " " + consumer.LastName;
+            }
+            return result;
+        }
+        public String GetName(Core.Database.Contact contact)
+        {
+            String result = "";
+            if (!String.IsNullOrEmpty(contact.Salutation))
+            {
+                result += contact.Salutation + " ";
+            }
+            if (!String.IsNullOrEmpty(contact.MiddleName))
+            {
+                result += contact.FirstName + " " + contact.MiddleName + " " + contact.LastName;
+            }
+            else
+            {
+                result += contact.FirstName + " " + contact.LastName;
+            }
+            return result;
+        }
+        public String GetDate(DateTime? date)
+        {
+            return date.HasValue ? date.Value.ToString(@"MM\/dd\/yyyy", CultureInfo.InvariantCulture) : "";
+        }
+        public byte[] GetPDF(Int32 habPlanId, BaseController claimsApiController, out String name)
+        {
+            var habPlan = this.GetHabPLan(habPlanId);
+            var reportViewer = new ReportViewer();
+            bool showReviewedBy = false;
+            reportViewer.Reset();
+            reportViewer.LocalReport.EnableExternalImages = true;
+            reportViewer.ProcessingMode = ProcessingMode.Local;
+            reportViewer.LocalReport.ReportPath = claimsApiController.Server.MapPath("~/Views/PDFViews/ComHabPlan.rdl");
+
+            name = this.ConvertInvalidFilePathChars(habPlan.Name) + "-ComHabPlan";
+            String chCoordinator = habPlan.Contact != null ? this.GetName(habPlan.Contact) : "";
+
+            byte[] chSignature = null;
+            String chSignatureType = string.Empty;
+            if (habPlan.IsAutoSignature)
+            {
+                chSignature = (habPlan.Contact?.Signature != null
+                    ? Convert.FromBase64String(habPlan.Contact.Signature.Split(',')[1])
+                    : null);
+
+                chSignatureType = (habPlan.Contact != null
+                    ? habPlan.Contact.Signature?.Split(';')[0].Split(':')[1]
+                    : "");
+            }
+
+            String msc = habPlan.Consumer.Contact3 != null ? this.GetName(habPlan.Consumer.Contact3) : "";
+            List<String> valueOutcomeList = new List<string>();
+            List<String> actionsList = new List<string>();
+            foreach (var valueOutcome in habPlan.ConsumerHabPlanValuedOutcomes)
+            {
+                valueOutcomeList.Add(valueOutcome.ValuedOutcome);
+                List<String> tmpActions = new List<string>();
+                Int32 position = 1;
+                foreach (var action in valueOutcome.ConsumerHabPlanVOServeActions)
+                {
+                    tmpActions.Add(position + ". " + action.ServeAndAction);
+                    position++;
+                }
+                actionsList.Add(String.Join("\r\n", tmpActions.ToArray()));
+
+            }
+            for (int i = valueOutcomeList.Count - 1; i < 4; i++)
+            {
+                valueOutcomeList.Add(String.Empty);
+                actionsList.Add(String.Empty);
+            }
+            if (habPlan.ServicesList.ServiceType.Contains("Community"))
+            {
+                showReviewedBy = true;
+            }
+            IEnumerable<Object> timeObjs = new[]
+            {
+                new
+                {
+                    PatientName = this.GetName(habPlan.Consumer),
+                    PatientDOB = this.GetDate(habPlan.Consumer.DateOfBirth),
+                    EnrollmentDate = this.GetDate(habPlan.EnrolmentDate),
+                    SignatureDate = this.GetDate(habPlan.SignatureDate),
+                    CHCoordinator = chCoordinator,
+                    Frequency = habPlan.ConsumerHabPlanFrequency.Name,
+                    Duration = habPlan.ConsumerHabPlanDuration.Name,
+                    Medicaid = habPlan.Consumer.MedicaidNo,
+                    HabService = habPlan.ServicesList.ServiceDescription,
+                    DateOfPlan = this.GetDate(habPlan.DatePlan),
+                    EffectiveDate = this.GetDate(habPlan.EffectivePlan),
+                    MSC = msc,
+                    Outcome1 = valueOutcomeList[0],
+                    Outcome2 = valueOutcomeList[1],
+                    Outcome3 = valueOutcomeList[2],
+                    Outcome4 = valueOutcomeList[3],
+                    Action1 = actionsList[0],
+                    Action2 = actionsList[1],
+                    Action3 = actionsList[2],
+                    Action4 = actionsList[3],
+                    TypeDocument = this.GetServiceName(habPlan),
+                    Safeguards = this.GetSafeguards(habPlan),
+                    ShowReviewedBy = !showReviewedBy,
+                    CHSignature = chSignature,
+                    CHSignatureMimeType = chSignatureType,
+                    CoordinatorLabel = this.GetCoordinatorLabel(habPlan)
+                }
+            };
+            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", timeObjs));
+            return RenderPDF(reportViewer);
+        }
+
+        private String GetSafeguards(ConsumerHabPlan habPlan)
+        {
+            String result = "";
+            if (habPlan.ConsumerHabPlanSafeguards != null)
+            {
+                if (habPlan.ConsumerHabPlanSafeguards.Count > 0)
+                {
+                    result += "<ul>";
+                    foreach (var item in habPlan.ConsumerHabPlanSafeguards)
+                    {
+                        result += "<li>" + item.Item + "</li>";
+                    }
+                    result += "</ul>";
+                }
+            }
+            return result;
+        }
+
+        private String GetServiceName(ConsumerHabPlan habPlan)
+        {
+            string serviceType = habPlan.ServicesList.ServiceType;
+            if (serviceType.Contains("Community"))
+            {
+                return "Community";
+            }
+            if (serviceType.Contains("Day Hab"))
+            {
+                return "Group Day";
+            }
+            if (serviceType.Contains("Respite"))
+            {
+                return "Respite";
+            }
+            return "Undefined";
+        }
+
+        private string GetCoordinatorLabel(ConsumerHabPlan habPlan)
+        {
+            string serviceType = habPlan.ServicesList.ServiceType;
+            if (serviceType.Contains("Community"))
+            {
+                return "CH";
+            }
+            if (serviceType.Contains("Day Hab"))
+            {
+                return "DH";
+            }
+            if (serviceType.Contains("Respite"))
+            {
+                return "RH";
+            }
+            return "";
+        }
+    }
+}

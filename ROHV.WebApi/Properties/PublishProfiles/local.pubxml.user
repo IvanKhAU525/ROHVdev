@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>D:\Publish\RohvApi</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.pdb">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/ITCraftFrame.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.EntityFramework.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Owin.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Cookies.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Facebook.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Google.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.MicrosoftAccount.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.OAuth.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Twitter.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ReportViewer.Common.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ReportViewer.ProcessingObjectModel.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ReportViewer.WebForms.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.SqlServer.Types.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/Owin.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/ROHV.Core.dll">
+      <publishTime>01/31/2019 12:51:03</publishTime>
+    </File>
+    <File Include="bin/ROHV.Core.dll.config">
+      <publishTime>01/17/2019 17:19:20</publishTime>
+    </File>
+    <File Include="bin/ROHV.Core.pdb">
+      <publishTime>01/31/2019 12:51:03</publishTime>
+    </File>
+    <File Include="bin/ROHV.WebApi.dll">
+      <publishTime>01/31/2019 12:52:44</publishTime>
+    </File>
+    <File Include="bin/ROHV.WebApi.pdb">
+      <publishTime>01/31/2019 12:52:44</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/System.ValueTuple.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.Owin.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>01/17/2019 17:19:22</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>01/17/2019 17:19:23</publishTime>
+    </File>
+    <File Include="web.config">
+      <publishTime>01/31/2019 12:52:45</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

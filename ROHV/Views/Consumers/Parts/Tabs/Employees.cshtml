@@ -1,0 +1,36 @@
+﻿<script id="employees-tab-template" type="text/html">
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <div class="input-group" style="margin-bottom:10px;">
+                <button class="btn  btn-primary btn-xs" href="javascript:void(0);" style="width:auto;" data-action="add">
+                    <i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;
+                    Add employee
+                </button>
+            </div>
+            <table id="employees-grid" style="width:100%;" class="table table-bordered table-hover"></table>
+        </div>
+    </div>
+</script>
+
+<script id="button-template-employee" type="text/html">
+    <div style="white-space:nowrap;" data-row-id="<%=id%>">
+        <button data-id="<%=id%>" data-action="edit" type="button" class="btn btn-primary btn-xs">
+            <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit
+        </button>&nbsp;
+        <button data-id="<%=fileId%>" data-action="download-document" type="button" class="btn btn-danger btn-xs">
+            <span class="glyphicon glyphicon-download-alt"></span>&nbsp;&nbsp;Download
+        </button>&nbsp;
+        <button data-id="<%=employee_id%>" data-action="details" type="button" class="btn btn-info  btn-xs">
+            <span class="fa fa-info-circle"></span>&nbsp;&nbsp;Info
+        </button>&nbsp;
+        <button data-id="<%=id%>" data-action="send-email" type="button" class="btn btn-warning btn-xs">
+            <span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;Send email
+        </button>&nbsp;
+        <button data-id="<%=id%>" data-action="delete" type="button" class="btn btn-danger btn-xs">
+            <span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Delete
+        </button>
+    </div>
+</script>
+
+@Html.Partial("Parts/Popups/Employee")
+@Html.Partial("Parts/Popups/EmployeeEmail")

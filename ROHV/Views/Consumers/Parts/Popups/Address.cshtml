@@ -1,0 +1,83 @@
+﻿@using ROHV.WebApi.ViewModels;
+@{
+ 
+}
+<script id="pop-template-address" type="text/html">
+    <div class="modal-dialog modal-sm">    
+        <div class="modal-content overlay-wrapper">
+            @Html.Raw(@"<%
+                var isEdit = model.get(""Id"")!=null;
+                var title = isEdit? ""Edit Address"": ""Add Address"";
+                var btnTitle = isEdit? ""Save changes"": ""Add Address"";
+            %>")
+            <div class="modal-header alert-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><%=title%></h4>
+            </div>
+            <div class="modal-body">
+                <form id="address-form">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <div class="form-group">
+                                <label for="Address1">Address</label>
+                                <input value="<%=model.get('Address1')%>" class="form-control" id="Address1" name="Address1" placeholder="Enter Address Line 1">
+                            </div>
+                            <div class="form-group">
+                                <input style="margin-top:3px" value="<%=model.get('Address2')%>" class="form-control" id="Address2" name="Address2" placeholder="Enter Address Line 2">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-12">
+                            <div class="row">
+                                <div class="col-xs-6 col-md-6 form-group" style="padding-right:5px !important;">
+                                    <label for="City">City</label>
+                                    <input value="<%=model.get('City')%>" class="form-control" id="City" name="City" placeholder="City">
+                                </div>
+                                <div class="col-xs-3 col-md-3 form-group" style="padding-left:5px !important;padding-right:5px !important;">
+                                    <label for="State">State</label>
+                                    <input value="<%=model.get('State')%>" class="form-control" id="State" name="State" placeholder="State">
+                                </div>
+                                <div class="col-xs-3 col-md-3 form-group" style="padding-left:5px !important;">
+                                    <label for="Zip">Zip</label>
+                                    <input value="<%=model.get('Zip')%>" class="form-control" id="Zip" name="Zip" placeholder="Zip">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-12">
+                            <div class="form-group">
+                                <label for="FromDate">From Date</label>
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input value="<%=model.get('FromDate')%>" model.get" type="text" class="form-control pull-right"
+                                           data-inputmask="'alias': 'mm/dd/yyyy'" data-mask=""
+                                           id="FromDate" name="FromDate" placeholder="Enter from date..." />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-12">
+                            <div class="form-group">
+                                <label for="ToDate">To Date</label>
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input value="<%=model.get('ToDate')%>" model.get" type="text" class="form-control pull-right"
+                                           data-inputmask="'alias': 'mm/dd/yyyy'" data-mask=""
+                                           id="ToDate" name="ToDate" placeholder="Enter to date ..." />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">                
+                <button type="button" class="btn  btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="button" id="save-modal" class="btn btn-primary"><%=btnTitle%></button>                
+            </div>     
+            <div class="overlay" id="overlay-dialog" style="display:none;">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+            </div>       
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</script>

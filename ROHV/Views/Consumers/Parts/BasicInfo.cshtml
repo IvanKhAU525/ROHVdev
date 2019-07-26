@@ -1,0 +1,98 @@
+﻿<div class="box  box-solid box-default box-container-internal">
+    <div class="box-header  with-border box-internal">
+        <h6 class="box-title">Basic Info</h6>
+    </div><!-- /.box-header -->
+    <div class="box-body">
+        <div class="row">
+
+            <div class="col-xs-12 col-md-12">
+                <div class="form-group">
+                    <label for="FirstName">First name</label>
+                    <input value="<%=model.get('FirstName')%>" class="form-control" id="FirstName" name="FirstName" placeholder="Enter First name">
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-12">
+                <div class="form-group">
+                    <label for="MiddleName">Middle name</label>
+                    <input value="<%=model.get('MiddleName')%>" class="form-control" id="MiddleName" name="MiddleName" placeholder="Enter Middle name">
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-12">
+                <div class="form-group">
+                    <label for="LastName">Last name</label>
+                    <input value="<%=model.get('LastName')%>" class="form-control" id="LastName" name="LastName" placeholder="Enter Last name">
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-12">
+                <div class="form-group">
+                    <label for="Gender">Gender</label>
+                    <select id="Gender" class="selectpicker" title="Select gender">
+                        @Html.Raw(@"<% var gender = model.get(""Gender""); %>")
+                        <option value="M" data-icon="fa fa-male"
+                                @Html.Raw(@"<%if(gender==""M"" || gender ==""Male""){%> selected   <%}%>")>
+                            Male
+                        </option>
+                        <option value="F" data-icon="fa fa-female"
+                                @Html.Raw(@"<%if(gender==""F""|| gender ==""Female""){%> selected   <%}%>")>
+                            Female
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-12">
+                <div class="row">
+                    <div class="col-xs-6 col-md-6" style="padding-right:10px !important;">
+                        <div class="form-group">
+                            <label for="DateOfBirth">Date of birth</label>
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input value="<%=model.get('DateOfBirthText')%>" type="text" class="form-control pull-right"
+                                       data-inputmask="'alias': 'mm/dd/yyyy'" data-mask=""
+                                       id="DateOfBirth" name="DateOfBirth" placeholder="Enter DateOfBirth" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-6" style="padding-left:10px !important;">
+                        <div class="form-group">
+                            <label for="Age">Age</label>
+                            <input value="" class="form-control" id="Age" name="Age" readonly>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-12">
+                <div class="form-group">
+                    <label for="SocialSecurityNo">Social Security No.</label>
+                    <input value="<%=model.get('SocialSecurityNo')%>" class="form-control" id="SocialSecurityNo" name="SocialSecurityNo" placeholder="Enter Social Security No">
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-12">
+                <div class="form-group">
+                    <label for="Address1">Address</label>
+                    <input value="<%=model.get('Address1')%>" class="form-control" id="Address1" name="Address1" placeholder="Enter Address Line 1">
+                </div>
+                <div class="form-group">
+                    <input style="margin-top:3px" value="<%=model.get('Address2')%>" class="form-control" id="Address2" name="Address2" placeholder="Enter Address Line 2">
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-12">
+                <div class="row">
+                    <div class="col-xs-6 col-md-6 form-group" style="padding-right:5px !important;">
+                        <label for="City">City</label>
+                        <input value="<%=model.get('City')%>" class="form-control" id="City" name="City" placeholder="City">
+                    </div>
+                    <div class="col-xs-3 col-md-3 form-group" style="padding-left:5px !important;padding-right:5px !important;">
+                        <label for="State">State</label>
+                        <input value="<%=model.get('State')%>" class="form-control" id="State" name="State" placeholder="State">
+                    </div>
+                    <div class="col-xs-3 col-md-3 form-group" style="padding-left:5px !important;">
+                        <label for="Zip">Zip</label>
+                        <input value="<%=model.get('Zip')%>" class="form-control" id="Zip" name="Zip" placeholder="Zip">
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </div><!-- /.box-body -->
+</div><!-- /.box -->                

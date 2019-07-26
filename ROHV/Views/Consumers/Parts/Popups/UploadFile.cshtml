@@ -1,0 +1,93 @@
+﻿
+<script id="pop-template-uploaded-file" type="text/html">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content overlay-wrapper">
+            @Html.Raw(@"<%
+                var isEdit = model.get(""Id"")!=null;
+                var title = isEdit? ""Edit uploaded file"": ""Add new file"";
+                var btnTitle = isEdit? ""Save changes"": ""Add file"";
+            %>")
+            <div class="modal-header alert-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><%=title%></h4>
+            </div>
+            <div class="modal-body">
+                <form id="uploaded-file-form">
+                    <div class="row">
+                        <div class="col-xs-7 col-md-7">
+                            <label for="FileDisplayName">File display  name</label>
+                            <div class="input-group">
+
+                                <input value="<%=model.get('FileDisplayName')%>" type="text" class="form-control pull-right"
+                                       id="FileDisplayName" name="FileDisplayName" placeholder="Enter File Display Name..." />
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-6">
+                            <label for="FileId">File</label>
+                            <div>
+                                <div>
+                                    <input type="hidden" name="FileId" id="FileId" value="<%=model.get('FileId')%>">
+                                    <div id="dropzone" class="dropzone">
+                                        <div class="dz-default dz-message">
+                                            <span>Drop file here or click to upload</span>
+                                        </div>
+                                        <div class="fallback">
+                                            <input type="FileDataInput" name="FileDataInput">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="file-name"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-10 col-md-10" style="padding-right:3px;">
+                            <label for="Note">Note</label>
+                            <div class="input-group">
+                                <textarea name="Note" id="Note" class="form-control" rows="5" cols="140" placeholder="Enter note ..."><%=model.get('Note')%></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn  btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="button" id="save-modal" class="btn btn-primary"><%=btnTitle%></button>
+            </div>
+            <div class="overlay" id="overlay-dialog" style="display:none;">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</script>
+
+
+<script id="template-print-document-valued-outcome" type="text/html">
+    <fieldset style="text-align:left; margin-top:20px;" data-container-valued-id="<%=model.Id%>">
+        <legend><b>Valued outcome <%=num%></b></legend>
+        <button type="button" class="btn btn-danger btn-sm pull-right" data-id="<%=model.Id%>" style="margin-bottom:5px;" data-action="remove-valued-outcome">Remove valued outcome</button>
+        <div class="form-group" style="margin-bottom: 0px;">
+            <label for="valued-outcome-<%=model.Id%>">Value outcome</label>
+            <input type="text" class="form-control" name="valued-outcome-<%=model.Id%>" data-id="<%=model.Id%>" value="<%=model.ValuedOutcome%>" placeholder="Please enter valued outcome..." />
+        </div>
+        <fieldset style="text-align:left;">
+            <legend><small>Staff server & actions</small></legend>
+            <div data-container="actions">
+                <%=htmlActions%>
+            </div>
+            <div>
+                <button type="button" class="btn btn-primary btn-sm pull-right" data-vo-id="<%=model.Id%>" data-action="add-new-action">Add new action</button>
+            </div>
+        </fieldset>
+    </fieldset>
+</script>
+<script id="template-print-document-action" type="text/html">
+    <div style="position:relative;" data-container-action-id="<%=model.Id%>">
+        <div class="form-group pull-left" style="width:90%; margin-bottom: 5px;">
+            <label for="vo-<%=parentId%>-action-<%=model.Id%>">Action <%=num%></label>
+            <input class="form-control" type="text" name="vo-<%=parentId%>-action-<%=model.Id%>" data-id="<%=model.Id%>" data-vo-id="<%=parentId%>" value="<%=model.ServeAndAction%>" placeholder="Please enter action..." />
+        </div>
+        <button type="button" class="btn btn-danger btn-sm pull-right" data-id="<%=model.Id%>" data-vo-id="<%=parentId%>" style="margin-top:26px;" data-action="remove-action">Remove</button>
+    </div>
+    <div style="clear:both;"></div>
+</script>

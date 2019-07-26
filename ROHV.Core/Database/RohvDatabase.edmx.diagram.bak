@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="22056d8d8d2f4f3983dcfbe57824a12c" Name="Diagram1" ZoomLevel="81">
+        <EntityTypeShape EntityType="RayimModel.Agency" Width="1.5" PointX="9" PointY="4.875" />
+        <EntityTypeShape EntityType="RayimModel.AspNetRole" Width="1.5" PointX="0.75" PointY="24" />
+        <EntityTypeShape EntityType="RayimModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="22" />
+        <EntityTypeShape EntityType="RayimModel.AspNetUserLogin" Width="1.75" PointX="5.25" PointY="19.5" />
+        <EntityTypeShape EntityType="RayimModel.AspNetUser" Width="1.5" PointX="3" PointY="22.625" />
+        <EntityTypeShape EntityType="RayimModel.CaseStatu" Width="2.125" PointX="13.5" PointY="4.75" />
+        <EntityTypeShape EntityType="RayimModel.ConsumerContactCall" Width="2" PointX="13.5" PointY="25.375" />
+        <EntityTypeShape EntityType="RayimModel.ConsumerHabPlanDuration" Width="1.5" PointX="8.25" PointY="37.75" />
+        <EntityTypeShape EntityType="RayimModel.ConsumerHabPlanFrequency" Width="1.5" PointX="8.25" PointY="40.125" />
+        <EntityTypeShape EntityType="RayimModel.ConsumerHabPlan" Width="1.875" PointX="10.5" PointY="24.375" />
+        <EntityTypeShape EntityType="RayimModel.ConsumerHabPlanStatus" Width="1.5" PointX="8.25" PointY="45.375" />
+        <EntityTypeShape EntityType="RayimModel.ConsumerHabPlanValuedOutcome" Width="1.5" PointX="12.75" PointY="35.375" />
+        <EntityTypeShape EntityType="RayimModel.ConsumerHabPlanVOServeAction" Width="1.5" PointX="15" PointY="35.5" />
+        <EntityTypeShape EntityType="RayimModel.ConsumerNotificationRecipient" Width="2" PointX="12.75" PointY="30.75" />
+        <EntityTypeShape EntityType="RayimModel.ConsumerNotificationSetting" Width="1.75" PointX="7.5" PointY="25.25" />
+        <EntityTypeShape EntityType="RayimModel.ConsumerPhone" Width="1.5" PointX="16.5" PointY="8.875" />
+        <EntityTypeShape EntityType="RayimModel.ConsumerPrintDocument" Width="1.875" PointX="13.5" PointY="19" />
+        <EntityTypeShape EntityType="RayimModel.Consumer" Width="2.125" PointX="10.875" PointY="2.25" />
+        <EntityTypeShape EntityType="RayimModel.ConsumerService" Width="2.75" PointX="16.5" PointY="24" />
+        <EntityTypeShape EntityType="RayimModel.ConsumerTherapy" Width="1.5" PointX="13.5" PointY="8.875" />
+        <EntityTypeShape EntityType="RayimModel.ContactPhone" Width="1.5" PointX="14.25" PointY="13.25" />
+        <EntityTypeShape EntityType="RayimModel.Contact" Width="1.5" PointX="9" PointY="7.375" />
+        <EntityTypeShape EntityType="RayimModel.ContactType" Width="1.5" PointX="6.75" PointY="11.5" />
+        <EntityTypeShape EntityType="RayimModel.Department" Width="1.5" PointX="6.75" PointY="13.75" />
+        <EntityTypeShape EntityType="RayimModel.DocumentPrintStatus" Width="1.5" PointX="11.25" PointY="39" />
+        <EntityTypeShape EntityType="RayimModel.DocumentPrintType" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="RayimModel.EmployeeDocumentNote" Width="1.5" PointX="7.5" PointY="31.25" />
+        <EntityTypeShape EntityType="RayimModel.EmployeeDocument" Width="1.5" PointX="9.5" PointY="19.25" />
+        <EntityTypeShape EntityType="RayimModel.EmployeeDocumentStatus" Width="1.5" PointX="8.25" PointY="17.375" />
+        <EntityTypeShape EntityType="RayimModel.EmployeeDocumentType" Width="1.5" PointX="8.25" PointY="34.75" />
+        <EntityTypeShape EntityType="RayimModel.ListCategory" Width="1.5" PointX="4.5" PointY="8.375" />
+        <EntityTypeShape EntityType="RayimModel.List" Width="1.5" PointX="6.75" PointY="7.5" />
+        <EntityTypeShape EntityType="RayimModel.Log" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="RayimModel.NotificationStatus" Width="1.5" PointX="5.25" PointY="31.25" />
+        <EntityTypeShape EntityType="RayimModel.NotificationType" Width="1.5" PointX="5.25" PointY="33.75" />
+        <EntityTypeShape EntityType="RayimModel.ServicesList" Width="1.5" PointX="8.25" PointY="42.5" />
+        <EntityTypeShape EntityType="RayimModel.State" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="RayimModel.SystemUser" Width="1.75" PointX="5" PointY="24.75" />
+        <EntityTypeShape EntityType="RayimModel.Category_List" Width="1.5" PointX="4.75" PointY="3.75" />
+        <AssociationConnector Association="RayimModel.FK_Consumers_Agencies" />
+        <AssociationConnector Association="RayimModel.FK_Contacts_Agencies" />
+        <AssociationConnector Association="RayimModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="RayimModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="RayimModel.FK_SystemUsers_AspNetUsers" />
+        <AssociationConnector Association="RayimModel.FK_CaseStatus_Consumers" />
+        <AssociationConnector Association="RayimModel.FK_CaseStatus_Lists" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerContactCalls_Consumers" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerContactCalls_Contacts" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerContactCalls_SystemUsers" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerContactCalls_SystemUsers1" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerHabPlans_ConsumerHabPlanDurations" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerHabPlans_ConsumerHabPlanFrequencies" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerHabPlans_ConsumerHabPlanStatuses" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerHabPlans_Consumers" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerHabPlans_Contacts" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerHabPlans_ServicesList" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerHabPlans_SystemUsers" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerHabPlans_SystemUsers1" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerHabPlanValuedOutcomes_ConsumerHabPlans" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerHabPlanVOServeActions_ConsumerHabPlanValuedOutcomes" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerNotificationRecipients_ConsumerNotificationRecipients" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerNotificationRecipients_ConsumerNotificationSettings" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerNotificationRecipients_SystemUsers" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerNotificationSettings_Consumers" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerNotificationSettings_NotificationStatuses" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerNotificationSettings_NotificationTypes" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerNotificationSettings_SystemUsers" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerNotificationSettings_SystemUsers1" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerPhones_Consumers" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerPhones_Lists" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerPrintDocuments__AddedBy" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerPrintDocuments_Consumers" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerPrintDocuments_Contacts" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerPrintDocuments_DocumentPrintStatuses" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerPrintDocuments_UpdatedBy" />
+        <AssociationConnector Association="RayimModel.FK_Consumers_Contact_CH" />
+        <AssociationConnector Association="RayimModel.FK_Consumers_Contact_DH" />
+        <AssociationConnector Association="RayimModel.FK_Consumers_Contact_MSC" />
+        <AssociationConnector Association="RayimModel.FK_Consumers_ServiceCoordinator" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerTherapies_Consumers" />
+        <AssociationConnector Association="RayimModel.FK_EmployeeDocuments_Consumers" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerServices_ServicesList" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerServices_UnitQuantity" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerTherapies_Lists" />
+        <AssociationConnector Association="RayimModel.FK_ContactPhones_Contacts" />
+        <AssociationConnector Association="RayimModel.FK_ContactPhones_Lists" />
+        <AssociationConnector Association="RayimModel.FK_Contacts_ContactTypes" />
+        <AssociationConnector Association="RayimModel.FK_Contacts_Departments" />
+        <AssociationConnector Association="RayimModel.FK_Contacts_Lists" />
+        <AssociationConnector Association="RayimModel.FK_EmployeeDouments_Contacts" />
+        <AssociationConnector Association="RayimModel.FK_EmployeeDocumentNotes_EmployeeDocumentNotes" />
+        <AssociationConnector Association="RayimModel.FK_EmployeeDocumentNotes_SystemUsers" />
+        <AssociationConnector Association="RayimModel.FK_EmployeeDouments_EmployeeDocumentStatuses" />
+        <AssociationConnector Association="RayimModel.FK_EmployeeDouments_EmployeeDocumentTypes" />
+        <AssociationConnector Association="RayimModel.FK_EmployeeDouments_SystemUsers_Added" />
+        <AssociationConnector Association="RayimModel.FK_EmployeeDouments_SystemUsers_Updated" />
+        <AssociationConnector Association="RayimModel.FK_Lists_ListCategories" />
+        <AssociationConnector Association="RayimModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="RayimModel.ServiceType" Width="1.5" PointX="0.75" PointY="13.5" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerPrintDocuments_ServiceTypes" />
+        <AssociationConnector Association="RayimModel.FK_DocumentPrintTypes_ServiceTypes" />
+        <EntityTypeShape EntityType="RayimModel.ConsumerEmployee" Width="1.5" PointX="16.5" PointY="20.125" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerEmployees_ConsumerServices" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerEmployees_Contacts" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerEmployees_ServicesList" />
+        <EntityTypeShape EntityType="RayimModel.ConsumerHabReview" Width="2" PointX="16.5" PointY="13.5" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerHabReviews_Consumers" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerHabReviews_Contacts" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerHabReviews_Contacts1" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerHabReviews_Contacts2" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerHabReviews_Contacts3" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerHabReviews_ServiceTypes" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerHabReviews_SystemUsers" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerHabReviews_SystemUsers1" />
+        <EntityTypeShape EntityType="RayimModel.ConsumerPrintDocumentValuedOutcome" Width="1.5" PointX="16.125" PointY="30.625" />
+        <EntityTypeShape EntityType="RayimModel.ConsumerPrintDocumentVOServeAction" Width="1.5" PointX="18.375" PointY="30.75" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerPrintDocumentValuedOutcomes_ConsumerPrintDocuments" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerPrintDocumentVOServeActions_ConsumerPrintDocumentValuedOutcomes" />
+        <AssociationConnector Association="RayimModel.FK_Consumers_Contact_Advocate" />
+        <AssociationConnector Association="RayimModel.FK_Consumers_Contact_AdvocatePaper" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerHabReviews_Contacts_Advocate" />
+        <EntityTypeShape EntityType="RayimModel.ConsumerNoteFromType" Width="1.5" PointX="17.25" PointY="2.75" />
+        <EntityTypeShape EntityType="RayimModel.ConsumerNote" Width="1.5" PointX="19.5" PointY="14.125" />
+        <EntityTypeShape EntityType="RayimModel.ConsumerNoteType" Width="1.5" PointX="17.25" PointY="6.125" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerNotes_ConsumerNoteTypes" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerNotes_ConsumerNoteTypes1" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerNotes_Consumers" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerNotes_Contacts" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerNotes_SystemUsers" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerNotes_SystemUsers1" />
+        <AssociationConnector Association="RayimModel.FK_Consumers_Lists" />
+        <EntityTypeShape EntityType="RayimModel.ConsumerHabPlanSafeguard" Width="1.5" PointX="13.125" PointY="41.625" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerHabPlanSafeguards_ConsumerHabPlans" />
+        <EntityTypeShape EntityType="RayimModel.ConsumerHabReviewIssueState" Width="1.5" PointX="19.25" PointY="20" />
+        <AssociationConnector Association="RayimModel.FK_ConsumerHabReviewIssueStates_ConsumerHabReviews" />
+        <AssociationConnector Association="RayimModel.FK_EmployeeDocuments_EmployeeDocuments" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

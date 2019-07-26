@@ -1,0 +1,578 @@
+﻿using ROHV.Core.Database;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Threading.Tasks;
+using System;
+using ROHV.Core.Services;
+using ROHV.Controllers;
+using Microsoft.Reporting.WebForms;
+using System.Globalization;
+using System.IO;
+
+namespace ROHV.Core.Consumer
+{
+    public class ConsumerPrintDocumentsManagement : BaseModel
+    {
+        public ConsumerPrintDocumentsManagement(RayimContext context) : base(context) { }
+
+        public async Task<List<DocumentPrintType>> GetTypes()
+        {
+            var result = await _context.DocumentPrintTypes.Where(x => x.IsActive).ToListAsync();
+            return result;
+        }
+        public async Task<List<ServiceType>> GetServiceTypes()
+        {
+            var result = await _context.ServiceTypes.ToListAsync();
+            return result;
+        }
+
+        public async Task<List<ConsumerPrintDocument>> GetPrintDocuments(Int32 consumerId)
+        {
+            var printDocuments = await _context.ConsumerPrintDocuments.Where(x => x.ConsumerId == consumerId).OrderByDescending(x => x.DateCreated).ToListAsync();
+            return printDocuments;
+        }
+
+        public async Task<Int32> Save(ConsumerPrintDocument dbModel, List<ConsumerPrintDocumentValuedOutcome> outcomes, List<ConsumerPrintDocumentVOServeAction> actions)
+        {
+            if (dbModel.Id == 0)
+            {
+                _context.ConsumerPrintDocuments.Add(dbModel);
+            }
+            else
+            {
+                var model = await _context.ConsumerPrintDocuments.SingleOrDefaultAsync(x => x.Id == dbModel.Id);
+                if (model != null)
+                {
+                    model.ContactId = dbModel.ContactId;
+                    model.AddedById = dbModel.AddedById;
+                    model.UpdatedById = dbModel.UpdatedById;
+                    model.ServiceAction1 = dbModel.ServiceAction1;
+                    model.ServiceAction2 = dbModel.ServiceAction2;
+                    model.ServiceAction3 = dbModel.ServiceAction3;
+                    model.ServiceAction4 = dbModel.ServiceAction4;
+                    model.DateCreated = dbModel.DateCreated;
+                    model.DateUpdated = dbModel.DateUpdated;
+                    model.Notes = dbModel.Notes;
+                    model.EffectiveDate = dbModel.EffectiveDate;
+                    model.ServiceTypeId = dbModel.ServiceTypeId;
+
+                    var outcomes_old = _context.ConsumerPrintDocumentValuedOutcomes.Where(x => x.PrintDocumentId == dbModel.Id);
+                    var actions_old = _context.ConsumerPrintDocumentVOServeActions.Where(x => outcomes_old.Any(z => z.Id == x.PrintDocumentValuedOutcomeId));
+                    _context.ConsumerPrintDocumentVOServeActions.RemoveRange(actions_old);
+                    _context.ConsumerPrintDocumentValuedOutcomes.RemoveRange(outcomes_old);
+
+                }
+            }
+            await _context.SaveChangesAsync();
+
+            if (outcomes.Count > 0)
+            {
+                foreach (var outcome in outcomes)
+                {
+                    outcome.PrintDocumentId = dbModel.Id;
+                    Int32 tempId = outcome.Id;
+                    outcome.Id = 0;
+                    _context.ConsumerPrintDocumentValuedOutcomes.Add(outcome);
+                    await _context.SaveChangesAsync();
+                    foreach (var action in actions)
+                    {
+                        if (action.PrintDocumentValuedOutcomeId == tempId && tempId < 0)
+                        {
+                            action.PrintDocumentValuedOutcomeId = outcome.Id;
+                            _context.ConsumerPrintDocumentVOServeActions.Add(action);
+                        }
+                    }
+                }
+                await _context.SaveChangesAsync();
+            }
+            return dbModel.Id;
+        }
+        public ConsumerPrintDocument GetDocument(Int32 id)
+        {
+            var model = _context.ConsumerPrintDocuments.SingleOrDefault(x => x.Id == id);
+            return model;
+        }
+
+        public String GetAddress(Core.Database.Consumer consumer)
+        {
+            String result = consumer.Address1;
+            if (!String.IsNullOrEmpty(consumer.Address2))
+            {
+                result += ", " + consumer.Address2;
+            }
+            if (!String.IsNullOrEmpty(consumer.City))
+            {
+                result += ", " + consumer.City;
+            }
+            if (!String.IsNullOrEmpty(consumer.State))
+            {
+                result += ", " + consumer.State;
+            }
+            if (!String.IsNullOrEmpty(consumer.Zip))
+            {
+                result += " " + consumer.Zip;
+            }
+            return result;
+
+        }
+        public String GetAddress(Core.Database.Contact contact)
+        {
+            String result = contact.Address1;
+            if (!String.IsNullOrEmpty(contact.Address2))
+            {
+                result += ", " + contact.Address2;
+            }
+            if (!String.IsNullOrEmpty(contact.City))
+            {
+                result += ", " + contact.City;
+            }
+            if (!String.IsNullOrEmpty(contact.State))
+            {
+                result += ", " + contact.State;
+            }
+            if (!String.IsNullOrEmpty(contact.Zip))
+            {
+                result += " " + contact.Zip;
+            }
+            return result;
+
+        }
+        public String GetName(Core.Database.Consumer consumer)
+        {
+            String result = "";
+            if (!String.IsNullOrEmpty(consumer.MI))
+            {
+                result += consumer.FirstName + " " + consumer.MI + " " + consumer.LastName;
+            }
+            else
+            {
+                result += consumer.FirstName + " " + consumer.LastName;
+            }
+            return result;
+        }
+        public String GetName(Core.Database.Contact contact)
+        {
+            String result = "";
+            if (!String.IsNullOrEmpty(contact.Salutation))
+            {
+                result += contact.Salutation + " ";
+            }
+            if (!String.IsNullOrEmpty(contact.MiddleName))
+            {
+                result += contact.FirstName + " " + contact.MiddleName + " " + contact.LastName;
+            }
+            else
+            {
+                result += contact.FirstName + " " + contact.LastName;
+            }
+            return result;
+        }
+        public String GetServices(ConsumerPrintDocument document)
+        {
+            String result = "";
+            Int32 i = 0;
+            if (document.ConsumerPrintDocumentValuedOutcomes != null)
+            {
+                foreach (var valued in document.ConsumerPrintDocumentValuedOutcomes)
+                {
+                    if (valued.ConsumerPrintDocumentVOServeActions != null)
+                    {
+                        foreach (var action in valued.ConsumerPrintDocumentVOServeActions)
+                        {
+                            String item = action.ServeAndAction;
+                            if (!String.IsNullOrEmpty(item))
+                            {
+                                result += "<B>" + (i + 1).ToString() + ". </B><I>" + item + "</I><BR/>";
+                                i++;
+                            }
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+        private Byte[] RenderPDF(ReportViewer reportViewer)
+        {
+            Warning[] warnings;
+            String[] streamids;
+            String mimeType,
+                   encoding,
+                   extension;
+
+            return reportViewer.LocalReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamids, out warnings);
+        }
+        public String ConvertInvalidFilePathChars(String value)
+        {
+            var invalidChars = new List<Char>(Path.GetInvalidFileNameChars());
+            invalidChars.Add('№');
+
+            foreach (var symbol in invalidChars)
+            {
+                value = value.Replace(symbol.ToString(), " ");
+            }
+
+            return value;
+        }
+        public Database.Consumer GetClientById(Int32 clientId)
+        {
+            var model = _context.Consumers.SingleOrDefault(x => x.ConsumerId == clientId);
+            return model;
+        }
+        public byte[] DocumentationRecord(string documentId, Int32 documentTypeId, Int32 serviceTypeId, BaseController claimsApiController, out String name, Boolean isEmpty)
+        {
+            DateTime? lastReviewDate = null;
+            ConsumerPrintDocument document = null;
+            if (!String.IsNullOrEmpty(documentId))
+            {
+                document = this.GetDocument(Int32.Parse(documentId));
+            }
+
+            String partName = "New";
+            name = "";
+
+            if (document != null && !isEmpty)
+            {
+                partName = this.ConvertInvalidFilePathChars(this.GetName(document.Contact));
+            }
+            var reportViewer = new ReportViewer();
+
+            reportViewer.Reset();
+            reportViewer.LocalReport.EnableExternalImages = true;
+            reportViewer.ProcessingMode = ProcessingMode.Local;
+
+            switch (serviceTypeId)
+            {
+                case 1:
+                    {
+                        reportViewer.LocalReport.ReportPath = claimsApiController.Server.MapPath("~/Views/PDFViews/ComHabDocumentationRecord.rdl");
+                        name = partName + "-ComHabDocumentationRecord";
+                        break;
+                    }
+                case 2:
+                    {
+                        reportViewer.LocalReport.ReportPath = claimsApiController.Server.MapPath("~/Views/PDFViews/DayGroupDocumentationRecord.rdl");
+                        name = partName + "-DayGroupDocumentationRecord";
+                        break;
+                    }
+                case 3:
+                    {
+                        reportViewer.LocalReport.ReportPath = claimsApiController.Server.MapPath("~/Views/PDFViews/RespiteDocumentationRecord.rdl");
+                        name = partName + "-RespiteDocumentationRecord";
+                        break;
+                    }
+            }
+            IEnumerable<Object> timeObjs = null;
+
+            if (document != null)
+            {
+                
+                lastReviewDate = document.Consumer.ConsumerHabReviews.Where(x=>x.ServiceId == document.ServiceTypeId).OrderByDescending(x => x.DateReview).Select(x=>x.DateReview).FirstOrDefault();
+
+                if (!isEmpty)
+                {
+                    var employee = _context.ConsumerEmployees.FirstOrDefault(x => x.ConsumerId == document.ConsumerId && x.ContactId == document.ContactId);
+                    String rate = String.Empty;
+                    if (employee != null)
+                    {
+                        if (employee.Rate.HasValue)
+                        {
+                            rate = String.Format("{0:C2}", employee.Rate);
+                        }
+                    }
+                    timeObjs = new[]
+                    {
+                        new
+                        {
+                            PatientName = this.GetName(document.Consumer),
+                            EffectiveDate = document.EffectiveDate.ToDateString2(),
+                            Address = this.GetAddress(document.Consumer),
+                            ContactName= this.GetName(document.Contact),
+                            JobTitle = document.Contact.JobTitle,
+                            ServiceDescription =this.GetServices(document),
+                            WorkerAddress = this.GetAddress(document.Contact),
+                            Medicaid= document.Consumer.MedicaidNo,
+                            Rate = rate,
+                            LastReviewDate = lastReviewDate.ToDateString()
+
+                        }
+                    };
+                }
+                else
+                {
+                    timeObjs = new[]
+                    {
+                        new
+                        {
+                            PatientName = this.GetName(document.Consumer),
+                            EffectiveDate = document.EffectiveDate.ToDateString2(),
+                            Address = this.GetAddress(document.Consumer),
+                            ContactName= String.Empty,
+                            JobTitle = String.Empty,
+                            ServiceDescription =this.GetServices(document),
+                            WorkerAddress = String.Empty,
+                            Medicaid= document.Consumer.MedicaidNo,
+                            Rate = String.Empty,
+                            LastReviewDate = lastReviewDate.ToDateString()
+                        }
+                    };
+                }
+            }
+            else
+            {
+                timeObjs = new[]
+               {
+                    new
+                    {
+                        PatientName = String.Empty,
+                        EffectiveDate = String.Empty,
+                        Address =String.Empty,
+                        ContactName= String.Empty,
+                        JobTitle = String.Empty,
+                        ServiceDescription =String.Empty,
+                        WorkerAddress = String.Empty,
+                        Medicaid= String.Empty,
+                        LastReviewDate= string.Empty
+                   }
+                };
+            }
+            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", timeObjs));
+            return RenderPDF(reportViewer);
+        }
+        private List<String> GetActions(ConsumerPrintDocument document)
+        {
+            List<String> result = new List<string>();
+            if (document.ConsumerPrintDocumentValuedOutcomes != null)
+            {
+                var i = 0;
+                foreach (var valued in document.ConsumerPrintDocumentValuedOutcomes)
+                {
+                    if (valued.ConsumerPrintDocumentVOServeActions != null)
+                    {
+                        String actionString = "";
+                        foreach (var action in valued.ConsumerPrintDocumentVOServeActions)
+                        {
+                            String item = action.ServeAndAction;
+                            if (!String.IsNullOrEmpty(item))
+                            {
+                                actionString += "<B>" + (i + 1).ToString() + ". </B><I>" + item + "</I><BR/>";
+                                i++;
+                            }
+                        }
+                        if (!String.IsNullOrEmpty(actionString))
+                        {
+                            result.Add(actionString);
+                        }
+                    }
+                }
+            }
+            int count = 5 - result.Count;
+            for (int i = 0; i < count; i++)
+            {
+                result.Add(String.Empty);
+            }
+            return result;
+        }
+
+
+        private List<String> GetValued(ConsumerPrintDocument document)
+        {
+            List<String> result = new List<string>();
+            if (document.ConsumerPrintDocumentValuedOutcomes != null)
+            {
+                foreach (var valued in document.ConsumerPrintDocumentValuedOutcomes)
+                {
+                    if (!String.IsNullOrEmpty(valued.ValuedOutcome))
+                    {
+                        result.Add(valued.ValuedOutcome);
+                    }
+                }
+            }
+            int count = 5 - result.Count;
+            for (int i = 0; i < count; i++)
+            {
+                result.Add(String.Empty);
+            }
+            return result;
+
+        }
+
+        public byte[] MonthlyProgressSummary(string documentId, Int32 documentTypeId, Int32 serviceTypeId, BaseController claimsApiController, out String name, Boolean isEmpty)
+        {
+            ConsumerPrintDocument document = null;
+            if (!String.IsNullOrEmpty(documentId))
+            {
+                document = this.GetDocument(Int32.Parse(documentId));
+            }
+
+            String partName = "New";
+            name = "";
+
+            if (document != null && !isEmpty)
+            {
+                partName = this.ConvertInvalidFilePathChars(this.GetName(document.Contact));
+            }
+
+            var reportViewer = new ReportViewer();
+
+            reportViewer.Reset();
+            reportViewer.LocalReport.EnableExternalImages = true;
+            reportViewer.ProcessingMode = ProcessingMode.Local;
+
+            switch (serviceTypeId)
+            {
+                case 1:
+                    {
+                        reportViewer.LocalReport.ReportPath = claimsApiController.Server.MapPath("~/Views/PDFViews/ComHabMonthlyProgressSummary.rdl");
+                        name = partName + "-ComHabMonthlyProgressSummary";
+                        break;
+                    }
+                case 2:
+                    {
+                        reportViewer.LocalReport.ReportPath = claimsApiController.Server.MapPath("~/Views/PDFViews/DayGroupMonthlyProgressSummary.rdl");
+                        name = partName + "-DayGroupMonthlyProgressSummary";
+                        break;
+                    }
+                case 3:
+                    {
+                        throw new Exception("Wrong service type for printing the document");
+                    }
+            }
+            IEnumerable<Object> timeObjs = null;
+            if (document != null)
+            {
+
+                List<String> actions = GetActions(document);
+                List<String> valued = GetValued(document);
+
+                if (!isEmpty)
+                {
+
+                    timeObjs = new[]
+                    {
+                        new
+                        {
+                            EffectiveDate = document.EffectiveDate.HasValue? document.EffectiveDate.Value.ToString("MMMM yyyy",CultureInfo.InvariantCulture):"",
+                            PatientName = this.GetName(document.Consumer),
+                            ContactName= this.GetName(document.Contact),
+                            Medicaid= document.Consumer.MedicaidNo,
+                            ServiceAction1 = actions[0],
+                            ServiceAction2= actions[1],
+                            ServiceAction3= actions[2],
+                            ServiceAction4= actions[3],
+                            ValuedOutcome1 = valued[0],
+                            ValuedOutcome2= valued[1],
+                            ValuedOutcome3= valued[2],
+                            ValuedOutcome4= valued[3]
+                        }
+                    };
+                }
+                else
+                {
+                    timeObjs = new[]
+                    {
+                        new
+                        {
+                            PatientName = this.GetName(document.Consumer),
+                            ContactName= String.Empty,
+                            Medicaid= document.Consumer.MedicaidNo,
+                            ServiceAction1 = actions[0],
+                            ServiceAction2= actions[1],
+                            ServiceAction3= actions[2],
+                            ServiceAction4= actions[3],
+                            ValuedOutcome1 = valued[0],
+                            ValuedOutcome2= valued[1],
+                            ValuedOutcome3= valued[2],
+                            ValuedOutcome4= valued[3]
+                        }
+                    };
+                }
+            }
+            else
+            {
+                timeObjs = new[]
+               {
+                    new
+                    {
+                        PatientName = String.Empty,
+                        ContactName= String.Empty,
+                        Medicaid = String.Empty,
+                        ServiceAction1 = String.Empty,
+                        ServiceAction2= String.Empty,
+                        ServiceAction3= String.Empty,
+                        ServiceAction4= String.Empty,
+                        ServiceAction5 = String.Empty,
+                        ServiceAction6= String.Empty,
+                        ServiceAction7= String.Empty,
+                    }
+                };
+
+            }
+            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", timeObjs));
+            return RenderPDF(reportViewer);
+        }
+
+        public byte[] GetPDF(string documentId, Int32 documentTypeId, BaseController claimsApiController, out String name, Boolean isEmpty)
+        {
+            name = "";
+            Int32 serviceTypeId = _context.DocumentPrintTypes.SingleOrDefault(x => x.Id == documentTypeId).ServiceTypeId.Value;
+            switch (documentTypeId)
+            {
+                case 2:
+                case 5:
+                    {
+                        return this.MonthlyProgressSummary(documentId, documentTypeId, serviceTypeId, claimsApiController, out name, isEmpty);
+                    }
+                case 1:
+
+                case 4:
+                case 7:
+                    {
+                        return this.DocumentationRecord(documentId, documentTypeId, serviceTypeId, claimsApiController, out name, isEmpty);
+                    }
+            }
+            return null;
+
+        }
+
+        public async Task DeleteAll(Int32 consumerId)
+        {
+            var models = _context.ConsumerPrintDocuments.Where(x => x.ConsumerId == consumerId);
+            if (models.Count() > 0)
+            {
+                var vos = _context.ConsumerPrintDocumentValuedOutcomes.Where(x => models.Any(z => z.Id == x.PrintDocumentId));
+                if (vos.Count() > 0)
+                {
+                    var actions = _context.ConsumerPrintDocumentVOServeActions.Where(x => vos.Any(z => z.Id == x.PrintDocumentValuedOutcomeId));
+                    if (actions.Count() > 0)
+                    {
+                        _context.ConsumerPrintDocumentVOServeActions.RemoveRange(actions);
+                    }
+                    _context.ConsumerPrintDocumentValuedOutcomes.RemoveRange(vos);
+                }
+                _context.ConsumerPrintDocuments.RemoveRange(models);
+                await _context.SaveChangesAsync();
+            }
+        }
+        public async Task Delete(Int32 documentId)
+        {
+            var model = _context.ConsumerPrintDocuments.SingleOrDefault(x => x.Id == documentId);
+            if (model != null)
+            {
+
+                var vos = _context.ConsumerPrintDocumentValuedOutcomes.Where(x => x.PrintDocumentId == documentId);
+                if (vos.Count() > 0)
+                {
+                    var actions = _context.ConsumerPrintDocumentVOServeActions.Where(x => vos.Any(z => z.Id == x.PrintDocumentValuedOutcomeId));
+                    if (actions.Count() > 0)
+                    {
+                        _context.ConsumerPrintDocumentVOServeActions.RemoveRange(actions);
+                    }
+                    _context.ConsumerPrintDocumentValuedOutcomes.RemoveRange(vos);
+                }
+                _context.ConsumerPrintDocuments.Remove(model);
+                await _context.SaveChangesAsync();
+            }
+        }
+    }
+}

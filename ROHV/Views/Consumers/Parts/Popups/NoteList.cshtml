@@ -1,0 +1,33 @@
+﻿@using ROHV.WebApi.ViewModels;
+@{
+    var lists = (Dictionary<String, List<ItemListViewModel>>)ViewData["Lists"];   
+}
+<script id="pop-template-notes-list" type="text/html">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content overlay-wrapper">            
+            <div class="modal-header alert-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Notes for changes of statuses</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <div class="input-group" style="margin-bottom:10px;">
+                            <button class="btn  btn-primary btn-xs" href="javascript:void(0);" style="width:auto;" data-action="add">
+                                <i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;
+                                Add new note
+                            </button>
+                        </div>
+                        <table id="notes-popup-grid" style="width:100%;" class="table table-bordered table-hover"></table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn  btn-default pull-left" data-dismiss="modal">Close</button>                
+            </div>
+            <div class="overlay" id="overlay-dialog" style="display:none;">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</script>

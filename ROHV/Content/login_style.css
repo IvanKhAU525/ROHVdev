@@ -1,0 +1,103 @@
+﻿.container {
+    height: 100%;
+    width: 100%;
+    display: table;
+}
+
+.content-box {
+    border-color: #dfe8f1;
+    position: relative;
+    border-width: 1px;
+    border-style: solid;
+    background: #fff;
+    margin-bottom: 20px;
+    font-size: 13px !important;
+    text-align: center;
+}
+
+.login-img {
+    margin-bottom: 30px;
+}
+
+.content-box .content-box-wrapper {
+    line-height: 1.6em;
+    padding: 15px;
+}
+
+.btn-primary.active, .btn-primary.disabled, .btn-primary.disabled.active, .btn-primary.disabled:active, .btn-primary.disabled:focus, .btn-primary.disabled:hover, .btn-primary:active, .btn-primary:focus, .btn-primary:hover, .btn-primary[disabled], .btn-primary[disabled].active, .btn-primary[disabled]:active, .btn-primary[disabled]:focus, .btn-primary[disabled]:hover {
+    color: #fff;
+    border-color: #00b19b;
+    background-color: #00ceb4;
+}
+
+.btn-primary {
+    color: #fff;
+    background: #108D8E;
+}
+
+.form-control:focus {
+    border-color: #00ceb4;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.form-control {
+    font-size: 13px !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    padding: 6px 12px;
+    padding-left: 35px;
+    border-radius: 2px;
+}
+
+.input-group-addon.addon-inside {
+    position: absolute;
+    z-index: 3;
+    top: 5px;
+    left: 5px;
+    display: block;
+    width: 24px;
+    height: 24px;
+    padding: 5px 0px;
+    border: none;
+    color: lightgray;
+    background-color: transparent;
+}
+
+.checkbox-primary {
+    text-align: left;
+}
+
+.center-margin {
+    float: none !important;
+    margin: 0 auto;
+}
+
+.center-vertical {
+    vertical-align: middle;
+    height: 100%;
+    display: table-cell;
+}
+
+.overlay {
+    z-index: 50;
+    background: rgba(255,255,255,0.7);
+    border-radius: 3px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display:none;
+}
+
+.overlay > .fa {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -15px;
+    margin-top: -15px;
+    color: #000;
+    font-size: 30px;
+}

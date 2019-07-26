@@ -1,0 +1,30 @@
+[
+  {
+    "outputFileName": "Scripts/libs/fastclick/lib/fastclick.js",
+    "inputFiles": [
+      "Scripts/libs/fastclick/lib/fastclick.js"
+    ],
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "Scripts/libs/datatables.net-responsive-bs/js/responsive.bootstrap.js",
+    "inputFiles": [
+      "Scripts/libs/datatables.net-responsive-bs/js/responsive.bootstrap.js"
+    ],
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "Scripts/libs/jquery-validation/dist/jquery.validate.js",
+    "inputFiles": [
+      "Scripts/libs/jquery-validation/dist/jquery.validate.js"
+    ],
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "Scripts/libs/jquery-validation/dist/additional-methods.js",
+    "inputFiles": [
+      "Scripts/libs/jquery-validation/dist/additional-methods.js"
+    ],
+    "sourceMap": false
+  }
+]

@@ -1,0 +1,162 @@
+﻿@using ROHV.WebApi.ViewModels;
+
+@using ROHV.Core.Models;
+
+@{
+    var lists = (Dictionary<String, List<ItemListViewModel>>)ViewData["Lists"];
+    var types = (List<EmployeeDocumentTypeModel>)ViewData["EmployeeDocumentTypes"];
+    var statuses = (List<ItemListViewModel>)lists["EmployeeDocumentStatuses"];
+}
+<script id="pop-template-document" type="text/html">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content overlay-wrapper">
+            @Html.Raw(@"<%
+                var isEdit = model.get(""EmployeeDocumentId"")!=null;
+                var title = isEdit? ""Edit document"": ""Add document"";
+                var btnTitle = isEdit? ""Save changes"": ""Add document"";
+            %>")
+            <div class="modal-header alert-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><%=title%></h4>
+            </div>
+            <div class="modal-body">
+                <form id="document-form">
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="DocumentTypeId">Document type</label>
+                                        <select id="DocumentTypeId" class="selectpicker"
+                                                name="DocumentTypeId"
+                                                title="Select type...">
+                                            @foreach (var item in types)
+                                            {
+                                                @:<% var value = @item.EmployeeDocumentTypeId;%>
+                                                <option value="@item.EmployeeDocumentTypeId" style="background-color: @(item.Color)5A;" document-type-color="@item.Color"
+                                                        @Html.Raw(@"<%if(model.get(""DocumentTypeId"")==value){%> selected   <%}%>")>
+                                                    @item.Name
+                                                </option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="DocumentStatusId">Document status</label>
+                                        <select id="DocumentStatusId" class="selectpicker"
+                                                name="DocumentStatusId"
+                                                title="Select status...">
+                                            @foreach (var item in statuses)
+                                            {
+                                                @:<% var value = @item.Value;%>
+                                                <option value="@item.Value"
+                                                        @Html.Raw(@"<%if(model.get(""DocumentStatusId"")==value){%> selected   <%}%>")>
+                                                    @item.Name
+                                                </option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="DateDocument">Date of document</label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input value="<%=model.get('DateDocument')%>" model.get" type="text" class="form-control pull-right"
+                                                   data-inputmask="'alias': 'mm/dd/yyyy'" data-mask=""
+                                                   id="DateDocument" name="DateDocument" placeholder="Enter date of document..." />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-6">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="EmployeeId">Employee</label>
+                                        <select id="EmployeeId" name="EmployeeId" class="selectpicker" data-live-search="true" title="Select employee name...">
+                                            @Html.Raw(@"
+                                                <%if(model.get(""EmployeeId"")!=null){%>
+                                                        <option value=""<%=model.get(""EmployeeId"")%>""  data-icon=""glyphicon-user"" data-subtext=""<%=model.get(""EmployeeCompanyName"")%>"" selected >
+                                                                <%=model.get(""EmployeeName"")%>
+                                                        </option>
+                                                 <%}%>")
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="row">
+                                        <div class="form-group col-xs-6 col-md-6">
+                                            <label for="FileId">File</label>
+                                                <div id="dropzone" class="dropzone">
+                                                    <div class="dz-default dz-message">
+                                                        <span>Drop file here or click to upload</span>
+                                                    </div>
+                                                    <div class="fallback">
+                                                        <input type="FileDataInput" name="FileDataInput">
+                                                    </div>
+                                                </div>
+                                            <div id="file-name"></div>
+                                        </div>
+                                        <div class="col-xs-6 col-md-6" style="margin-top:27px;">
+                                            <button class="btn  btn-primary btn-sm" href="javascript:void(0);" style="width:auto;" data-action="download-file-popup">
+                                                <i class="glyphicon glyphicon-download-alt"></i>&nbsp;&nbsp;&nbsp;
+                                                Download current file
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <form id="add-document-note">
+                            <label for="document-notes-grid">Notes</label>
+                            <div class="row">
+                                <div class="col-xs-10 col-md-10" style="padding-right:3px;">
+                                    <div class="form-group">
+                                        <textarea name="DocumentNote" id="DocumentNote" class="form-control" rows="2" placeholder="Enter note ..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-xs-2 col-md-2" style="padding-left:3px;">
+                                    <button class="btn  btn-primary btn-sm" href="javascript:void(0);" style="width:auto;" data-action="add">
+                                        <i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;
+                                        Add new note
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <table id="document-notes-grid" style="width:100%;" class="table table-bordered table-hover"></table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn  btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="button" id="save-modal" class="btn btn-primary"><%=btnTitle%></button>
+            </div>
+            <div class="overlay" id="overlay-dialog" style="display:none;">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</script>
+
+<script id="button-template-document-notes" type="text/html">
+    <div style="white-space:nowrap;" data-row-id="<%=id%>">
+        <button data-id="<%=id%>" data-action="delete" type="button" class="btn btn-danger btn-xs">
+            <span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Delete
+        </button>
+    </div>
+</script>

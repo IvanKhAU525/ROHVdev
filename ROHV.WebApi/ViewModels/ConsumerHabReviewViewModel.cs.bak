@@ -1,0 +1,150 @@
+﻿using ROHV.Core.Database;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace ROHV.WebApi.ViewModels
+{
+    public class ConsumerHabReviewViewModel
+    {
+        public Int32? ConsumerHabReviewId { get; set; }
+        public Int32 ServiceId { get; set; }
+        public String ServiceName { get; set; }
+        public Int32? ContactId { get; set; }
+        public String EmployeeName { get; set; }
+        public Int32? CHCoordinatorId { get; set; }
+        public String CHCoordinatorName { get; set; }
+        public Int32? DHCoordinatorId { get; set; }
+        public String DHCoordinatorName { get; set; }
+        public Int32? MSCId { get; set; }
+        public String MSCName { get; set; }
+        public String Parents { get; set; }
+        public String Others { get; set; }
+        public Int32? AdvocateId { get; set; }
+        public String AdvocateName { get; set; }
+        public DateTime DateCreated { get; set; }
+        public DateTime? DateUpdated { get; set; }
+        public DateTime? DateReview { get; set; }
+        public Int32 AddedById { get; set; }
+        public String AddedByName { get; set; }
+        public Int32? UpdatedById { get; set; }
+        public String UpdatedByName { get; set; }
+
+        public Int32 ConsumerId { get; set; }
+
+        public String Notes { get; set; }
+
+        public ConsumerHabReviewIssueStatesModel ConsumerHabReviewIssueStates { get; set; }
+
+        public ConsumerHabReviewViewModel()
+        {
+            ConsumerHabReviewIssueStates = new ConsumerHabReviewIssueStatesModel();
+        }
+        private String GetContact(Contact contact)
+        {
+            if (contact != null)
+            {
+                return contact.LastName + ", " + contact.FirstName;
+            }
+            return String.Empty;
+        }
+        public ConsumerHabReviewViewModel(ConsumerHabReview model)
+        {
+            this.ConsumerHabReviewId = model.Id;
+            this.ServiceId = model.ServiceId;
+            if (model.ServiceType != null)
+            {
+                this.ServiceName = model.ServiceType.Name;
+            }
+
+            this.CHCoordinatorId = model.CHCoordinatorId;
+            this.CHCoordinatorName = this.GetContact(model.Contact3);
+
+            this.DHCoordinatorId = model.DHCoordinatorId;
+            this.DHCoordinatorName = this.GetContact(model.Contact1);
+
+            this.MSCId = model.MSCId;
+            this.MSCName = this.GetContact(model.Contact);
+
+            this.ContactId = model.ContactId;
+            this.EmployeeName = this.GetContact(model.Contact2);
+
+            this.Parents = model.Parents;
+            this.Others = model.Others;
+            this.Notes = model.Notes;
+
+            this.AdvocateId = model.AdvocateId;
+            if (model.Contact11 != null)
+            {
+                this.AdvocateName = model.Contact11.LastName + ", " + model.Contact11.FirstName;
+            }
+
+            this.DateCreated = model.DateCreated;
+            this.DateUpdated = model.DateUpdated;
+
+            this.AddedById = model.AddedById;
+            if (model.SystemUser1 != null)
+            {
+                this.AddedByName = model.SystemUser1.LastName + ", " + model.SystemUser1.FirstName;
+            }
+
+            this.UpdatedById = model.UpdatedById;
+            this.UpdatedByName = "";
+            if (model.SystemUser != null)
+            {
+                this.UpdatedByName = model.SystemUser.LastName + ", " + model.SystemUser.FirstName;
+            }
+
+            this.ConsumerHabReviewIssueStates = new ConsumerHabReviewIssueStatesModel(model.ConsumerHabReviewIssueStates.FirstOrDefault());
+            this.DateReview = model.DateReview;
+        }
+        static public List<ConsumerHabReviewViewModel> GetList(List<ConsumerHabReview> models)
+        {
+            List<ConsumerHabReviewViewModel> result = new List<ConsumerHabReviewViewModel>();
+            foreach (var item in models)
+            {
+                result.Add(new ConsumerHabReviewViewModel(item));
+            }
+            return result;
+
+        }
+        public ConsumerHabReview GetModel()
+        {
+            ConsumerHabReview model = new ConsumerHabReview();
+            if (this.ConsumerHabReviewId.HasValue)
+            {
+                model.Id = this.ConsumerHabReviewId.Value;
+            }
+            else
+            {
+                model.Id = 0;
+            }
+            model.ConsumerId = this.ConsumerId;
+            model.ServiceId = this.ServiceId;
+
+            model.CHCoordinatorId = this.CHCoordinatorId;
+            model.DHCoordinatorId = this.DHCoordinatorId;
+            model.ContactId = this.ContactId;
+            model.MSCId = this.MSCId;
+            model.AdvocateId = this.AdvocateId;
+
+            model.Parents = this.Parents;
+            model.Others = this.Others;
+            model.Notes = this.Notes;
+
+
+
+            model.AddedById = this.AddedById;
+            model.UpdatedById = this.UpdatedById;
+            model.DateCreated = this.DateCreated;
+            model.DateUpdated = this.DateUpdated;
+            model.DateReview = this.DateReview;
+
+            model.ConsumerHabReviewIssueStates = new List<ConsumerHabReviewIssueState>() {
+                this.ConsumerHabReviewIssueStates.GetModel()
+            };
+            return model;
+        }
+    }
+}

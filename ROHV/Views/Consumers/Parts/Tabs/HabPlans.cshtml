@@ -1,0 +1,61 @@
+﻿<script id="hab-plans-tab-template" type="text/html">
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <h2>Hab plans</h2>
+        </div>
+        <div class="col-xs-12 col-md-12">
+            <div class="input-group" style="margin-bottom:10px;">
+                <button class="btn  btn-primary btn-xs" href="javascript:void(0);" style="width:auto;" data-action="add">
+                    <i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;
+                    Add new hab plan
+                </button>
+            </div>
+            <table id="hab-plans-grid" class="table table-bordered table-hover nowrap"></table>
+        </div>
+        <div class="col-xs-12 col-md-12">
+            <h2>Hab reviews</h2>
+        </div>
+        <div class="col-xs-12 col-md-12">
+            <div class="input-group" style="margin-bottom:10px;">
+                <button class="btn  btn-primary btn-xs" href="javascript:void(0);" style="width:auto;" data-action="add-review">
+                    <i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;
+                    Add new hab review
+                </button>
+            </div>
+            <table id="hab-reviews-grid" class="table table-bordered table-hover nowrap"></table>
+        </div>
+    </div>
+</script>         
+   
+<script id="button-template-hab-plan" type="text/html">
+    <div style="white-space:nowrap;" data-row-id="<%=id%>">
+        <button data-id="<%=id%>" data-action="edit" type="button" class="btn btn-primary btn-xs">
+            <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit info
+        </button>&nbsp;&nbsp;&nbsp;
+        <button data-id="<%=id%>" data-action="generate-pdf" type="button" class="btn btn-danger btn-xs">
+            <span class="glyphicon glyphicon-download-alt"></span>&nbsp;&nbsp;Generate pdf
+        </button>&nbsp;&nbsp;&nbsp;        
+        <button data-id="<%=id%>" data-action="delete" type="button" class="btn btn-danger btn-xs">
+            <span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Delete
+        </button>
+    </div>
+</script>
+
+<script id="button-template-hab-review" type="text/html">
+    <div style="white-space:nowrap;" data-row-id="<%=id%>">
+        <button data-id="<%=id%>" data-action="edit-review" type="button" class="btn btn-primary btn-xs">
+            <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit info
+        </button>&nbsp;&nbsp;&nbsp;
+        <button data-id="<%=id%>" data-action="generate-review-pdf" type="button" class="btn btn-danger btn-xs">
+            <span class="glyphicon glyphicon-download-alt"></span>&nbsp;&nbsp;Generate pdf
+        </button>&nbsp;&nbsp;&nbsp;
+        <button data-id="<%=id%>" data-action="delete-review" type="button" class="btn btn-danger btn-xs">
+            <span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Delete
+        </button>
+    </div>
+</script>
+
+
+@Html.Partial("Parts/Popups/HabPlan")
+@Html.Partial("Parts/Popups/HabReview")
+@Html.Partial("Parts/Popups/HabPlanPdfDownload")

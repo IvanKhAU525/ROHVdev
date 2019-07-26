@@ -1,0 +1,53 @@
+﻿@using ROHV.WebApi.ViewModels;
+@{
+    var lists = (Dictionary<String, List<ItemListViewModel>>)ViewData["Lists"];
+    var types = (List<ItemListViewModel>)lists["PrintDocumentTypes"];
+}
+<script id="pop-template-printdocument-download" type="text/html">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content overlay-wrapper">      
+            <div class="modal-header alert-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Download the document</h4>
+            </div>
+            <div class="modal-body">
+                <form id="print-document-download-form">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="PrintDocumnentTypeId">Document type</label>
+                                        <select id="PrintDocumnentTypeId"
+                                                name="PrintDocumnentTypeId"
+                                                class="selectpicker"
+                                                title="Select type...">
+                                            @foreach (var item in types)
+                                            {
+                                                @Html.Raw(@"
+                                                    <%var serviceType =" + item.AdditionalValue + @";%>
+                                                    <%if(model.get(""ServiceTypeId"")==serviceType || model.get(""ServiceTypeId"")==null){%>
+                                                            <option value=""" + @item.Value + @""" >"
+                                                                   + item.Name +
+                                                            @"</option>
+                                                     <%}%>");
+                                            }                                  
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>                       
+                    </div>
+                </form>               
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn  btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="button" id="save-modal" class="btn btn-primary"><span class="glyphicon glyphicon-download-alt"></span>&nbsp;&nbsp;Generate pdf</button>
+            </div>
+            <div class="overlay" id="overlay-dialog" style="display:none;">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</script>

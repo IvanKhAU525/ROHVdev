@@ -1,0 +1,26 @@
+﻿<script id="call-logs-tab-template" type="text/html">
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <div class="input-group" style="margin-bottom:10px;">
+                <button class="btn  btn-primary btn-xs" href="javascript:void(0);" style="width:auto;" data-action="add">
+                    <i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;
+                    Add new call log
+                </button>
+            </div>
+            <table id="call-logs-grid" style="width:100%;" class="table table-bordered table-hover"></table>
+        </div>
+    </div>
+</script>
+
+<script id="button-template-call-log" type="text/html">
+    <div style="white-space:nowrap;" data-row-id="<%=id%>">
+        <button data-id="<%=id%>" data-action="edit" type="button" class="btn btn-primary btn-xs">
+            <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit
+        </button>&nbsp;&nbsp;&nbsp;     
+        <button data-id="<%=id%>" data-action="delete" type="button" class="btn btn-danger btn-xs">
+            <span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Delete
+        </button>
+    </div>
+</script>
+
+@Html.Partial("Parts/Popups/CallLog")

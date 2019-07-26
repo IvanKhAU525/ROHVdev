@@ -1,0 +1,65 @@
+﻿@using ROHV.WebApi.ViewModels;
+@{
+    var lists = (Dictionary<String, List<ItemListViewModel>>)ViewData["Lists"];
+    var types = (List<ItemListViewModel>)lists["PrintDocumentTypes"];
+}
+<script id="pop-template-printdocument-emailed" type="text/html">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content overlay-wrapper">
+            <div class="modal-header alert-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Download the document</h4>
+            </div>
+            <div class="modal-body">
+                <form id="print-document-emailed-form">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="EmailWorker">Email (Worker):</label>
+                                        <input placeholder="Please enter email..." class="form-control" id="EmailWorker" name="EmailWorker" value="<%=model.get('ContactEmail')%>" />
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="EmailAdditional">Email (Additional):</label>
+                                        <input placeholder="Please enter additional email..." class="form-control" id="EmailAdditional" name="EmailAdditional" />
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="Message">Message</label>
+                                        <textarea name="Message" id="Message" class="form-control" rows="7" placeholder="Email message ..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-12">
+                                    <label for="PrintDocumnentTypeId">Please select document for emailing:</label>
+                                    @foreach (var item in types)
+        {
+
+                            @Html.Raw(@"
+                                <%var serviceType =" + item.AdditionalValue + @";%>
+                                <%if(model.get(""ServiceTypeId"")==serviceType){%>
+                                        <div class=""form-group"">
+                                            <label><input type=""checkbox"" name=""DocumentTypes"" value=""" + item.Value + @""" checked=""checked""/>&nbsp;&nbsp;&nbsp;" + item.Name + @"</label>
+                                        </div>
+                                    <%}%>");
+}
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn  btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="button" id="save-modal" class="btn btn-primary"><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;Send Email</button>
+            </div>
+            <div class="overlay" id="overlay-dialog" style="display:none;">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</script>

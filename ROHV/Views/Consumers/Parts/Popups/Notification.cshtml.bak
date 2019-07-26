@@ -1,0 +1,143 @@
+﻿@using ROHV.WebApi.ViewModels;
+@{
+    var lists = (Dictionary<String, List<ItemListViewModel>>)ViewData["Lists"];
+    var statusesList = (List<ItemListViewModel>)lists["NotificationStatusesList"];
+    var typesList = (List<ItemListViewModel>)lists["RepeatingTypesList"];
+}
+<script id="pop-template-notification" type="text/html">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content overlay-wrapper">
+            @Html.Raw(@"<%
+                var isEdit = model.get(""Id"")!=null;
+                var title = isEdit? ""Edit notification"": ""Add notification"";
+                var btnTitle = isEdit? ""Save changes"": ""Add notification"";
+            %>")
+            <div class="modal-header alert-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><%=title%></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form id="notification-form">
+                        <div class="col-xs-12 col-md-12">
+                            <div class="row">
+                                <div class="col-xs-6 col-md-6">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="Name">Name</label>
+                                                <input placeholder="Please enter name..." class="form-control" id="Name" name="Name" value="<%=model.get('Name')%>">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="DateStart">Start date</label>
+                                                <div class="input-group date">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </div>
+                                                    <input value="<%=model.get('DateStart')%>" model.get" type="text" class="form-control pull-right"
+                                                           data-inputmask="'alias': 'mm/dd/yyyy'" data-mask=""
+                                                           id="DateStart" name="DateStart" placeholder="Enter start date..." />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-md-6">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="StatusId">Status</label>
+                                                <select id="StatusId" class="selectpicker"
+                                                        name="StatusId"
+                                                        title="Select status...">
+                                                    @foreach (var item in statusesList)
+                                                    {
+                                                        @:<% var value = @item.Value;%>
+                                                        <option value="@item.Value"
+                                                                @Html.Raw(@"<%if(model.get(""StatusId"")==value){%> selected   <%}%>")>
+                                                            @item.Name
+                                                        </option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="RepetingTypeId">Repeating Type</label>
+                                                <select id="RepetingTypeId" class="selectpicker"
+                                                        name="RepetingTypeId"
+                                                        title="Select repeating type...">
+                                                    @foreach (var item in typesList)
+                                                    {
+                                                        @:<% var value = @item.Value;%>
+                                                        <option value="@item.Value"
+                                                                @Html.Raw(@"<%if(model.get(""RepetingTypeId"")==value){%> selected   <%}%>")>
+                                                            @item.Name
+                                                        </option>
+                                                    }
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-12">
+                            <div class="form-group">
+                                <label for="Note">Notification message:</label>
+                                <textarea name="Note" id="Note" class="form-control" rows="2" placeholder="Enter notification message ..."><%=model.get('Note')%></textarea>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="col-xs-12 col-md-12">
+                        <hr/>
+                        <form id="recipient-form">
+                            <div class="row">
+                                <div class="col-xs-4 col-md-3">
+                                    <div class="form-group">
+                                        <label for="Position">Position</label>
+                                        <input placeholder="Please enter position..." class="form-control" id="Position" name="Position">
+                                    </div>
+                                </div>
+                                <div class="col-xs-3 col-md-3">
+                                    <div class="form-group">
+                                        <label for="Contact">Contact</label>
+                                        <select id="Contact" name="Contact" class="selectpicker" data-live-search="true" placeholder="Select contact..."></select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4 col-md-4">
+                                    <div class="form-group">
+                                        <label for="Email">Email</label>
+                                        <input placeholder="Please enter email..." class="form-control" id="Email" name="Email">
+                                    </div>
+                                </div>
+                                <div class="col-xs-1 col-md-2">
+                                    <button type="button" class="btn btn-primary" id="add-recipient" style="margin-top:25px;">Add recipient</button>
+                                </div>
+                            </div>
+                        </form>
+                        <table id="recipients-grid" style="width:100%;" class="table table-bordered table-hover"></table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn  btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="button" id="save-modal" class="btn btn-primary"><%=btnTitle%></button>
+            </div>
+            <div class="overlay" id="overlay-dialog" style="display:none;">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</script>
+
+<script id="button-template-recipient" type="text/html">
+    <div style="white-space:nowrap;" data-row-id="<%=id%>">
+        <button data-id="<%=id%>" data-action="delete" type="button" class="btn btn-danger btn-xs">
+            <span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Delete
+        </button>
+    </div>
+</script>

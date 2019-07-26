@@ -1,0 +1,41 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div id="main-container" style="display:none;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Consumers
+        </h1>
+        <ol class="breadcrumb">
+            <li><i class="fa fa-medkit"></i> Consumers</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12" id="searchingContainer">
+
+            </div>
+            <div class="col-xs-12" id="consumerInfoContainer">
+
+            </div>
+            <div class="col-xs-12" id="additionalInfoContainer">
+
+            </div>
+
+        </div>
+    </section><!-- /.content -->
+    @Html.Partial("Parts/Search")
+    @Html.Partial("Parts/ConsumerInfo")
+    @Html.Partial("Parts/Tabs")
+    @Html.Partial("DialogMessage")
+    @Html.Partial("DialogConfirm")
+
+</div>
+<div id="loading-container"></div>
+<div id="modal-message-container"></div>
+<div id="modal-confirm-message-container"></div>

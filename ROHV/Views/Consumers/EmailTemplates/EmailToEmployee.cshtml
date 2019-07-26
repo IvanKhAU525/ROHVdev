@@ -1,0 +1,41 @@
+﻿@model ROHV.WebApi.ViewModels.ConsumerEmailViewModel
+
+@{
+    String FirstName = "";
+    if (!String.IsNullOrEmpty(Model.ContactName))
+    {
+        List<String> tmp = Model.ContactName.Split(' ').ToList();
+        FirstName = tmp[1].Trim();
+    }
+}
+<table style="width: 560px;" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>
+            <div style="padding-left: 20px; font-family: Arial, Helvetica, sans-serif; font-size: 14px; line-height: 18px; width: 520px; margin: 20px auto;">
+                Dear @FirstName,
+                <p style="padding-left: 20px">
+                    @Model.Message
+                </p>
+                <br />
+                <br />
+                <small>
+                    Thanks, <br />
+                    If you have any questions about this message, please do not hesitate to contact me. You can reach me at my email address.
+                </small>
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <div style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; line-height: 15px; color: #999; width: 520px; margin: 20px auto;">
+                This is email for internal use only.<br />
+                149 Elm St.  Monroe, NY 10950<br />
+                Phone: 845.782.7700<br />
+                Fax: 845.782.7800/845.774.7008<br />
+                Email: info@rayim.org<br />
+                Toll Free: 800.387.2946 (RAYIM)<br />
+            </div>
+        </td>
+    </tr>
+</table>

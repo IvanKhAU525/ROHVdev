@@ -1,0 +1,2056 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5D15B965-129F-41EF-975F-D9440BBE7C8B}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ROHV</RootNamespace>
+    <AssemblyName>ROHV</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ITCraftFrame, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\ITCraftFrame.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.SqlServer.Types, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.11.0.2\lib\net20\Microsoft.SqlServer.Types.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http.Owin, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ConsumerAuditController.cs" />
+    <Compile Include="Controllers\ConsumersController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\EmployeesController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\packages\Microsoft.SqlServer.Types.11.0.2\nativeBinaries\x64\msvcr100.dll">
+      <Link>SqlServerTypes\x64\msvcr100.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\packages\Microsoft.SqlServer.Types.11.0.2\nativeBinaries\x64\SqlServerSpatial110.dll">
+      <Link>SqlServerTypes\x64\SqlServerSpatial110.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\packages\Microsoft.SqlServer.Types.11.0.2\nativeBinaries\x86\msvcr100.dll">
+      <Link>SqlServerTypes\x86\msvcr100.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\packages\Microsoft.SqlServer.Types.11.0.2\nativeBinaries\x86\SqlServerSpatial110.dll">
+      <Link>SqlServerTypes\x86\SqlServerSpatial110.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\admin\admin-additional.css" />
+    <Content Include="Content\admin\admin.css" />
+    <Content Include="Content\admin\animate.css" />
+    <Content Include="Content\admin\loading.css" />
+    <Content Include="Content\admin\skin-black-light.css" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\login_style.css" />
+    <Content Include="Content\images\logo_old.png" />
+    <Content Include="EmailTemplates\apporved-service-email.html" />
+    <Content Include="EmailTemplates\email-auto-notification.html" />
+    <Content Include="EmailTemplates\note-email.html" />
+    <Content Include="favicon.ico" />
+    <Content Include="favicon.png" />
+    <Content Include="favicon_old.ico" />
+    <Content Include="favicon_old.png" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\application\app.js" />
+    <Content Include="Scripts\application\common\app\app.instance.js" />
+    <Content Include="Scripts\application\common\app\app.main.js" />
+    <Content Include="Scripts\application\common\app\app.rootlayout.js" />
+    <Content Include="Scripts\application\common\collections\consumer.audit.collection.js" />
+    <Content Include="Scripts\application\common\collections\users.collection.js" />
+    <Content Include="Scripts\application\common\controllers\events.controller.js" />
+    <Content Include="Scripts\application\common\controllers\nav.controller.js" />
+    <Content Include="Scripts\application\common\layouts\consumers.additional.info.layoutview.js" />
+    <Content Include="Scripts\application\common\layouts\consumers.layoutview.js" />
+    <Content Include="Scripts\application\common\models\consumer.approved.service.email.model.js" />
+    <Content Include="Scripts\application\common\models\consumer.habreview.model.js" />
+    <Content Include="Scripts\application\common\models\consumer.medicaid.number.model.js" />
+    <Content Include="Scripts\application\common\models\uploaded.file.model.js" />
+    <Content Include="Scripts\application\common\models\consumer.notification.model.js" />
+    <Content Include="Scripts\application\common\models\consumer.note.model.js" />
+    <Content Include="Scripts\application\common\models\consumer.document.model.js" />
+    <Content Include="Scripts\application\common\models\consumer.employee.email.model.js" />
+    <Content Include="Scripts\application\common\models\consumer.calllog.model.js" />
+    <Content Include="Scripts\application\common\models\consumer.address.model.js" />
+    <Content Include="Scripts\application\common\models\consumer.service.coordinator.model.js" />
+    <Content Include="Scripts\application\common\models\consumer.printdocument.model.js" />
+    <Content Include="Scripts\application\common\models\consumer.habplan.model.js" />
+    <Content Include="Scripts\application\common\models\consumer.employee.model.js" />
+    <Content Include="Scripts\application\common\models\consumer.rate.model.js" />
+    <Content Include="Scripts\application\common\models\consumer.approved.service.model.js" />
+    <Content Include="Scripts\application\common\models\consumer.phone.model.js" />
+    <Content Include="Scripts\application\common\models\consumer.model.js" />
+    <Content Include="Scripts\application\common\models\base.model.js" />
+    <Content Include="Scripts\application\common\models\advocate.model.js" />
+    <Content Include="Scripts\application\common\models\employee.model.js" />
+    <Content Include="Scripts\application\common\models\audit.model.js" />
+    <Content Include="Scripts\application\common\models\user.model.js" />
+    <Content Include="Scripts\application\common\routers\nav.router.js" />
+    <Content Include="Scripts\application\common\templates\template.config.js" />
+    <Content Include="Scripts\application\common\Utils\GlobalEvents.js" />
+    <Content Include="Scripts\application\common\Utils\Utils.js" />
+    <Content Include="Scripts\application\common\views\base.contact.search.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\consumers.tab.uploaded.files.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\popups\consumer.uploaded.file.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\popups\consumer.medicaidnumbers.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\popups\consumer.readonly.approved.service.view.js" />
+    <Content Include="Scripts\application\common\views\file.upload.base.view.js" />
+    <Content Include="Scripts\application\common\views\base.view.js" />
+    <Content Include="Scripts\application\common\views\consumer.audit\consumer.audit.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\consumers.tab.habreviews.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\consumers.tab.print.documents.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\consumers.tab.notifications.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\consumers.tab.habplans.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\consumers.tab.documents.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\consumers.tab.notes.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\consumers.tab.call.logs.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\consumers.tab.employees.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\consumers.tab.rate.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\consumers.tab.approved.service.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\popups\consumer.employee.info.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\popups\consumer.habreview.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\popups\consumer.note.list.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\popups\consumer.note.simple.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\popups\consumer.approved.service.emailed.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\popups\consumer.notification.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\popups\consumer.note.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\popups\consumer.document.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\popups\consumer.employee.email.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\popups\consumer.calllog.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\popups\consumer.notes.emailed.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\popups\consumer.address.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\popups\consumer.service.coordinator.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\popups\consumer.printdocument.emailed.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\popups\consumer.printdocument.download.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\popups\consumer.printdocument.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\popups\consumer.habplan.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\popups\consumer.employee.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\popups\consumer.approved.service.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\popups\consumer.phone.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\consumers.consumer.info.view.js" />
+    <Content Include="Scripts\application\common\views\consumers\consumers.searching.view.js" />
+    <Content Include="Scripts\application\common\views\advocates\advocate.form.view.js" />
+    <Content Include="Scripts\application\common\views\advocates\advocates.view.js" />
+    <Content Include="Scripts\application\common\views\error.view.js" />
+    <Content Include="Scripts\application\common\views\confirm.view.js" />
+    <Content Include="Scripts\application\common\views\loading.view.js" />
+    <Content Include="Scripts\application\common\views\nav.view.js" />
+    <Content Include="Scripts\application\common\views\notfound.view.js" />
+    <Content Include="Scripts\application\common\views\message.view.js" />
+    <Content Include="Scripts\application\common\views\profile\profile.view.js" />
+    <Content Include="Scripts\application\common\views\employees\employee.form.view.js" />
+    <Content Include="Scripts\application\common\views\employees\employees.view.js" />
+    <Content Include="Scripts\application\common\views\users\user.changepassword.view.js" />
+    <Content Include="Scripts\application\common\views\users\user.form.view.js" />
+    <Content Include="Scripts\application\common\views\users\users.view.js" />
+    <Content Include="Scripts\application\loader.js" />
+    <Content Include="Scripts\js\Login.js" />
+    <Content Include="Scripts\js\Utils.js" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\.gitignore" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\app-0c945a27f43452df695771ddb60b3d14.js" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\data-511bb1878c21f99d2086da554d6c768b.js" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\eg-iframe.html" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\ext-all.js" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\boundlist\trigger-arrow.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\box\corners-blue.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\box\corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\box\l-blue.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\box\l.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\box\r-blue.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\box\r.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\box\tb-blue.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\box\tb.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn-group\btn-group-default-framed-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn-group\btn-group-default-framed-notitle-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn-group\btn-group-default-framed-notitle-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn-group\btn-group-default-framed-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-large-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-large-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-large-disabled-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-large-disabled-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-large-disabled-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-large-focus-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-large-focus-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-large-focus-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-large-over-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-large-over-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-large-over-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-large-pressed-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-large-pressed-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-large-pressed-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-large-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-medium-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-medium-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-medium-disabled-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-medium-disabled-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-medium-disabled-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-medium-focus-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-medium-focus-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-medium-focus-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-medium-over-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-medium-over-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-medium-over-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-medium-pressed-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-medium-pressed-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-medium-pressed-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-medium-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-small-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-small-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-small-disabled-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-small-disabled-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-small-disabled-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-small-focus-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-small-focus-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-small-focus-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-small-over-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-small-over-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-small-over-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-small-pressed-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-small-pressed-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-small-pressed-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-small-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-large-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-large-disabled-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-large-disabled-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-large-focus-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-large-focus-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-large-focus-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-large-over-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-large-over-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-large-over-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-large-pressed-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-large-pressed-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-large-pressed-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-large-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-medium-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-medium-disabled-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-medium-disabled-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-medium-focus-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-medium-focus-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-medium-focus-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-medium-over-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-medium-over-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-medium-over-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-medium-pressed-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-medium-pressed-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-medium-pressed-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-medium-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-small-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-small-disabled-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-small-disabled-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-small-focus-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-small-focus-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-small-focus-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-small-over-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-small-over-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-small-over-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-small-pressed-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-small-pressed-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-small-pressed-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\btn\btn-default-toolbar-small-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\button\arrow.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\button\btn.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\button\group-cs.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\button\group-lr.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\button\group-tb.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\button\s-arrow-b-noline.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\button\s-arrow-b.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\button\s-arrow-bo.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\button\s-arrow-light.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\button\s-arrow-noline.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\button\s-arrow-o.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\button\s-arrow.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\datepicker\datepicker-footer-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\datepicker\datepicker-footer-bg.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\datepicker\datepicker-header-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\datepicker\datepicker-header-bg.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\dd\drop-add.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\dd\drop-no.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\dd\drop-yes.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\editor\tb-sprite.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\form-invalid-tip\form-invalid-tip-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\form-invalid-tip\form-invalid-tip-default-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\form-invalid-tip\form-invalid-tip-default-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\form-invalid-tip\form-invalid-tip-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\form\checkbox.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\form\clear-trigger.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\form\date-trigger.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\form\error-tip-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\form\exclamation.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\form\radio.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\form\search-trigger.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\form\spinner-small.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\form\spinner.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\form\text-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\form\trigger-square.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\form\trigger-tpl.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\form\trigger.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\arrow-left-white.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\arrow-right-white.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\cell-special-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\cell-special-bg.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\cell-special-selected-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\cell-special-selected-bg.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\checked.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\col-move-bottom.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\col-move-top.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\column-header-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\column-header-bg.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\column-header-over-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\column-header-over-bg.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\columns.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\dd-insert-arrow-left.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\dd-insert-arrow-left.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\dd-insert-arrow-right.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\dd-insert-arrow-right.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\dirty.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\done.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\drop-no.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\drop-yes.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\footer-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\grid-blue-hd.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\grid-blue-split.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\grid-hrow.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\grid-loading.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\grid-split.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\grid-vista-hd.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\grid3-hd-btn.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\grid3-hrow-over.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\grid3-hrow.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\grid3-rowheader.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\group-by.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\group-collapse.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\group-expand-sprite.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\group-expand.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\hd-pop.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\hmenu-asc.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\hmenu-desc.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\hmenu-lock.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\hmenu-lock.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\hmenu-unlock.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\hmenu-unlock.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\invalid_line.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\loading.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\mso-hd.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\nowait.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\page-first-disabled.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\page-first.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\page-last-disabled.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\page-last.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\page-next-disabled.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\page-next.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\page-prev-disabled.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\page-prev.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\pick-button.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\property-cell-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\property-cell-selected-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\refresh-disabled.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\refresh.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\row-check-sprite.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\row-expand-sprite.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\row-over.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\row-sel.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\sort-hd.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\sort_asc.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\sort_desc.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\unchecked.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\grid\wait.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\layout\mini-bottom.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\layout\mini-left.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\layout\mini-right.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\layout\mini-top.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\menu\checked.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\menu\group-checked.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\menu\item-over.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\menu\menu-item-active-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\menu\menu-item-active-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\menu\menu-item-active-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\menu\menu-parent.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\menu\menu.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\menu\unchecked.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\panel-header\panel-header-default-bottom-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\panel-header\panel-header-default-framed-bottom-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\panel-header\panel-header-default-framed-bottom-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\panel-header\panel-header-default-framed-bottom-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\panel-header\panel-header-default-framed-collapsed-bottom-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\panel-header\panel-header-default-framed-collapsed-bottom-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\panel-header\panel-header-default-framed-collapsed-bottom-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\panel-header\panel-header-default-framed-collapsed-left-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\panel-header\panel-header-default-framed-collapsed-left-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\panel-header\panel-header-default-framed-collapsed-left-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\panel-header\panel-header-default-framed-collapsed-right-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\panel-header\panel-header-default-framed-collapsed-right-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\panel-header\panel-header-default-framed-collapsed-right-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\panel-header\panel-header-default-framed-collapsed-top-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\panel-header\panel-header-default-framed-collapsed-top-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\panel-header\panel-header-default-framed-collapsed-top-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\panel-header\panel-header-default-framed-left-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\panel-header\panel-header-default-framed-left-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\panel-header\panel-header-default-framed-left-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\panel-header\panel-header-default-framed-right-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\panel-header\panel-header-default-framed-right-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\panel-header\panel-header-default-framed-right-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\panel-header\panel-header-default-framed-top-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\panel-header\panel-header-default-framed-top-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\panel-header\panel-header-default-framed-top-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\panel-header\panel-header-default-left-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\panel-header\panel-header-default-right-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\panel-header\panel-header-default-top-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\panel\panel-default-framed-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\panel\panel-default-framed-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\progress\progress-default-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\shared\blue-loading.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\shared\calendar.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\shared\glass-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\shared\hd-sprite.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\shared\icon-error.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\shared\icon-info.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\shared\icon-question.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\shared\icon-warning.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\shared\large-loading.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\shared\left-btn.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\shared\loading-balls.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\shared\right-btn.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\shared\shadow-c.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\shared\shadow-lr.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\shared\shadow.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\shared\warning.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\sizer\e-handle-dark.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\sizer\e-handle.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\sizer\ne-handle-dark.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\sizer\ne-handle.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\sizer\nw-handle-dark.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\sizer\nw-handle.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\sizer\s-handle-dark.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\sizer\s-handle.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\sizer\se-handle-dark.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\sizer\se-handle.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\sizer\square.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\sizer\sw-handle-dark.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\sizer\sw-handle.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\slider\slider-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\slider\slider-bg.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\slider\slider-thumb.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\slider\slider-thumb.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\slider\slider-v-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\slider\slider-v-bg.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\slider\slider-v-thumb.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\slider\slider-v-thumb.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tab-bar\scroll-left.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tab-bar\scroll-right.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tab-bar\tab-bar-default-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tab\tab-default-bottom-active-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tab\tab-default-bottom-active-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tab\tab-default-bottom-active-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tab\tab-default-bottom-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tab\tab-default-bottom-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tab\tab-default-bottom-disabled-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tab\tab-default-bottom-disabled-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tab\tab-default-bottom-disabled-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tab\tab-default-bottom-over-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tab\tab-default-bottom-over-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tab\tab-default-bottom-over-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tab\tab-default-bottom-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tab\tab-default-close.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tab\tab-default-top-active-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tab\tab-default-top-active-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tab\tab-default-top-active-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tab\tab-default-top-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tab\tab-default-top-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tab\tab-default-top-disabled-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tab\tab-default-top-disabled-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tab\tab-default-top-disabled-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tab\tab-default-top-over-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tab\tab-default-top-over-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tab\tab-default-top-over-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tab\tab-default-top-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tip\tip-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tip\tip-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\toolbar\more.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\toolbar\scroll-left.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\toolbar\scroll-right.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\toolbar\toolbar-default-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tools\tool-sprite-tpl.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tools\tool-sprites.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tools\tools-sprites-trans.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tree\arrows.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tree\drop-above.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tree\drop-add.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tree\drop-append.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tree\drop-below.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tree\drop-between.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tree\drop-no.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tree\drop-over.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tree\drop-under.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tree\drop-yes.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tree\elbow-end-minus-nl.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tree\elbow-end-minus.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tree\elbow-end-plus-nl.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tree\elbow-end-plus.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tree\elbow-end.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tree\elbow-line.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tree\elbow-minus-nl.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tree\elbow-minus.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tree\elbow-plus-nl.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tree\elbow-plus.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tree\elbow.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tree\folder-open.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tree\folder.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tree\leaf.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tree\loading.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\tree\s.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\util\splitter\mini-bottom.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\util\splitter\mini-left.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\util\splitter\mini-right.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\util\splitter\mini-top.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\window-header\window-header-default-bottom-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\window-header\window-header-default-bottom-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\window-header\window-header-default-collapsed-bottom-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\window-header\window-header-default-collapsed-bottom-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\window-header\window-header-default-collapsed-left-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\window-header\window-header-default-collapsed-left-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\window-header\window-header-default-collapsed-right-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\window-header\window-header-default-collapsed-right-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\window-header\window-header-default-collapsed-top-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\window-header\window-header-default-collapsed-top-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\window-header\window-header-default-left-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\window-header\window-header-default-left-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\window-header\window-header-default-right-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\window-header\window-header-default-right-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\window-header\window-header-default-top-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\window-header\window-header-default-top-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\window\window-default-corners.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\extjs\resources\themes\images\default\window\window-default-sides.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\favicon.ico" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\index.html" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\member-icons\cfg.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\member-icons\css_mixin.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\member-icons\css_var.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\member-icons\event.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\member-icons\method.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\member-icons\property.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\output\%24.fn.ajaxSelectPicker.defaults.js" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\output\%24.fn.ajaxSelectPicker.js" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\output\%24.fn.ajaxSelectPicker.locale.js" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\output\AjaxBootstrapSelect.js" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\output\AjaxBootstrapSelectList.js" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\output\AjaxBootstrapSelectRequest.js" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\css\app-4689d2a5522dcd3c9e9923ca59c33f27.css" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\ajax-loader.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\arrows.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\class-m.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\comment-bubble.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\comment.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\component-m.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\default-guide.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\doc-m.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\down-arr.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\elbow-end.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\example-icons.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\expandcollapse.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\group-expand-sprite.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\header.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\hero-extjs4-alt.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\icons.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\link-green-standard-over.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\link-green-standard.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\loading.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\logo-screen-noglow.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\logo.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\member-collapsed.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\member-expanded.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\member-hover.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\more.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\phone-l.jpg" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\phone-p.jpg" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\phone-small-l.jpg" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\phone-small-p.jpg" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\print.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\sample-over.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\search-box.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\singleton-m.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\tablet-l.jpg" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\tablet-p.jpg" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\tabs.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\text-bg.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\vote-arrows.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\welcome-bg-js4.gif" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\x.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\images\x12.png" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\prettify\prettify.css" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\resources\prettify\prettify.js" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\api-docs\styles-3eba09980fa05ead185cb17d9c0deb0f.css" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\dist\css\ajax-bootstrap-select.css" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\dist\js\ajax-bootstrap-select.js" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\dist\js\ajax-bootstrap-select.min.js" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\dist\js\locale\ajax-bootstrap-select.en-US.js" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\dist\js\locale\ajax-bootstrap-select.en-US.min.js" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\dist\js\locale\ajax-bootstrap-select.es-ES.js" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\dist\js\locale\ajax-bootstrap-select.es-ES.min.js" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\example\dataset.jsonp.js" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\example\php\ajax.php" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\example\php\index.php" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\Gruntfile.js" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\src\js\ajaxSelectPicker.defaults.js" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\src\js\ajaxSelectPicker.js" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\src\js\ajaxSelectPicker.locale\en-US.js" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\src\js\ajaxSelectPicker.locale\es-ES.js" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\src\js\classes\AjaxBootstrapSelect.js" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\src\js\classes\AjaxBootstrapSelectList.js" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\src\js\classes\AjaxBootstrapSelectRequest.js" />
+    <Content Include="Scripts\libs\backbone.babysitter\lib\backbone.babysitter.js" />
+    <Content Include="Scripts\libs\backbone.babysitter\lib\backbone.babysitter.min.js" />
+    <Content Include="Scripts\libs\backbone.babysitter\spec\javascripts\childviewContainer.spec.js" />
+    <Content Include="Scripts\libs\backbone.babysitter\spec\javascripts\helpers\jasmineMatchers.js" />
+    <Content Include="Scripts\libs\backbone.babysitter\src\build\backbone.babysitter.js" />
+    <Content Include="Scripts\libs\backbone.babysitter\src\childviewcontainer.js" />
+    <Content Include="Scripts\libs\backbone.marionette\lib\backbone.marionette.js" />
+    <Content Include="Scripts\libs\backbone.marionette\lib\backbone.marionette.min.js" />
+    <Content Include="Scripts\libs\backbone.marionette\lib\core\backbone.marionette.js" />
+    <Content Include="Scripts\libs\backbone.marionette\lib\core\backbone.marionette.min.js" />
+    <Content Include="Scripts\libs\backbone.marionette\license.txt" />
+    <Content Include="Scripts\libs\backbone.marionette\marionette-logo.png" />
+    <Content Include="Scripts\libs\backbone.wreqr\lib\backbone.wreqr.js" />
+    <Content Include="Scripts\libs\backbone.wreqr\lib\backbone.wreqr.min.js" />
+    <Content Include="Scripts\libs\backbone.wreqr\spec\javascripts\channel\connect-commands.spec.js" />
+    <Content Include="Scripts\libs\backbone.wreqr\spec\javascripts\channel\connect-events.spec.js" />
+    <Content Include="Scripts\libs\backbone.wreqr\spec\javascripts\channel\connect-requests.spec.js" />
+    <Content Include="Scripts\libs\backbone.wreqr\spec\javascripts\channel\create.spec.js" />
+    <Content Include="Scripts\libs\backbone.wreqr\spec\javascripts\channel\reset.spec.js" />
+    <Content Include="Scripts\libs\backbone.wreqr\spec\javascripts\commands.spec.js" />
+    <Content Include="Scripts\libs\backbone.wreqr\spec\javascripts\commandStorage.custom.spec.js" />
+    <Content Include="Scripts\libs\backbone.wreqr\spec\javascripts\commandStorage.spec.js" />
+    <Content Include="Scripts\libs\backbone.wreqr\spec\javascripts\eventaggregator.spec.js" />
+    <Content Include="Scripts\libs\backbone.wreqr\spec\javascripts\handlers.setFromHash.spec.js" />
+    <Content Include="Scripts\libs\backbone.wreqr\spec\javascripts\handlers.spec.js" />
+    <Content Include="Scripts\libs\backbone.wreqr\spec\javascripts\helpers\jasmineMatchers.js" />
+    <Content Include="Scripts\libs\backbone.wreqr\spec\javascripts\radio\channel.spec.js" />
+    <Content Include="Scripts\libs\backbone.wreqr\spec\javascripts\radio\commands.spec.js" />
+    <Content Include="Scripts\libs\backbone.wreqr\spec\javascripts\radio\reqres.spec.js" />
+    <Content Include="Scripts\libs\backbone.wreqr\spec\javascripts\radio\vent.spec.js" />
+    <Content Include="Scripts\libs\backbone.wreqr\spec\javascripts\requestResponse.spec.js" />
+    <Content Include="Scripts\libs\backbone.wreqr\spec\javascripts\support\wreqrHelper.js" />
+    <Content Include="Scripts\libs\backbone.wreqr\src\build\backbone.wreqr.js" />
+    <Content Include="Scripts\libs\backbone.wreqr\src\wreqr.channel.js" />
+    <Content Include="Scripts\libs\backbone.wreqr\src\wreqr.commands.js" />
+    <Content Include="Scripts\libs\backbone.wreqr\src\wreqr.commandStorage.js" />
+    <Content Include="Scripts\libs\backbone.wreqr\src\wreqr.eventaggregator.js" />
+    <Content Include="Scripts\libs\backbone.wreqr\src\wreqr.handlers.js" />
+    <Content Include="Scripts\libs\backbone.wreqr\src\wreqr.radio.js" />
+    <Content Include="Scripts\libs\backbone.wreqr\src\wreqr.requestresponse.js" />
+    <Content Include="Scripts\libs\backbone\backbone-min.js" />
+    <Content Include="Scripts\libs\backbone\backbone.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\.gitignore" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\css\bootstrap-datepicker.css" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\css\bootstrap-datepicker.min.css" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\css\bootstrap-datepicker.standalone.css" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\css\bootstrap-datepicker.standalone.min.css" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\css\bootstrap-datepicker3.css" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\css\bootstrap-datepicker3.min.css" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\css\bootstrap-datepicker3.standalone.css" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\css\bootstrap-datepicker3.standalone.min.css" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\js\bootstrap-datepicker.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\js\bootstrap-datepicker.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.ar.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.az.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.bg.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.bs.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.ca.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.cs.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.cy.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.da.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.de.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.el.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.en-AU.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.en-GB.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.eo.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.es.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.et.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.eu.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.fa.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.fi.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.fo.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.fr-CH.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.fr.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.gl.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.he.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.hr.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.hu.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.hy.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.id.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.is.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.it-CH.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.it.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.ja.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.ka.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.kh.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.kk.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.ko.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.kr.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.lt.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.lv.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.me.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.mk.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.mn.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.ms.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.nb.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.nl-BE.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.nl.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.no.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.pl.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.pt-BR.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.pt.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.ro.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.rs-latin.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.rs.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.ru.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.sk.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.sl.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.sq.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.sr-latin.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.sr.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.sv.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.sw.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.th.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.tr.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.uk.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.vi.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.zh-CN.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\locales\bootstrap-datepicker.zh-TW.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\conf.py" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\requirements.txt" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_screenshots\demo_head.html" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_screenshots\markup_component.html" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_screenshots\markup_daterange.html" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_screenshots\markup_inline.html" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_screenshots\markup_input.html" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_screenshots\option_calendarweeks.html" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_screenshots\option_clearbtn.html" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_screenshots\option_daysofweekdisabled.html" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_screenshots\option_enddate.html" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_screenshots\option_language.html" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_screenshots\option_multidate.html" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_screenshots\option_startdate.html" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_screenshots\option_todaybtn.html" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_screenshots\option_todayhighlight.html" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_screenshots\option_weekstart.html" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_screenshots\script\common.css" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_screenshots\script\common.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_screenshots\script\debug.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_screenshots\script\html-imports.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_screenshots\script\screenshot.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_static\screenshots\demo_head.png" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_static\screenshots\markup_component.png" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_static\screenshots\markup_daterange.png" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_static\screenshots\markup_inline.png" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_static\screenshots\markup_input.png" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_static\screenshots\option_calendarweeks.png" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_static\screenshots\option_clearbtn.png" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_static\screenshots\option_daysofweekdisabled.png" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_static\screenshots\option_enddate.png" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_static\screenshots\option_language.png" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_static\screenshots\option_multidate.png" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_static\screenshots\option_startdate.png" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_static\screenshots\option_todaybtn.png" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_static\screenshots\option_todayhighlight.png" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\_static\screenshots\option_weekstart.png" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\Gruntfile.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\bootstrap-datepicker.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.ar.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.az.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.bg.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.bs.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.ca.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.cs.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.cy.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.da.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.de.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.el.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.en-AU.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.en-GB.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.eo.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.es.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.et.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.eu.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.fa.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.fi.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.fo.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.fr-CH.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.fr.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.gl.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.he.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.hr.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.hu.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.hy.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.id.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.is.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.it-CH.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.it.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.ja.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.ka.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.kh.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.kk.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.ko.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.kr.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.lt.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.lv.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.me.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.mk.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.mn.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.ms.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.nb.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.nl-BE.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.nl.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.no.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.pl.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.pt-BR.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.pt.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.ro.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.rs-latin.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.rs.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.ru.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.sk.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.sl.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.sq.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.sr-latin.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.sr.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.sv.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.sw.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.th.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.tr.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.uk.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.vi.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.zh-CN.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\locales\bootstrap-datepicker.zh-TW.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\tests\assets\coverage.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\tests\assets\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\tests\assets\mock.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\tests\assets\qunit-logging.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\tests\assets\qunit.css" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\tests\assets\qunit.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\tests\assets\utils.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\tests\suites\calendar-weeks.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\tests\suites\component.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\tests\suites\data-api.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\tests\suites\events.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\tests\suites\formats.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\tests\suites\inline.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\tests\suites\keyboard_navigation\2011.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\tests\suites\keyboard_navigation\2012.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\tests\suites\keyboard_navigation\all.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\tests\suites\methods.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\tests\suites\methods_jquery.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\tests\suites\mouse_navigation\2011.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\tests\suites\mouse_navigation\2012.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\tests\suites\mouse_navigation\all.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\tests\suites\noconflict.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\tests\suites\options.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\tests\suites\timezone.js" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\tests\tests.html" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\tests\timezone.html" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\css\bootstrap-select.css" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\css\bootstrap-select.min.css" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\bootstrap-select.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\bootstrap-select.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-ar_AR.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-ar_AR.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-bg_BG.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-bg_BG.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-cro_CRO.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-cro_CRO.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-cs_CZ.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-cs_CZ.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-da_DK.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-da_DK.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-de_DE.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-de_DE.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-en_US.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-en_US.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-es_CL.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-es_CL.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-eu.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-eu.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-fa_IR.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-fa_IR.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-fi_FI.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-fi_FI.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-fr_FR.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-fr_FR.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-hu_HU.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-hu_HU.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-id_ID.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-id_ID.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-it_IT.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-it_IT.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-ko_KR.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-ko_KR.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-lt_LT.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-lt_LT.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-nb_NO.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-nb_NO.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-nl_NL.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-nl_NL.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-pl_PL.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-pl_PL.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-pt_BR.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-pt_BR.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-pt_PT.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-pt_PT.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-ro_RO.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-ro_RO.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-ru_RU.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-ru_RU.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-sk_SK.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-sk_SK.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-sl_SI.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-sl_SI.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-sv_SE.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-sv_SE.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-tr_TR.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-tr_TR.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-ua_UA.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-ua_UA.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-zh_CN.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-zh_CN.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-zh_TW.js" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\i18n\defaults-zh_TW.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\custom_theme\base.html" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\custom_theme\css\base.css" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\custom_theme\img\logos\membermeister.png" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\custom_theme\img\logos\snapappointments.png" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\custom_theme\img\logos\thermofisher.png" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\custom_theme\js\base.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\custom_theme\nav.html" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\custom_theme\toc.html" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\css\custom.css" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\css\bootstrap-select.css" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\css\bootstrap-select.min.css" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\bootstrap-select.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\bootstrap-select.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-ar_AR.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-ar_AR.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-bg_BG.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-bg_BG.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-cro_CRO.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-cro_CRO.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-cs_CZ.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-cs_CZ.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-da_DK.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-da_DK.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-de_DE.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-de_DE.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-en_US.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-en_US.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-es_CL.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-es_CL.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-eu.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-eu.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-fa_IR.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-fa_IR.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-fi_FI.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-fi_FI.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-fr_FR.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-fr_FR.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-hu_HU.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-hu_HU.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-id_ID.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-id_ID.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-it_IT.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-it_IT.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-ko_KR.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-ko_KR.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-lt_LT.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-lt_LT.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-nb_NO.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-nb_NO.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-nl_NL.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-nl_NL.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-pl_PL.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-pl_PL.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-pt_BR.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-pt_BR.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-pt_PT.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-pt_PT.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-ro_RO.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-ro_RO.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-ru_RU.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-ru_RU.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-sk_SK.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-sk_SK.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-sl_SI.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-sl_SI.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-sv_SE.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-sv_SE.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-tr_TR.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-tr_TR.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-ua_UA.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-ua_UA.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-zh_CN.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-zh_CN.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-zh_TW.js" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\i18n\defaults-zh_TW.min.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\bootstrap-select.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-ar_AR.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-bg_BG.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-cro_CRO.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-cs_CZ.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-da_DK.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-de_DE.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-en_US.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-es_CL.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-eu.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-fa_IR.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-fi_FI.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-fr_FR.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-hu_HU.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-id_ID.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-it_IT.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-ko_KR.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-lt_LT.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-nb_NO.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-nl_NL.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-pl_PL.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-pt_BR.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-pt_PT.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-ro_RO.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-ru_RU.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-sk_SK.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-sl_SI.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-sv_SE.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-tr_TR.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-ua_UA.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-zh_CN.js" />
+    <Content Include="Scripts\libs\bootstrap-select\js\i18n\defaults-zh_TW.js" />
+    <Content Include="Scripts\libs\bootstrap-switch\.gitignore" />
+    <Content Include="Scripts\libs\bootstrap-switch\dist\css\bootstrap2\bootstrap-switch.css" />
+    <Content Include="Scripts\libs\bootstrap-switch\dist\css\bootstrap2\bootstrap-switch.min.css" />
+    <Content Include="Scripts\libs\bootstrap-switch\dist\css\bootstrap3\bootstrap-switch.css" />
+    <Content Include="Scripts\libs\bootstrap-switch\dist\css\bootstrap3\bootstrap-switch.min.css" />
+    <Content Include="Scripts\libs\bootstrap-switch\dist\js\bootstrap-switch.js" />
+    <Content Include="Scripts\libs\bootstrap-switch\dist\js\bootstrap-switch.min.js" />
+    <Content Include="Scripts\libs\bootstrap-switch\documentation-2.html" />
+    <Content Include="Scripts\libs\bootstrap-switch\events.html" />
+    <Content Include="Scripts\libs\bootstrap-switch\examples.html" />
+    <Content Include="Scripts\libs\bootstrap-switch\main.html" />
+    <Content Include="Scripts\libs\bootstrap-switch\methods.html" />
+    <Content Include="Scripts\libs\bootstrap-switch\options.html" />
+    <Content Include="Scripts\libs\bootstrap\.bower.json" />
+    <Content Include="Scripts\libs\bootstrap\bower.json" />
+    <Content Include="Scripts\libs\bootstrap\CHANGELOG.md" />
+    <Content Include="Scripts\libs\bootstrap\dist\css\bootstrap-theme.css.map" />
+    <Content Include="Scripts\libs\bootstrap\dist\css\bootstrap-theme.min.css.map" />
+    <Content Include="Scripts\libs\bootstrap\dist\css\bootstrap.css.map" />
+    <Content Include="Scripts\libs\bootstrap\dist\css\bootstrap.min.css.map" />
+    <Content Include="Scripts\libs\bootstrap\dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\libs\bootstrap\dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Scripts\libs\bootstrap\dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Scripts\libs\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Scripts\libs\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\libs\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Scripts\libs\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Scripts\libs\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Scripts\libs\bootstrap\grunt\.jshintrc" />
+    <Content Include="Scripts\libs\bootstrap\grunt\configBridge.json" />
+    <Content Include="Scripts\libs\bootstrap\grunt\sauce_browsers.yml" />
+    <Content Include="Scripts\libs\bootstrap\js\.jscsrc" />
+    <Content Include="Scripts\libs\bootstrap\js\.jshintrc" />
+    <Content Include="Scripts\libs\bootstrap\less\.csscomb.json" />
+    <Content Include="Scripts\libs\bootstrap\less\.csslintrc" />
+    <Content Include="Scripts\libs\bootstrap\less\alerts.less" />
+    <Content Include="Scripts\libs\bootstrap\less\badges.less" />
+    <Content Include="Scripts\libs\bootstrap\less\bootstrap.less" />
+    <Content Include="Scripts\libs\bootstrap\less\breadcrumbs.less" />
+    <Content Include="Scripts\libs\bootstrap\less\button-groups.less" />
+    <Content Include="Scripts\libs\bootstrap\less\buttons.less" />
+    <Content Include="Scripts\libs\bootstrap\less\carousel.less" />
+    <Content Include="Scripts\libs\bootstrap\less\close.less" />
+    <Content Include="Scripts\libs\bootstrap\less\code.less" />
+    <Content Include="Scripts\libs\bootstrap\less\component-animations.less" />
+    <Content Include="Scripts\libs\bootstrap\less\dropdowns.less" />
+    <Content Include="Scripts\libs\bootstrap\less\forms.less" />
+    <Content Include="Scripts\libs\bootstrap\less\glyphicons.less" />
+    <Content Include="Scripts\libs\bootstrap\less\grid.less" />
+    <Content Include="Scripts\libs\bootstrap\less\input-groups.less" />
+    <Content Include="Scripts\libs\bootstrap\less\jumbotron.less" />
+    <Content Include="Scripts\libs\bootstrap\less\labels.less" />
+    <Content Include="Scripts\libs\bootstrap\less\list-group.less" />
+    <Content Include="Scripts\libs\bootstrap\less\media.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins\alerts.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins\background-variant.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins\border-radius.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins\buttons.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins\center-block.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins\clearfix.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins\forms.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins\gradients.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins\grid-framework.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins\grid.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins\hide-text.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins\image.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins\labels.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins\list-group.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins\nav-divider.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins\nav-vertical-align.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins\opacity.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins\pagination.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins\panels.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins\progress-bar.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins\reset-filter.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins\reset-text.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins\resize.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins\responsive-visibility.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins\size.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins\tab-focus.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins\table-row.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins\text-emphasis.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins\text-overflow.less" />
+    <Content Include="Scripts\libs\bootstrap\less\mixins\vendor-prefixes.less" />
+    <Content Include="Scripts\libs\bootstrap\less\modals.less" />
+    <Content Include="Scripts\libs\bootstrap\less\navbar.less" />
+    <Content Include="Scripts\libs\bootstrap\less\navs.less" />
+    <Content Include="Scripts\libs\bootstrap\less\normalize.less" />
+    <Content Include="Scripts\libs\bootstrap\less\pager.less" />
+    <Content Include="Scripts\libs\bootstrap\less\pagination.less" />
+    <Content Include="Scripts\libs\bootstrap\less\panels.less" />
+    <Content Include="Scripts\libs\bootstrap\less\popovers.less" />
+    <Content Include="Scripts\libs\bootstrap\less\print.less" />
+    <Content Include="Scripts\libs\bootstrap\less\progress-bars.less" />
+    <Content Include="Scripts\libs\bootstrap\less\responsive-embed.less" />
+    <Content Include="Scripts\libs\bootstrap\less\responsive-utilities.less" />
+    <Content Include="Scripts\libs\bootstrap\less\scaffolding.less" />
+    <Content Include="Scripts\libs\bootstrap\less\tables.less" />
+    <Content Include="Scripts\libs\bootstrap\less\theme.less" />
+    <Content Include="Scripts\libs\bootstrap\less\thumbnails.less" />
+    <Content Include="Scripts\libs\bootstrap\less\tooltip.less" />
+    <Content Include="Scripts\libs\bootstrap\less\type.less" />
+    <Content Include="Scripts\libs\bootstrap\less\utilities.less" />
+    <Content Include="Scripts\libs\bootstrap\less\variables.less" />
+    <Content Include="Scripts\libs\bootstrap\less\wells.less" />
+    <Content Include="Scripts\libs\bootstrap\LICENSE" />
+    <Content Include="Scripts\libs\bootstrap\nuget\bootstrap.less.nuspec" />
+    <Content Include="Scripts\libs\bootstrap\nuget\bootstrap.nuspec" />
+    <Content Include="Scripts\libs\bootstrap\nuget\MyGet.ps1" />
+    <Content Include="Scripts\libs\bootstrap\package.json" />
+    <Content Include="Scripts\libs\bootstrap\README.md" />
+    <Content Include="Scripts\libs\bootstrap\dist\css\bootstrap-theme.css" />
+    <Content Include="Scripts\libs\bootstrap\dist\css\bootstrap-theme.min.css" />
+    <Content Include="Scripts\libs\bootstrap\dist\css\bootstrap.css" />
+    <Content Include="Scripts\libs\bootstrap\dist\css\bootstrap.min.css" />
+    <Content Include="Scripts\libs\bootstrap\dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\libs\bootstrap\dist\js\bootstrap.js" />
+    <Content Include="Scripts\libs\bootstrap\dist\js\bootstrap.min.js" />
+    <Content Include="Scripts\libs\bootstrap\dist\js\npm.js" />
+    <Content Include="Scripts\libs\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\libs\bootstrap\Gruntfile.js" />
+    <Content Include="Scripts\libs\bootstrap\grunt\bs-commonjs-generator.js" />
+    <Content Include="Scripts\libs\bootstrap\grunt\bs-glyphicons-data-generator.js" />
+    <Content Include="Scripts\libs\bootstrap\grunt\bs-lessdoc-parser.js" />
+    <Content Include="Scripts\libs\bootstrap\grunt\bs-raw-files-generator.js" />
+    <Content Include="Scripts\libs\bootstrap\js\affix.js" />
+    <Content Include="Scripts\libs\bootstrap\js\alert.js" />
+    <Content Include="Scripts\libs\bootstrap\js\button.js" />
+    <Content Include="Scripts\libs\bootstrap\js\carousel.js" />
+    <Content Include="Scripts\libs\bootstrap\js\collapse.js" />
+    <Content Include="Scripts\libs\bootstrap\js\dropdown.js" />
+    <Content Include="Scripts\libs\bootstrap\js\modal.js" />
+    <Content Include="Scripts\libs\bootstrap\js\popover.js" />
+    <Content Include="Scripts\libs\bootstrap\js\scrollspy.js" />
+    <Content Include="Scripts\libs\bootstrap\js\tab.js" />
+    <Content Include="Scripts\libs\bootstrap\js\tooltip.js" />
+    <Content Include="Scripts\libs\bootstrap\js\transition.js" />
+    <Content Include="Scripts\libs\bootstrap\package.js" />
+    <Content Include="Scripts\libs\datatables.net-bs\css\dataTables.bootstrap.css" />
+    <Content Include="Scripts\libs\datatables.net-bs\css\dataTables.bootstrap.min.css" />
+    <Content Include="Scripts\libs\datatables.net-bs\js\dataTables.bootstrap.js" />
+    <Content Include="Scripts\libs\datatables.net-bs\js\dataTables.bootstrap.min.js" />
+    <Content Include="Scripts\libs\datatables.net-bs\License.txt" />
+    <Content Include="Scripts\libs\datatables.net-responsive-bs\css\responsive.bootstrap.css" />
+    <Content Include="Scripts\libs\datatables.net-responsive-bs\css\responsive.bootstrap.min.css" />
+    <Content Include="Scripts\libs\datatables.net-responsive-bs\js\responsive.bootstrap.js" />
+    <Content Include="Scripts\libs\datatables.net-responsive-bs\js\responsive.bootstrap.min.js">
+      <DependentUpon>responsive.bootstrap.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\libs\datatables.net-responsive-bs\License.txt" />
+    <Content Include="Scripts\libs\datatables.net-responsive\js\dataTables.responsive.js" />
+    <Content Include="Scripts\libs\datatables.net-responsive\js\dataTables.responsive.min.js" />
+    <Content Include="Scripts\libs\datatables.net-responsive\License.txt" />
+    <Content Include="Scripts\libs\datatables.net-select-bs\css\select.bootstrap.css" />
+    <Content Include="Scripts\libs\datatables.net-select-bs\css\select.bootstrap.min.css" />
+    <Content Include="Scripts\libs\datatables.net-select-bs\License.txt" />
+    <Content Include="Scripts\libs\datatables.net-select\js\dataTables.select.js" />
+    <Content Include="Scripts\libs\datatables.net-select\js\dataTables.select.min.js" />
+    <Content Include="Scripts\libs\datatables.net-select\License.txt" />
+    <Content Include="Scripts\libs\datatables.net\js\jquery.dataTables.js" />
+    <Content Include="Scripts\libs\datatables.net\License.txt" />
+    <Content Include="Scripts\libs\date-steroids\dist\date.js" />
+    <Content Include="Scripts\libs\dropzone\dist\basic.css" />
+    <Content Include="Scripts\libs\dropzone\dist\dropzone-amd-module.js" />
+    <Content Include="Scripts\libs\dropzone\dist\dropzone.css" />
+    <Content Include="Scripts\libs\dropzone\dist\dropzone.js" />
+    <Content Include="Scripts\libs\dropzone\dist\min\basic.min.css" />
+    <Content Include="Scripts\libs\dropzone\dist\min\dropzone-amd-module.min.js" />
+    <Content Include="Scripts\libs\dropzone\dist\min\dropzone.min.css" />
+    <Content Include="Scripts\libs\dropzone\dist\min\dropzone.min.js" />
+    <Content Include="Scripts\libs\fastclick\lib\fastclick.js" />
+    <Content Include="Scripts\libs\fastclick\lib\fastclick.min.js">
+      <DependentUpon>fastclick.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\libs\font-awesome\.gitignore" />
+    <Content Include="Scripts\libs\font-awesome\css\font-awesome.css" />
+    <Content Include="Scripts\libs\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Scripts\libs\font-awesome\fonts\4.4.0\index.html" />
+    <Content Include="Scripts\libs\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Scripts\libs\font-awesome\HELP-US-OUT.txt" />
+    <Content Include="Scripts\libs\jquery-validation-unobtrusive\.bower.json" />
+    <Content Include="Scripts\libs\jquery-validation-unobtrusive\bower.json" />
+    <Content Include="Scripts\libs\jquery-validation\.bower.json" />
+    <Content Include="Scripts\libs\jquery-validation\bower.json" />
+    <Content Include="Scripts\libs\jquery-validation\changelog.md" />
+    <Content Include="Scripts\libs\jquery-validation\CONTRIBUTING.md" />
+    <Content Include="Scripts\libs\jquery-validation\dist\additional-methods.min.js">
+      <DependentUpon>additional-methods.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\libs\jquery-validation\dist\jquery.validate.min.js">
+      <DependentUpon>jquery.validate.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\libs\jquery-validation\package.json" />
+    <Content Include="Scripts\libs\jquery-validation\README.md" />
+    <Content Include="Scripts\libs\jquery-validation\validation.jquery.json" />
+    <Content Include="Scripts\libs\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\libs\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\libs\jquery-validation-unobtrusive\LICENSE.txt" />
+    <Content Include="Scripts\libs\jquery-validation\build\release.js" />
+    <Content Include="Scripts\libs\jquery-validation\dist\additional-methods.js" />
+    <Content Include="Scripts\libs\jquery-validation\dist\jquery.validate.js" />
+    <Content Include="Scripts\libs\jquery-validation\Gruntfile.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\accept.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\additional.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\alphanumeric.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\bankaccountNL.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\bankorgiroaccountNL.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\bic.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\cifES.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\creditcardtypes.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\currency.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\dateFA.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\dateITA.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\dateNL.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\extension.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\giroaccountNL.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\iban.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\integer.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\ipv4.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\ipv6.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\lettersonly.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\letterswithbasicpunc.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\mobileNL.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\mobileUK.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\nieES.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\nifES.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\nowhitespace.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\pattern.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\phoneNL.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\phonesUK.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\phoneUK.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\phoneUS.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\postalCodeCA.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\postalcodeIT.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\postalcodeNL.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\postcodeUK.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\require_from_group.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\skip_or_fill_minimum.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\statesUS.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\strippedminlength.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\time.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\time12h.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\url2.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\vinUS.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\zipcodeUS.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\additional\ziprange.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\ajax.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\core.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\delegate.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_ar.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_bg.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_ca.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_cs.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_da.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_de.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_el.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_es.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_es_AR.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_et.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_eu.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_fa.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_fi.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_fr.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_gl.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_he.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_hr.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_hu.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_id.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_is.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_it.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_ja.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_ka.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_kk.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_ko.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_lt.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_lv.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_my.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_nl.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_no.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_pl.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_pt_BR.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_pt_PT.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_ro.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_ru.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_si.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_sk.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_sl.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_sr.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_sr_lat.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_sv.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_th.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_tj.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_tr.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_uk.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_vi.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_zh.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\messages_zh_TW.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\methods_de.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\methods_es_CL.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\methods_fi.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\methods_nl.js" />
+    <Content Include="Scripts\libs\jquery-validation\src\localization\methods_pt.js" />
+    <Content Include="Scripts\libs\jquery.inputmask\dist\inputmask\inputmask.date.extensions.js" />
+    <Content Include="Scripts\libs\jquery.inputmask\dist\inputmask\inputmask.dependencyLib.jquery.js" />
+    <Content Include="Scripts\libs\jquery.inputmask\dist\inputmask\inputmask.extensions.js" />
+    <Content Include="Scripts\libs\jquery.inputmask\dist\inputmask\inputmask.js" />
+    <Content Include="Scripts\libs\jquery.inputmask\dist\inputmask\inputmask.numeric.extensions.js" />
+    <Content Include="Scripts\libs\jquery.inputmask\dist\inputmask\inputmask.phone.extensions.js" />
+    <Content Include="Scripts\libs\jquery.inputmask\dist\inputmask\inputmask.regex.extensions.js" />
+    <Content Include="Scripts\libs\jquery.inputmask\dist\inputmask\jquery.inputmask.js" />
+    <Content Include="Scripts\libs\jquery.inputmask\dist\jquery.inputmask.bundle.js" />
+    <Content Include="Scripts\libs\jquery.inputmask\dist\min\inputmask\inputmask.date.extensions.min.js" />
+    <Content Include="Scripts\libs\jquery.inputmask\dist\min\inputmask\inputmask.dependencyLib.jquery.min.js" />
+    <Content Include="Scripts\libs\jquery.inputmask\dist\min\inputmask\inputmask.extensions.min.js" />
+    <Content Include="Scripts\libs\jquery.inputmask\dist\min\inputmask\inputmask.min.js" />
+    <Content Include="Scripts\libs\jquery.inputmask\dist\min\inputmask\inputmask.numeric.extensions.min.js" />
+    <Content Include="Scripts\libs\jquery.inputmask\dist\min\inputmask\inputmask.phone.extensions.min.js" />
+    <Content Include="Scripts\libs\jquery.inputmask\dist\min\inputmask\inputmask.regex.extensions.min.js" />
+    <Content Include="Scripts\libs\jquery.inputmask\dist\min\inputmask\jquery.inputmask.min.js" />
+    <Content Include="Scripts\libs\jquery.inputmask\dist\min\jquery.inputmask.bundle.min.js" />
+    <Content Include="Scripts\libs\jquery.inputmask\extra\bindings\inputmask.binding.js" />
+    <Content Include="Scripts\libs\jquery.inputmask\extra\dependencyLibs\inputmask.dependencyLib.jqlite.js" />
+    <Content Include="Scripts\libs\jquery.inputmask\extra\dependencyLibs\inputmask.dependencyLib.js" />
+    <Content Include="Scripts\libs\jquery.inputmask\extra\phone-codes\phone-be.js" />
+    <Content Include="Scripts\libs\jquery.inputmask\extra\phone-codes\phone-codes.js" />
+    <Content Include="Scripts\libs\jquery.inputmask\extra\phone-codes\phone-nl.js" />
+    <Content Include="Scripts\libs\jquery.inputmask\extra\phone-codes\phone-ru.js" />
+    <Content Include="Scripts\libs\jquery.inputmask\extra\phone-codes\phone-uk.js" />
+    <Content Include="Scripts\libs\jquery\AUTHORS.txt" />
+    <Content Include="Scripts\libs\jquery\dist\jquery.js" />
+    <Content Include="Scripts\libs\jquery\dist\jquery.min.js" />
+    <Content Include="Scripts\libs\jquery\dist\jquery.slim.js" />
+    <Content Include="Scripts\libs\jquery\dist\jquery.slim.min.js" />
+    <Content Include="Scripts\libs\jquery\LICENSE.txt" />
+    <Content Include="Scripts\libs\jquery\sizzle\dist\sizzle.js" />
+    <Content Include="Scripts\libs\jquery\sizzle\dist\sizzle.min.js" />
+    <Content Include="Scripts\libs\jquery\sizzle\LICENSE.txt" />
+    <Content Include="Scripts\libs\jquery\src\ajax.js" />
+    <Content Include="Scripts\libs\jquery\src\ajax\jsonp.js" />
+    <Content Include="Scripts\libs\jquery\src\ajax\load.js" />
+    <Content Include="Scripts\libs\jquery\src\ajax\parseJSON.js" />
+    <Content Include="Scripts\libs\jquery\src\ajax\parseXML.js" />
+    <Content Include="Scripts\libs\jquery\src\ajax\script.js" />
+    <Content Include="Scripts\libs\jquery\src\ajax\var\location.js" />
+    <Content Include="Scripts\libs\jquery\src\ajax\var\nonce.js" />
+    <Content Include="Scripts\libs\jquery\src\ajax\var\rquery.js" />
+    <Content Include="Scripts\libs\jquery\src\ajax\xhr.js" />
+    <Content Include="Scripts\libs\jquery\src\attributes.js" />
+    <Content Include="Scripts\libs\jquery\src\attributes\attr.js" />
+    <Content Include="Scripts\libs\jquery\src\attributes\classes.js" />
+    <Content Include="Scripts\libs\jquery\src\attributes\prop.js" />
+    <Content Include="Scripts\libs\jquery\src\attributes\support.js" />
+    <Content Include="Scripts\libs\jquery\src\attributes\val.js" />
+    <Content Include="Scripts\libs\jquery\src\callbacks.js" />
+    <Content Include="Scripts\libs\jquery\src\core.js" />
+    <Content Include="Scripts\libs\jquery\src\core\access.js" />
+    <Content Include="Scripts\libs\jquery\src\core\DOMEval.js" />
+    <Content Include="Scripts\libs\jquery\src\core\init.js" />
+    <Content Include="Scripts\libs\jquery\src\core\parseHTML.js" />
+    <Content Include="Scripts\libs\jquery\src\core\ready.js" />
+    <Content Include="Scripts\libs\jquery\src\core\support.js" />
+    <Content Include="Scripts\libs\jquery\src\core\var\rsingleTag.js" />
+    <Content Include="Scripts\libs\jquery\src\css.js" />
+    <Content Include="Scripts\libs\jquery\src\css\addGetHookIf.js" />
+    <Content Include="Scripts\libs\jquery\src\css\adjustCSS.js" />
+    <Content Include="Scripts\libs\jquery\src\css\curCSS.js" />
+    <Content Include="Scripts\libs\jquery\src\css\defaultDisplay.js" />
+    <Content Include="Scripts\libs\jquery\src\css\hiddenVisibleSelectors.js" />
+    <Content Include="Scripts\libs\jquery\src\css\showHide.js" />
+    <Content Include="Scripts\libs\jquery\src\css\support.js" />
+    <Content Include="Scripts\libs\jquery\src\css\var\cssExpand.js" />
+    <Content Include="Scripts\libs\jquery\src\css\var\getStyles.js" />
+    <Content Include="Scripts\libs\jquery\src\css\var\isHidden.js" />
+    <Content Include="Scripts\libs\jquery\src\css\var\rmargin.js" />
+    <Content Include="Scripts\libs\jquery\src\css\var\rnumnonpx.js" />
+    <Content Include="Scripts\libs\jquery\src\css\var\swap.js" />
+    <Content Include="Scripts\libs\jquery\src\data.js" />
+    <Content Include="Scripts\libs\jquery\src\data\accepts.js" />
+    <Content Include="Scripts\libs\jquery\src\data\Data.js" />
+    <Content Include="Scripts\libs\jquery\src\data\support.js" />
+    <Content Include="Scripts\libs\jquery\src\data\var\acceptData.js" />
+    <Content Include="Scripts\libs\jquery\src\data\var\dataPriv.js" />
+    <Content Include="Scripts\libs\jquery\src\data\var\dataUser.js" />
+    <Content Include="Scripts\libs\jquery\src\deferred.js" />
+    <Content Include="Scripts\libs\jquery\src\deferred\exceptionHook.js" />
+    <Content Include="Scripts\libs\jquery\src\deprecated.js" />
+    <Content Include="Scripts\libs\jquery\src\dimensions.js" />
+    <Content Include="Scripts\libs\jquery\src\effects.js" />
+    <Content Include="Scripts\libs\jquery\src\effects\animatedSelector.js" />
+    <Content Include="Scripts\libs\jquery\src\effects\support.js" />
+    <Content Include="Scripts\libs\jquery\src\effects\Tween.js" />
+    <Content Include="Scripts\libs\jquery\src\event.js" />
+    <Content Include="Scripts\libs\jquery\src\event\ajax.js" />
+    <Content Include="Scripts\libs\jquery\src\event\alias.js" />
+    <Content Include="Scripts\libs\jquery\src\event\focusin.js" />
+    <Content Include="Scripts\libs\jquery\src\event\support.js" />
+    <Content Include="Scripts\libs\jquery\src\event\trigger.js" />
+    <Content Include="Scripts\libs\jquery\src\exports\amd.js" />
+    <Content Include="Scripts\libs\jquery\src\exports\global.js" />
+    <Content Include="Scripts\libs\jquery\src\intro.js" />
+    <Content Include="Scripts\libs\jquery\src\jquery.js" />
+    <Content Include="Scripts\libs\jquery\src\manipulation.js" />
+    <Content Include="Scripts\libs\jquery\src\manipulation\buildFragment.js" />
+    <Content Include="Scripts\libs\jquery\src\manipulation\createSafeFragment.js" />
+    <Content Include="Scripts\libs\jquery\src\manipulation\getAll.js" />
+    <Content Include="Scripts\libs\jquery\src\manipulation\setGlobalEval.js" />
+    <Content Include="Scripts\libs\jquery\src\manipulation\support.js" />
+    <Content Include="Scripts\libs\jquery\src\manipulation\var\nodeNames.js" />
+    <Content Include="Scripts\libs\jquery\src\manipulation\var\rcheckableType.js" />
+    <Content Include="Scripts\libs\jquery\src\manipulation\var\rleadingWhitespace.js" />
+    <Content Include="Scripts\libs\jquery\src\manipulation\var\rscriptType.js" />
+    <Content Include="Scripts\libs\jquery\src\manipulation\var\rtagName.js" />
+    <Content Include="Scripts\libs\jquery\src\manipulation\wrapMap.js" />
+    <Content Include="Scripts\libs\jquery\src\manipulation\_evalUrl.js" />
+    <Content Include="Scripts\libs\jquery\src\offset.js" />
+    <Content Include="Scripts\libs\jquery\src\outro.js" />
+    <Content Include="Scripts\libs\jquery\src\queue.js" />
+    <Content Include="Scripts\libs\jquery\src\queue\delay.js" />
+    <Content Include="Scripts\libs\jquery\src\selector-native.js" />
+    <Content Include="Scripts\libs\jquery\src\selector-sizzle.js" />
+    <Content Include="Scripts\libs\jquery\src\selector.js" />
+    <Content Include="Scripts\libs\jquery\src\serialize.js" />
+    <Content Include="Scripts\libs\jquery\src\support.js" />
+    <Content Include="Scripts\libs\jquery\src\traversing.js" />
+    <Content Include="Scripts\libs\jquery\src\traversing\findFilter.js" />
+    <Content Include="Scripts\libs\jquery\src\traversing\var\dir.js" />
+    <Content Include="Scripts\libs\jquery\src\traversing\var\rneedsContext.js" />
+    <Content Include="Scripts\libs\jquery\src\traversing\var\siblings.js" />
+    <Content Include="Scripts\libs\jquery\src\var\arr.js" />
+    <Content Include="Scripts\libs\jquery\src\var\class2type.js" />
+    <Content Include="Scripts\libs\jquery\src\var\concat.js" />
+    <Content Include="Scripts\libs\jquery\src\var\deletedIds.js" />
+    <Content Include="Scripts\libs\jquery\src\var\document.js" />
+    <Content Include="Scripts\libs\jquery\src\var\documentElement.js" />
+    <Content Include="Scripts\libs\jquery\src\var\hasOwn.js" />
+    <Content Include="Scripts\libs\jquery\src\var\indexOf.js" />
+    <Content Include="Scripts\libs\jquery\src\var\pnum.js" />
+    <Content Include="Scripts\libs\jquery\src\var\push.js" />
+    <Content Include="Scripts\libs\jquery\src\var\rcssNum.js" />
+    <Content Include="Scripts\libs\jquery\src\var\rnotwhite.js" />
+    <Content Include="Scripts\libs\jquery\src\var\slice.js" />
+    <Content Include="Scripts\libs\jquery\src\var\support.js" />
+    <Content Include="Scripts\libs\jquery\src\var\toString.js" />
+    <Content Include="Scripts\libs\jquery\src\wrap.js" />
+    <Content Include="Scripts\libs\remarkable-bootstrap-notify\.gitignore" />
+    <Content Include="Scripts\libs\remarkable-bootstrap-notify\bootstrap-notify.js" />
+    <Content Include="Scripts\libs\remarkable-bootstrap-notify\bootstrap-notify.min.js" />
+    <Content Include="Scripts\libs\remarkable-bootstrap-notify\dist\bootstrap-notify.js" />
+    <Content Include="Scripts\libs\remarkable-bootstrap-notify\dist\bootstrap-notify.min.js" />
+    <Content Include="Scripts\libs\remarkable-bootstrap-notify\Gruntfile.js" />
+    <Content Include="Scripts\libs\remarkable-bootstrap-notify\package.js" />
+    <Content Include="Scripts\libs\remarkable-bootstrap-notify\test_meteor.js" />
+    <Content Include="Scripts\libs\requirejs\require.js" />
+    <Content Include="Scripts\libs\slimScroll\examples\allow-page-scroll.html" />
+    <Content Include="Scripts\libs\slimScroll\examples\chaining.html" />
+    <Content Include="Scripts\libs\slimScroll\examples\disable-fade-out.html" />
+    <Content Include="Scripts\libs\slimScroll\examples\dynamic-content.html" />
+    <Content Include="Scripts\libs\slimScroll\examples\height-width.html" />
+    <Content Include="Scripts\libs\slimScroll\examples\index.html" />
+    <Content Include="Scripts\libs\slimScroll\examples\libs\prettify\prettify.css" />
+    <Content Include="Scripts\libs\slimScroll\examples\libs\prettify\prettify.js" />
+    <Content Include="Scripts\libs\slimScroll\examples\mouse-wheel.html" />
+    <Content Include="Scripts\libs\slimScroll\examples\multiple-elements.html" />
+    <Content Include="Scripts\libs\slimScroll\examples\navigation.html" />
+    <Content Include="Scripts\libs\slimScroll\examples\nested.html" />
+    <Content Include="Scripts\libs\slimScroll\examples\programmatic-scrolling.html" />
+    <Content Include="Scripts\libs\slimScroll\examples\rail.html" />
+    <Content Include="Scripts\libs\slimScroll\examples\scroll-events.html" />
+    <Content Include="Scripts\libs\slimScroll\examples\scrollbar.html" />
+    <Content Include="Scripts\libs\slimScroll\examples\start-position.html" />
+    <Content Include="Scripts\libs\slimScroll\examples\style.css" />
+    <Content Include="Scripts\libs\slimScroll\jquery.slimscroll.js" />
+    <Content Include="Scripts\libs\slimScroll\jquery.slimscroll.min.js" />
+    <Content Include="Scripts\libs\underscore\underscore-min.js" />
+    <Content Include="Scripts\libs\underscore\underscore.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="SQLScripts\consumerAuditFeature.sql" />
+    <Content Include="SQLScripts\UpdateScripts.SQL" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="Views\Consumers\Parts\Popups\ReadonlyApprovedService.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\libs\jquery\.bower.json" />
+    <Content Include="Scripts\libs\jquery\bower.json" />
+    <Content Include="Scripts\libs\jquery\dist\jquery.min.map" />
+    <Content Include="Scripts\libs\jquery\dist\jquery.slim.min.map" />
+    <Content Include="Scripts\libs\jquery\README.md" />
+    <Content Include="Scripts\libs\jquery\sizzle\dist\sizzle.min.map" />
+    <Content Include="Scripts\libs\jquery\src\.jshintrc" />
+    <Content Include="Views\Consumers\Parts\Popups\PrintDocumentDownload.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\EmployeeDocuments\" />
+    <Folder Include="Views\Employees\EmailTemplates\" />
+    <Folder Include="Views\Users\EmailTemplates\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <None Include="bundleconfig.json" />
+    <None Include="Project_Readme.html" />
+    <Content Include="Scripts\libs\font-awesome\.bower.json" />
+    <Content Include="Scripts\libs\font-awesome\.npmignore" />
+    <Content Include="Scripts\libs\font-awesome\bower.json" />
+    <Content Include="Scripts\libs\font-awesome\css\font-awesome.css.map" />
+    <Content Include="Scripts\libs\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Scripts\libs\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Scripts\libs\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Scripts\libs\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Scripts\libs\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Scripts\libs\font-awesome\less\animated.less" />
+    <Content Include="Scripts\libs\font-awesome\less\bordered-pulled.less" />
+    <Content Include="Scripts\libs\font-awesome\less\core.less" />
+    <Content Include="Scripts\libs\font-awesome\less\fixed-width.less" />
+    <Content Include="Scripts\libs\font-awesome\less\font-awesome.less" />
+    <Content Include="Scripts\libs\font-awesome\less\icons.less" />
+    <Content Include="Scripts\libs\font-awesome\less\larger.less" />
+    <Content Include="Scripts\libs\font-awesome\less\list.less" />
+    <Content Include="Scripts\libs\font-awesome\less\mixins.less" />
+    <Content Include="Scripts\libs\font-awesome\less\path.less" />
+    <Content Include="Scripts\libs\font-awesome\less\rotated-flipped.less" />
+    <Content Include="Scripts\libs\font-awesome\less\screen-reader.less" />
+    <Content Include="Scripts\libs\font-awesome\less\stacked.less" />
+    <Content Include="Scripts\libs\font-awesome\less\variables.less" />
+    <Content Include="Scripts\libs\font-awesome\scss\font-awesome.scss" />
+    <Content Include="Scripts\libs\font-awesome\scss\_animated.scss" />
+    <Content Include="Scripts\libs\font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="Scripts\libs\font-awesome\scss\_core.scss" />
+    <Content Include="Scripts\libs\font-awesome\scss\_fixed-width.scss" />
+    <Content Include="Scripts\libs\font-awesome\scss\_icons.scss" />
+    <Content Include="Scripts\libs\font-awesome\scss\_larger.scss" />
+    <Content Include="Scripts\libs\font-awesome\scss\_list.scss" />
+    <Content Include="Scripts\libs\font-awesome\scss\_mixins.scss" />
+    <Content Include="Scripts\libs\font-awesome\scss\_path.scss" />
+    <Content Include="Scripts\libs\font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="Scripts\libs\font-awesome\scss\_screen-reader.scss" />
+    <Content Include="Scripts\libs\font-awesome\scss\_stacked.scss" />
+    <Content Include="Scripts\libs\font-awesome\scss\_variables.scss" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Shared\Layouts\_LayoutPartialError.cshtml" />
+    <Content Include="Views\Shared\Layouts\_LayoutPartialHeader.cshtml" />
+    <Content Include="Views\Shared\Layouts\_LayoutPartialLoading.cshtml" />
+    <Content Include="Views\Shared\Layouts\_LayoutPartialNav.cshtml" />
+    <Content Include="Views\Shared\Layouts\_LayoutPartialNotFound.cshtml" />
+    <Content Include="Scripts\libs\backbone.babysitter\.bower.json" />
+    <Content Include="Scripts\libs\backbone.babysitter\bower.json" />
+    <Content Include="Scripts\libs\backbone.babysitter\CHANGELOG.md" />
+    <Content Include="Scripts\libs\backbone.babysitter\lib\backbone.babysitter.map" />
+    <Content Include="Scripts\libs\backbone.babysitter\lib\backbone.babysitter.min.js.map" />
+    <Content Include="Scripts\libs\backbone.babysitter\LICENSE.md" />
+    <Content Include="Scripts\libs\backbone.babysitter\readme.md" />
+    <Content Include="Scripts\libs\backbone.marionette\.bower.json" />
+    <Content Include="Scripts\libs\backbone.marionette\bower.json" />
+    <Content Include="Scripts\libs\backbone.marionette\changelog.md" />
+    <Content Include="Scripts\libs\backbone.marionette\lib\backbone.marionette.min.js.map" />
+    <Content Include="Scripts\libs\backbone.marionette\lib\core\backbone.marionette.min.js.map" />
+    <Content Include="Scripts\libs\backbone.marionette\package.json" />
+    <Content Include="Scripts\libs\backbone.marionette\readme.md" />
+    <Content Include="Scripts\libs\backbone.wreqr\.bower.json" />
+    <Content Include="Scripts\libs\backbone.wreqr\bower.json" />
+    <Content Include="Scripts\libs\backbone.wreqr\CHANGELOG.md" />
+    <Content Include="Scripts\libs\backbone.wreqr\lib\backbone.wreqr.map" />
+    <Content Include="Scripts\libs\backbone.wreqr\lib\backbone.wreqr.min.js.map" />
+    <Content Include="Scripts\libs\backbone.wreqr\LICENSE.md" />
+    <Content Include="Scripts\libs\backbone.wreqr\readme.md" />
+    <Content Include="Scripts\libs\backbone\.bower.json" />
+    <Content Include="Scripts\libs\backbone\backbone-min.map" />
+    <Content Include="Scripts\libs\backbone\bower.json" />
+    <Content Include="Scripts\libs\backbone\LICENSE" />
+    <Content Include="Scripts\libs\datatables.net-bs\.bower.json" />
+    <Content Include="Scripts\libs\datatables.net-bs\bower.json" />
+    <Content Include="Scripts\libs\datatables.net-bs\Readme.md" />
+    <Content Include="Scripts\libs\datatables.net-responsive-bs\.bower.json" />
+    <Content Include="Scripts\libs\datatables.net-responsive-bs\bower.json" />
+    <Content Include="Scripts\libs\datatables.net-responsive-bs\Readme.md" />
+    <Content Include="Scripts\libs\datatables.net-responsive\.bower.json" />
+    <Content Include="Scripts\libs\datatables.net-responsive\bower.json" />
+    <Content Include="Scripts\libs\datatables.net-responsive\Readme.md" />
+    <Content Include="Scripts\libs\datatables.net-select-bs\.bower.json" />
+    <Content Include="Scripts\libs\datatables.net-select-bs\bower.json" />
+    <Content Include="Scripts\libs\datatables.net-select-bs\Readme.md" />
+    <Content Include="Scripts\libs\datatables.net-select\.bower.json" />
+    <Content Include="Scripts\libs\datatables.net-select\bower.json" />
+    <Content Include="Scripts\libs\datatables.net-select\Readme.md" />
+    <Content Include="Scripts\libs\datatables.net\.bower.json" />
+    <Content Include="Scripts\libs\datatables.net\bower.json" />
+    <Content Include="Scripts\libs\datatables.net\Readme.md" />
+    <Content Include="Scripts\libs\fastclick\.bower.json" />
+    <Content Include="Scripts\libs\fastclick\bower.json" />
+    <Content Include="Scripts\libs\fastclick\LICENSE" />
+    <Content Include="Scripts\libs\fastclick\README.md" />
+    <Content Include="Scripts\libs\remarkable-bootstrap-notify\.bower.json" />
+    <Content Include="Scripts\libs\remarkable-bootstrap-notify\bower.json" />
+    <Content Include="Scripts\libs\remarkable-bootstrap-notify\composer.json" />
+    <Content Include="Scripts\libs\remarkable-bootstrap-notify\jshintrc.json" />
+    <Content Include="Scripts\libs\remarkable-bootstrap-notify\LICENSE" />
+    <Content Include="Scripts\libs\remarkable-bootstrap-notify\package.json" />
+    <Content Include="Scripts\libs\remarkable-bootstrap-notify\README.md" />
+    <Content Include="Scripts\libs\requirejs\.bower.json" />
+    <Content Include="Scripts\libs\requirejs\bower.json" />
+    <Content Include="Scripts\libs\requirejs\LICENSE" />
+    <Content Include="Scripts\libs\requirejs\README.md" />
+    <Content Include="Scripts\libs\slimScroll\.bower.json" />
+    <Content Include="Scripts\libs\slimScroll\package.json" />
+    <Content Include="Scripts\libs\slimScroll\README.md" />
+    <Content Include="Scripts\libs\underscore\.bower.json" />
+    <Content Include="Scripts\libs\underscore\bower.json" />
+    <Content Include="Scripts\libs\underscore\LICENSE" />
+    <Content Include="Scripts\libs\underscore\README.md" />
+    <Content Include="Scripts\libs\underscore\underscore-min.map" />
+    <Content Include="Scripts\libs\bootstrap-select\.bower.json" />
+    <Content Include="Scripts\libs\bootstrap-select\bower.json" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\css\bootstrap-select.css.map" />
+    <Content Include="Scripts\libs\bootstrap-select\dist\js\bootstrap-select.js.map" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\css\bootstrap-select.css.map" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\dist\js\bootstrap-select.js.map" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\examples.md" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\index.md" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\methods.md" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\docs\options.md" />
+    <Content Include="Scripts\libs\bootstrap-select\docs\mkdocs.yml" />
+    <Content Include="Scripts\libs\bootstrap-select\js\.jshintrc" />
+    <Content Include="Scripts\libs\bootstrap-select\less\bootstrap-select.less" />
+    <Content Include="Scripts\libs\bootstrap-select\less\variables.less" />
+    <Content Include="Scripts\libs\bootstrap-select\LICENSE" />
+    <Content Include="Scripts\libs\bootstrap-select\sass\bootstrap-select.scss" />
+    <Content Include="Scripts\libs\bootstrap-select\sass\variables.scss" />
+    <Content Include="Scripts\libs\bootstrap-switch\.bower.json" />
+    <Content Include="Scripts\libs\bootstrap-switch\.bowerrc" />
+    <Content Include="Scripts\libs\bootstrap-switch\bower.json" />
+    <Content Include="Scripts\libs\bootstrap-switch\CHANGELOG.md" />
+    <Content Include="Scripts\libs\bootstrap-switch\karma.json" />
+    <Content Include="Scripts\libs\bootstrap-switch\LICENSE" />
+    <Content Include="Scripts\libs\bootstrap-switch\README.md" />
+    <Content Include="Scripts\libs\bootstrap-switch\src\coffee\bootstrap-switch.coffee" />
+    <Content Include="Scripts\libs\bootstrap-switch\src\coffee\bootstrap-switch.tests.coffee" />
+    <Content Include="Scripts\libs\bootstrap-switch\src\less\bootstrap2\bootstrap-switch.less" />
+    <Content Include="Scripts\libs\bootstrap-switch\src\less\bootstrap2\build.less" />
+    <Content Include="Scripts\libs\bootstrap-switch\src\less\bootstrap2\mixins.less" />
+    <Content Include="Scripts\libs\bootstrap-switch\src\less\bootstrap2\variables.less" />
+    <Content Include="Scripts\libs\bootstrap-switch\src\less\bootstrap3\bootstrap-switch.less" />
+    <Content Include="Scripts\libs\bootstrap-switch\src\less\bootstrap3\build.less" />
+    <Content Include="Scripts\libs\bootstrap-switch\src\less\bootstrap3\mixins.less" />
+    <Content Include="Scripts\libs\bootstrap-switch\src\less\bootstrap3\variables.less" />
+    <Content Include="Views\Consumers\Index.cshtml" />
+    <Content Include="Views\Consumers\Parts\BasicInfo.cshtml" />
+    <Content Include="Views\Consumers\Parts\LegalInfo.cshtml" />
+    <Content Include="Views\Consumers\Parts\MedicalInfo.cshtml" />
+    <Content Include="Views\Consumers\Parts\MedicalServiceInfo.cshtml" />
+    <Content Include="Views\Consumers\Parts\Phones.cshtml" />
+    <Content Include="Views\Consumers\Parts\Search.cshtml" />
+    <Content Include="Views\Consumers\Parts\ConsumerInfo.cshtml" />
+    <Content Include="Views\Consumers\Parts\Tabs.cshtml" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\.bower.json" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\.editorconfig" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\.verbrc.md" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\bower.json" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\docs\examples.md" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\docs\json-results.md" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\docs\links.md" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\docs\options.md" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\docs\requirements.md" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\example\dataset.json" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\example\README.md" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\LICENSE-MIT" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\package.json" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\README.md" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\src\less\styles.less" />
+    <Content Include="Scripts\libs\ajax-bootstrap-select\templates\jsdoc2md.handlebars" />
+    <Content Include="Views\Consumers\Parts\Tabs\ApprovedServices.cshtml" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\.bower.json" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\.editorconfig" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\.npmignore" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\.travis.yml" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\bower.json" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\build\build.less" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\build\build3.less" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\build\build_standalone.less" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\build\build_standalone3.less" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\CHANGELOG.md" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\composer.json" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\CONTRIBUTING.md" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\css\bootstrap-datepicker.css.map" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\css\bootstrap-datepicker.min.css.map" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\css\bootstrap-datepicker.standalone.css.map" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\css\bootstrap-datepicker.standalone.min.css.map" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\css\bootstrap-datepicker3.css.map" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\css\bootstrap-datepicker3.min.css.map" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\css\bootstrap-datepicker3.standalone.css.map" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\dist\css\bootstrap-datepicker3.standalone.min.css.map" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\events.rst" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\i18n.rst" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\index.rst" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\keyboard.rst" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\make.bat" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\Makefile" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\markup.rst" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\methods.rst" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\options.rst" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\docs\README.md" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\grunt\.jshintrc" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\.jscsrc" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\js\.jshintrc" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\less\.csslintrc" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\less\datepicker.less" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\less\datepicker3.less" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\LICENSE" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\package.json" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\README.md" />
+    <Content Include="Scripts\libs\bootstrap-datepicker\tests\README.md" />
+    <Content Include="Scripts\libs\jquery.inputmask\.bower.json" />
+    <Content Include="Scripts\libs\jquery.inputmask\bower.json" />
+    <Content Include="Views\Consumers\DialogMessage.cshtml" />
+    <Content Include="Scripts\libs\date-steroids\.bower.json" />
+    <Content Include="Scripts\libs\date-steroids\bower.json" />
+    <Content Include="Scripts\libs\date-steroids\LICENSE" />
+    <Content Include="Scripts\libs\date-steroids\README.md" />
+    <Content Include="Views\Consumers\Parts\Popups\Phone.cshtml" />
+    <Content Include="Views\Consumers\DialogConfirm.cshtml" />
+    <Content Include="Views\Consumers\Parts\Tabs\Rate.cshtml" />
+    <Content Include="Views\Consumers\Parts\Tabs\Employees.cshtml" />
+    <Content Include="Views\Consumers\Parts\Tabs\CallLogs.cshtml" />
+    <Content Include="Views\Consumers\Parts\Tabs\Notes.cshtml" />
+    <Content Include="Views\Consumers\Parts\Tabs\HabPlans.cshtml" />
+    <Content Include="Views\Consumers\Parts\Tabs\Documents.cshtml" />
+    <Content Include="Views\Consumers\Parts\Tabs\Notifications.cshtml" />
+    <Content Include="Views\Consumers\Parts\Tabs\PrintDocuments.cshtml" />
+    <Content Include="Views\Consumers\Parts\Popups\ApprovedService.cshtml" />
+    <Content Include="Views\Consumers\Parts\Popups\Employee.cshtml" />
+    <Content Include="Views\Consumers\Parts\Popups\EmployeeEmail.cshtml" />
+    <Content Include="Views\Consumers\EmailTemplates\EmailToEmployee.cshtml" />
+    <Content Include="Views\Consumers\Parts\Popups\Document.cshtml" />
+    <Content Include="Views\Consumers\Parts\Popups\HabPlan.cshtml" />
+    <Content Include="Views\Users\DialogConfirm.cshtml" />
+    <Content Include="Views\Users\DialogMessage.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\Parts\UserChangePassword.cshtml" />
+    <Content Include="Views\Users\Parts\UserForm.cshtml" />
+    <Content Include="Views\Users\Parts\Users.cshtml" />
+    <Content Include="Views\Employees\DialogConfirm.cshtml" />
+    <Content Include="Views\Employees\DialogMessage.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\Employees\Parts\EmployeeForm.cshtml" />
+    <Content Include="Views\Employees\Parts\Employees.cshtml" />
+    <Content Include="Views\Consumers\Parts\Popups\PrintDocument.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\local.pubxml" />
+    <None Include="Properties\PublishProfiles\Publish to File.pubxml" />
+    <Content Include="Views\Consumers\Parts\Popups\CallLog.cshtml" />
+    <Content Include="Views\Consumers\Parts\Popups\Note.cshtml" />
+    <Content Include="Views\Consumers\Parts\Popups\Notification.cshtml" />
+    <Content Include="Views\PDFViews\ComHabPlan.rdl" />
+    <Content Include="Views\PDFViews\ComHabMonthlyProgressSummary.rdl" />
+    <Content Include="Views\Consumers\Parts\Popups\PrintDocumentEmailed.cshtml" />
+    <Content Include="Views\PDFViews\ComHabDocumentationRecord.rdl" />
+    <Content Include="Views\PDFViews\DayGroupDocumentationRecord.rdl" />
+    <Content Include="Views\PDFViews\RespiteDocumentationRecord.rdl" />
+    <Content Include="Views\Consumers\Parts\Popups\HabReview.cshtml" />
+    <Content Include="Views\PDFViews\DayGroupMonthlyProgressSummary.rdl" />
+    <Content Include="Views\Consumers\Parts\Popups\NoteList.cshtml" />
+    <Content Include="Views\Consumers\Parts\Popups\NoteSimple.cshtml" />
+    <Content Include="Views\Consumers\Parts\Popups\EmployeeInfo.cshtml" />
+    <Content Include="Views\PDFViews\PrintLabel.rdl" />
+    <Content Include="Views\PDFViews\6MonthReview.rdl" />
+    <Content Include="Views\PDFViews\BrokerDocumentationRecord.rdl" />
+    <Content Include="Views\PDFViews\SelfHiredComHabDocumentationRecord.rdl" />
+    <Content Include="Views\PDFViews\SelfHiredComHabMonthlyProgressSummary.rdl" />
+    <Content Include="Views\PDFViews\SelfHiredRespiteDocumentationRecord.rdl" />
+    <Content Include="Views\PDFViews\SupplementalDayGroupDocumentationRecord.rdl" />
+    <Content Include="Views\PDFViews\SupplementalDayGroupMonthlyProgressSummary.rdl" />
+    <Content Include="Views\Consumers\Parts\Popups\NoteEmailed.cshtml" />
+    <Content Include="Views\Consumers\Parts\ServiceCoordinators.cshtml" />
+    <Content Include="Views\Consumers\Parts\Popups\ServiceCoordinator.cshtml" />
+    <Content Include="Views\Consumers\Parts\Addresses.cshtml" />
+    <Content Include="Views\Consumers\Parts\Popups\Address.cshtml" />
+    <Content Include="Views\Consumers\Parts\Popups\ApprovedServiceEmail.cshtml" />
+    <Content Include="Views\ConsumerAudit\ConsumersAudit.cshtml" />
+    <Content Include="Views\ConsumerAudit\Index.cshtml" />
+    <Content Include="Views\ConsumerAudit\DialogConfirm.cshtml" />
+    <Content Include="Views\ConsumerAudit\DialogMessage.cshtml" />
+    <Content Include="Views\Consumers\Parts\MedicaidNumbers.cshtml" />
+    <Content Include="Views\Consumers\Parts\Popups\MedicaidNumber.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Consumers\Parts\Popups\HabPlanPdfDownload.cshtml" />
+    <Content Include="Scripts\application\common\views\consumers\popups\consumer.report.pdfdownload.view.js" />
+    <Content Include="Scripts\application\common\models\consumer.report.download.model.js" />
+    <Content Include="Views\PDFViews\ComHabPlan2019.01.rdl" />
+    <Content Include="Scripts\libs\dropzone\.bower.json" />
+    <Content Include="Scripts\libs\dropzone\bower.json" />
+    <Content Include="Scripts\libs\dropzone\dist\readme.md" />
+    <Content Include="Views\PDFViews\6MonthReview2019.01.rdl" />
+    <Content Include="Views\Consumers\Parts\Tabs\UploadedFiles.cshtml" />
+    <Content Include="Views\Consumers\Parts\Popups\UploadFile.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ROHV.Core\ROHV.Core.csproj">
+      <Project>{6efb4497-5179-4e43-9dd4-91141b63aba7}</Project>
+      <Name>ROHV.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ROHV.WebApi\ROHV.WebApi.csproj">
+      <Project>{88112ebc-9360-4bd8-8b57-a2e4aa79ccda}</Project>
+      <Name>ROHV.WebApi</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>56255</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://rayim.com</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

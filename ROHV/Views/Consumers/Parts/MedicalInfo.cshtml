@@ -1,0 +1,85 @@
+﻿@using ROHV.WebApi.ViewModels;
+@{
+
+    var lists = (Dictionary<String, List<ItemListViewModel>>)ViewData["Lists"];
+
+    var dayProgramsList = (List<ItemListViewModel>)lists["DayPrograms"];
+    var diagnosisList = (List<ItemListViewModel>)lists["Diagnosis"];
+    var statusList = (List<ItemListViewModel>)lists["Status"];
+}
+
+<div class="box  box-solid box-default box-container-internal">
+    <div class="box-header  with-border box-internal">
+        <h6 class="box-title">Medical Info</h6>
+    </div><!-- /.box-header -->
+    <div class="box-body">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="form-group">
+                    <label for="PrimaryDiagnosis">Primary diagnosis</label>
+                    <select id="PrimaryDiagnosis" class="selectpicker"
+                            name="PrimaryDiagnosis"
+                            title="Select Primary Diagnosis">
+                        @foreach (var item in diagnosisList)
+                        {
+                            @:<% var value = @item.Value;%>
+                            <option value="@item.Value"
+                                      @Html.Raw(@"<%if(model.get(""PrimaryDiagnosis"")==value){%>
+                                                    selected  
+                                        <%}%>")
+                                    
+                             >@item.Name</option>
+                        }
+
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-12">
+                <div class="form-group">
+                    <label for="SecondaryDiagnosis">Secondary diagnosis</label>
+                    <select id="SecondaryDiagnosis" class="selectpicker"
+                            name="SecondaryDiagnosis"
+                            title="Select Secondary Diagnosis">
+                        @foreach (var item in diagnosisList)
+                        {
+                            @:<% var value = @item.Value;%>
+                            <option value="@item.Value"
+                                    @Html.Raw(@"<%if(model.get(""SecondaryDiagnosis"")==value){%>
+                                                    selected  
+                                        <%}%>")
+                                    
+                              >@item.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-12">
+                <div class="form-group">
+                    <label for="DayProgramId">Day program</label>
+                    <select id="DayProgramId" class="selectpicker"
+                            name="DayProgramId"
+                            title="Select Day program">
+
+                            @foreach (var item in dayProgramsList)
+                            {
+                                @:<% var value = @item.Value;%>
+                                <option value="@item.Value"
+                                          @Html.Raw(@"<%if(model.get(""DayProgramId"")==value){%>
+                                                    selected  
+                                            <%}%>")
+                                  >@item.Name</option>
+                            }
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-12">
+                <div class="form-group">
+                    <label for="DayProgramName">Day program name</label>
+                    <input value="<%=model.get('DayProgramName')%>" class="form-control" id="DayProgramName" name="DayProgramName" placeholder="Enter Day Program name">
+                </div>
+            </div>
+        </div>
+    </div><!-- /.box-body -->
+</div><!-- /.box -->                

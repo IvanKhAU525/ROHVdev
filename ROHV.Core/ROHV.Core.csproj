@@ -1,0 +1,481 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6EFB4497-5179-4E43-9DD4-91141B63ABA7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ROHV.Core</RootNamespace>
+    <AssemblyName>ROHV.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ITCraftFrame, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\ITCraftFrame.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attributes\CustomAttributes.cs" />
+    <Compile Include="Consumer\AuditManagement.cs" />
+    <Compile Include="Consumer\ConsumerAddressManagement.cs" />
+    <Compile Include="Consumer\ConsumerHabReviewsManagement.cs" />
+    <Compile Include="Consumer\ConsumerMedicaidNumberManagement.cs" />
+    <Compile Include="Consumer\ConsumerNotificationsManagement.cs" />
+    <Compile Include="Consumer\ConsumerCallLogsManagement.cs" />
+    <Compile Include="Consumer\ConsumerEmployeeDocumentsManagement.cs" />
+    <Compile Include="Consumer\ConsumerHabPlansManagement.cs" />
+    <Compile Include="Consumer\ConsumerNotesManagement.cs" />
+    <Compile Include="Consumer\ConsumerPrintDocumentsManagement.cs" />
+    <Compile Include="Consumer\ConsumerServiceCoordinatorManagement.cs" />
+    <Compile Include="Consumer\ConsumerServicesManagement.cs" />
+    <Compile Include="Consumer\ConsumerEmployeeManagement.cs" />
+    <Compile Include="Consumer\ConsumerPhonesManagement.cs" />
+    <Compile Include="Consumer\ConsumerManagement.cs" />
+    <Compile Include="Consumer\ReportManager.cs" />
+    <Compile Include="Database\Agency.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\AspNetRole.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\AspNetUser.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\AspNetUserClaim.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\AspNetUserLogin.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Audit.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\CaseStatu.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Category_List.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Consumer.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ConsumerAddress.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ConsumerContactCall.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ConsumerEmployee.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ConsumerHabPlan.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ConsumerHabPlanDuration.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ConsumerHabPlanFrequency.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ConsumerHabPlanSafeguard.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ConsumerHabPlanStatus.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ConsumerHabPlanValuedOutcome.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ConsumerHabPlanVOServeAction.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ConsumerHabReview.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ConsumerHabReviewIssueState.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ConsumerMedicaidNumber.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ConsumerNote.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ConsumerNoteFromType.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ConsumerNoteType.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ConsumerNotificationRecipient.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ConsumerNotificationSetting.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ConsumerPhone.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ConsumerPrintDocument.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ConsumerPrintDocumentValuedOutcome.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ConsumerPrintDocumentVOServeAction.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ConsumerService.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ConsumerServiceCoordinator.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ConsumerTherapy.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Contact.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ContactPhone.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ContactType.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Department.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\DocumentPrintStatus.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\DocumentPrintType.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\EmployeeDocument.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\EmployeeDocumentNote.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\EmployeeDocumentStatus.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\EmployeeDocumentType.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\EntityType.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\FileMetaData.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\List.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ListCategory.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Log.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\NotificationStatus.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\NotificationType.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\PartialClasses\ConsumerPart.cs" />
+    <Compile Include="Database\PartialClasses\FileMetadataPart.cs" />
+    <Compile Include="Database\PartialClasses\ConsumerServicePart.cs" />
+    <Compile Include="Database\ReportTemplate.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ReportType.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ServicesList.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ServiceType.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\State.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\SystemUser.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\vTimeSheetData.cs">
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DatatableUtils\DatatablesViewModel.cs" />
+    <Compile Include="Employees\EmployeeModel.cs" />
+    <Compile Include="Enums\EntityTypes.cs" />
+    <Compile Include="Enums\NotificationStatuses.cs" />
+    <Compile Include="Enums\ReportType.cs" />
+    <Compile Include="Enums\RolesEnum.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Models\Addresses\BaseConsumerAddressModel.cs" />
+    <Compile Include="Models\Addresses\ConsumerAddressModel.cs" />
+    <Compile Include="Models\Addresses\ReportAddressModel.cs" />
+    <Compile Include="Models\Audits\AuditModel.cs" />
+    <Compile Include="Models\Audits\BaseAuditModel.cs" />
+    <Compile Include="Models\Audits\ConsumerAudits.cs" />
+    <Compile Include="Models\Base\BaseReportModel.cs" />
+    <Compile Include="Models\ConsumerHabPlanSafeguardModel.cs" />
+    <Compile Include="Models\ConsumerHabPlanValuedOutcomeModel.cs" />
+    <Compile Include="Models\ConsumerMedicaidNumberModel.cs" />
+    <Compile Include="Models\Base\DocumentationRecordReportModel.cs" />
+    <Compile Include="Models\Base\HabPlanReportModel.cs" />
+    <Compile Include="Models\Base\HabReviewReportModel.cs" />
+    <Compile Include="Models\Base\MonthlyProgressReportModel.cs" />
+    <Compile Include="Models\Base\BaseReportDataSetModel.cs" />
+    <Compile Include="Models\boundModels\ApprovedServiceBoundModel.cs" />
+    <Compile Include="Models\boundModels\CustomerNotesBoundModel.cs" />
+    <Compile Include="Models\ConsumerEmployeeModel.cs" />
+    <Compile Include="Models\ConsumerModel.cs" />
+    <Compile Include="Models\ConsumerNoteFromTypeModel.cs" />
+    <Compile Include="Models\ConsumerNotesModel.cs" />
+    <Compile Include="Models\ConsumerNoteTypeModel.cs" />
+    <Compile Include="Models\ConsumerNotificationRecipientModel.cs" />
+    <Compile Include="Models\ConsumerNotificationSettingModel.cs" />
+    <Compile Include="Models\ConsumerServiceModel.cs" />
+    <Compile Include="Models\HabPlanReports\ReportHabPlanOutcomeValue.cs" />
+    <Compile Include="Models\HabPlanReports\ReportTemplateModel.cs" />
+    <Compile Include="Models\HabPlanReports\SafeGardRepotModel.cs" />
+    <Compile Include="Models\NotificationStatusModel.cs" />
+    <Compile Include="Models\NotificationTypeModel.cs" />
+    <Compile Include="Models\Reports\ContractedComHabMonthlyProgressSummaryModel .cs" />
+    <Compile Include="Models\Reports\ContractedComHabReportModel .cs" />
+    <Compile Include="Models\ServiceCoordinatorSearchModel.cs" />
+    <Compile Include="Models\EmployeeDocumentTypeModel.cs" />
+    <Compile Include="Models\FileMetaDataModel.cs" />
+    <Compile Include="Models\Files\FileDataInfo.cs" />
+    <Compile Include="Models\RoleModel.cs" />
+    <Compile Include="Models\ServiceCoordinators\BaseConsumerServiceCoordinatorModel.cs" />
+    <Compile Include="Models\ServiceCoordinators\ConsumerServiceCoordinatorModel.cs" />
+    <Compile Include="Models\ContactModel.cs" />
+    <Compile Include="Models\DataSets\ReportDataSetModel.cs" />
+    <Compile Include="Models\HabPlanReports\ComHabPlanReportModel.cs" />
+    <Compile Include="Models\HabReviewReports\ComHab6MonthReviewReportModel.cs" />
+    <Compile Include="Models\HabReviewReports\SupplementalDayGroup6MonthReviewReportModel.cs" />
+    <Compile Include="Models\HabReviewReports\DayGroup6MonthReviewReportModel.cs" />
+    <Compile Include="Models\Interfaces\IPDFhabPlanReportModel.cs" />
+    <Compile Include="Models\Interfaces\IPDFhabReviewReportModel.cs" />
+    <Compile Include="Models\Reports\BrokerReportModel.cs" />
+    <Compile Include="Models\Reports\ComHabMonthlyProgressSummaryModel.cs" />
+    <Compile Include="Models\Reports\SupplementalDayGroupMonthlyProgressSummaryModel.cs" />
+    <Compile Include="Models\Reports\DayGroupMonthlyProgressSummaryModel.cs" />
+    <Compile Include="Models\Reports\SupplementalGroupDayHabReportModel.cs" />
+    <Compile Include="Models\Reports\SelfHiredComHabMonthlyProgressSummaryModel.cs" />
+    <Compile Include="Models\Reports\SelfHiredComHabReportModel.cs" />
+    <Compile Include="Models\Reports\ComHabReportModel.cs" />
+    <Compile Include="Models\Enums\ServiceTypeId.cs" />
+    <Compile Include="Models\Reports\GroupDayHabReportModel.cs" />
+    <Compile Include="Models\Interfaces\IPDFreportModel.cs" />
+    <Compile Include="Models\ReportFactory\ServiceTypeIdAttribute.cs" />
+    <Compile Include="Models\Base\PdfReportModel.cs" />
+    <Compile Include="Models\ReportTypesFactory.cs" />
+    <Compile Include="Models\Reports\RespiteReportModel.cs" />
+    <Compile Include="Models\Reports\SelfHiredRespiteReportModel.cs" />
+    <Compile Include="Models\ServicesListModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Services\Extentions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Database\RohvDatabase.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RohvDatabase.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\RohvDatabase.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RohvDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\RohvDatabase.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RohvDatabase.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Services\BaseController.cs" />
+    <Compile Include="Services\BaseModel.cs" />
+    <Compile Include="Services\EmailService.cs" />
+    <Compile Include="Services\FileDataService.cs" />
+    <Compile Include="Services\FileService.cs" />
+    <Compile Include="Services\IdentityConfig.cs" />
+    <Compile Include="Services\IdentityModels.cs" />
+    <Compile Include="Services\Logger.cs" />
+    <Compile Include="Employees\EmployeeManagment.cs" />
+    <Compile Include="Services\Utils.cs" />
+    <Compile Include="Users\ContactViewModel.cs" />
+    <Compile Include="Users\CurrentUserModelView.cs" />
+    <Compile Include="Users\UserErrors.cs" />
+    <Compile Include="Users\UserManagment.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Users\App.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="Database\RohvDatabase.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>RohvDatabase.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Database\RohvDatabase.edmx.diagram">
+      <DependentUpon>RohvDatabase.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Database\RohvDatabase.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RohvDatabase.edmx</DependentUpon>
+      <LastGenOutput>RohvDatabase.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Database\RohvDatabase.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RohvDatabase.edmx</DependentUpon>
+      <LastGenOutput>RohvDatabase.cs</LastGenOutput>
+    </Content>
+    <Content Include="Utils\ITCraftFrame.dll" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

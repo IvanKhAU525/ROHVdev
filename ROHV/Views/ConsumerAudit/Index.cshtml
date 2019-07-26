@@ -1,0 +1,31 @@
+﻿@{
+    Layout = null;
+}
+
+<div id="main-container">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Consumers Audits
+        </h1>
+        <ol class="breadcrumb">
+            <li><i class="fa fa-desktop"></i> Consumers Audits</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                @Html.Partial("ConsumersAudit")
+            </div>
+        </div>
+    </section><!-- /.content -->
+
+</div>
+<div id="loading-container"></div>
+<div id="modal-message-container"></div>
+<div id="modal-confirm-message-container"></div>
+@Html.Partial("DialogMessage")
+@Html.Partial("DialogConfirm")
+

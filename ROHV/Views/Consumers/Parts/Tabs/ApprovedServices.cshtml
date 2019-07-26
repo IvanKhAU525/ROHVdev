@@ -1,0 +1,54 @@
+﻿@using ROHV.Core.User
+@{
+    var curentUser = (CurrentUserModelView)ViewData["CurrentUser"];
+}
+
+<script id="approved-services-tab-template" type="text/html">
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <div class="input-group" style="margin-bottom:10px;">
+                @if (curentUser.CanManageServices)
+                {
+                    <button class="btn  btn-primary btn-xs" href="javascript:void(0);" style="width:auto;" data-action="add">
+                        <i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;
+                        Add new approved service
+                    </button>
+                }
+            </div>
+            <table id="aproved-services-grid" style="width:100%;" class="table table-bordered table-hover"></table>
+        </div>
+    </div>
+</script>
+
+<script id="button-template-approved-service" type="text/html">
+    <div style="white-space:nowrap;" data-row-id="<%=id%>">
+        @if (!curentUser.CanManageServices)
+        {
+            <button data-id="<%=id%>" data-action="view" type="button" class="btn btn-primary btn-xs">
+                <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;View
+            </button>@Html.Raw("&nbsp; &nbsp; &nbsp")
+        }
+        @if (curentUser.CanManageServices)
+        {
+            <button data-id="<%=id%>" data-action="edit" type="button" class="btn btn-primary btn-xs">
+                <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit
+            </button>@Html.Raw("&nbsp; &nbsp; &nbsp")
+        }
+        <button data-id="<%=fileId%>" data-action="download-document" type="button" class="btn btn-danger btn-xs">
+            <span class="glyphicon glyphicon-download-alt"></span>&nbsp;&nbsp;Download
+        </button>&nbsp;
+        <button data-id="<%=id%>" data-action="send-email" type="button" class="btn btn-primary btn-xs">
+            <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;E-Mail
+        </button>&nbsp;&nbsp;&nbsp;
+        @if (curentUser.CanManageServices)
+        {
+            <button data-id="<%=id%>" data-action="delete" type="button" class="btn btn-danger btn-xs">
+                <span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Delete
+            </button>
+        }
+    </div>
+</script>
+
+@Html.Partial("Parts/Popups/ApprovedService")
+@Html.Partial("Parts/Popups/ReadonlyApprovedService")
+@Html.Partial("Parts/Popups/ApprovedServiceEmail")

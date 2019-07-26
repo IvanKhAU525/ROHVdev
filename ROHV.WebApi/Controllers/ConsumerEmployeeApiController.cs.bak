@@ -1,0 +1,71 @@
+﻿
+using System;
+using ROHV.Controllers;
+using System.Web.Mvc;
+using ROHV.Core.Consumer;
+using System.Threading.Tasks;
+using ROHV.WebApi.ViewModels;
+using System.Collections.Generic;
+using ROHV.Core.Services;
+using System.Linq;
+
+namespace ROHV.WebApi.Controllers
+{
+    [Authorize]
+    public class ConsumerEmployeeApiController : BaseController
+    {
+
+        [Authorize]
+        [HttpPost]
+        public async Task<ActionResult> Save(ConsumerEmployeeViewModel model)
+        {
+            if (User == null) return null;
+            ConsumerEmployeeManagement manage = new ConsumerEmployeeManagement(_context);
+            Int32 id = 0;
+            if (!model.ConsumerEmployeeId.HasValue)
+            {                                
+                id = await manage.Save(model.GetModel());
+            }
+            else
+            {
+                id = model.ConsumerEmployeeId.Value;
+                await manage.Save(model.GetModel());                
+            
+            }            
+            return Json(new { status = "ok", id = id }, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        [HttpDelete]
+        public async Task<ActionResult> Delete(Int32 serviceId)
+        {
+            if (User == null) return null;
+
+            ConsumerEmployeeManagement manage = new ConsumerEmployeeManagement(_context);
+            if (!await manage.Delete(serviceId))
+            {
+                return Json(new { status = "error", message = "You can't delete this record. Please contact to support team." }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { status = "ok" }, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<ActionResult> SendEmail(ConsumerEmailViewModel model)
+        {
+            try
+            {
+                String message = this.RenderRazorViewToString("~/Views/Consumers/EmailTemplates/EmailToEmployee.cshtml", model);
+                var email = model.Email;
+                //email = "sasha.solovyh@gmail.com";
+                await EmailService.Send(email, model.ContactName, model.Subject, message);
+            }
+            catch(Exception ex)
+            {
+                return Json(new { status = "error" });
+            }
+
+            return Json(new { status = "ok" });
+        }
+    }
+}

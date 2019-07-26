@@ -1,0 +1,29 @@
+﻿@using ROHV.Core.Enums;
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <ul class="sidebar-menu">
+            <li class="header">MAIN NAVIGATION</li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li class="active"><a href="consumers"><i class="fa fa-medkit"></i> <span>Consumers</span></a></li>
+                <li><a href="employees"><i class="fa fa-users"></i> <span>Employees</span></a></li>
+                <!--<li><a href="advocates"><i class="fa fa-briefcase"></i> <span>Advocates</span></a></li>-->
+
+                if (User.IsInRole(RolesEnum.Admin.ToString()))
+                {
+                    <li><a href="system-users"><i class="fa fa-desktop"></i> <span>System Users</span></a></li>
+                }
+                if (User.IsInRole(RolesEnum.Manager.ToString()) || User.IsInRole(RolesEnum.Admin.ToString()))
+                {
+
+                    <li><a href="consumer-audit"><i class="fa fa-desktop"></i> <span>Consumer Audit</span></a></li>
+                }
+
+            }
+
+
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>
