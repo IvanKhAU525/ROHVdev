@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using NotificationProcessor.TriggerModels;
+using NotificationProcessor.Quartz;
+using NotificationProcessor.Quartz.Trigger.TriggerModels;
 using ROHV.Core.Consumer;
 using ROHV.Core.Database;
 using ROHV.Core.Models;
 using ROHV.Core.User;
 
-namespace NotificationProcessor
+namespace NotificationProcessor.Utils
 {
     public class DatabaseRequests
     {

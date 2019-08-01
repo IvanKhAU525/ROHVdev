@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
-namespace NotificationProcessor.TriggerModels
+namespace NotificationProcessor.Quartz.Trigger.TriggerModels
 {
     public class TriggerModel : ITriggerModel, IEquatable<TriggerModel>
     {

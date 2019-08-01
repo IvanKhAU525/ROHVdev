@@ -12,6 +12,8 @@ using ROHV.Core.User;
 using ITCraftFrame;
 using ROHV.Core.Database;
 using ROHV.Core.Models;
+using ROHV.EmailServiceCore;
+using ROHV.EmailServiceCore.boundModels;
 
 namespace ROHV.WebApi.Controllers
 {

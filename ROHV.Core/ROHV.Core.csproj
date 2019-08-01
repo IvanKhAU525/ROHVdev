@@ -139,7 +139,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\CustomAttributes.cs" />
     <Compile Include="Consumer\AuditManagement.cs" />
     <Compile Include="Consumer\ConsumerAddressManagement.cs" />
     <Compile Include="Consumer\ConsumerHabReviewsManagement.cs" />
@@ -347,7 +346,6 @@
     <Compile Include="Models\Audits\BaseAuditModel.cs" />
     <Compile Include="Models\Audits\ConsumerAudits.cs" />
     <Compile Include="Models\Base\BaseReportModel.cs" />
-    <Compile Include="Models\boundModels\AutoNotificationServiceBoundModel.cs" />
     <Compile Include="Models\ConsumerHabPlanSafeguardModel.cs" />
     <Compile Include="Models\ConsumerHabPlanValuedOutcomeModel.cs" />
     <Compile Include="Models\ConsumerMedicaidNumberModel.cs" />
@@ -356,8 +354,6 @@
     <Compile Include="Models\Base\HabReviewReportModel.cs" />
     <Compile Include="Models\Base\MonthlyProgressReportModel.cs" />
     <Compile Include="Models\Base\BaseReportDataSetModel.cs" />
-    <Compile Include="Models\boundModels\ApprovedServiceBoundModel.cs" />
-    <Compile Include="Models\boundModels\CustomerNotesBoundModel.cs" />
     <Compile Include="Models\ConsumerEmployeeModel.cs" />
     <Compile Include="Models\ConsumerModel.cs" />
     <Compile Include="Models\ConsumerNoteFromTypeModel.cs" />
@@ -425,7 +421,6 @@
     </Compile>
     <Compile Include="Services\BaseController.cs" />
     <Compile Include="Services\BaseModel.cs" />
-    <Compile Include="Services\EmailService.cs" />
     <Compile Include="Services\FileDataService.cs" />
     <Compile Include="Services\FileService.cs" />
     <Compile Include="Services\IdentityConfig.cs" />
@@ -470,7 +465,15 @@
     </Content>
     <Content Include="Utils\ITCraftFrame.dll" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Attributes" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ROHV.EmailServiceCore\ROHV.EmailServiceCore.csproj">
+      <Project>{db45c9ed-4dba-43a3-bd94-57e904b1328e}</Project>
+      <Name>ROHV.EmailServiceCore</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Quartz;
 
-namespace NotificationProcessor
+namespace NotificationProcessor.Quartz
 {
     public static class CronJob                                                             //  | SEC | MIN | HOUR | DAY OF MONTH | MONTH | DAY OF WEEK | YEAR  | 
     {                                                                                       //  |_______________________________________________________________|

@@ -1,11 +1,11 @@
-﻿using ROHV.Core.Attributes;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ROHV.Core;
+using ROHV.Core.Models;
+using ROHV.EmailServiceCore.Attributes;
 
-namespace ROHV.Core.Models
+namespace ROHV.EmailServiceCore.boundModels
+
 {
     public class ApprovedServiceBoundModel : ConsumerServiceModel
     {
@@ -38,9 +38,5 @@ namespace ROHV.Core.Models
 
         [EmailBound(Name = "[Employees]")]
         public string ViewEmployeesContacts { get => String.Join(", ", ConsumerEmployeeList.Select(x => String.Format("{0} {1}", x.Contact?.FirstName, x.Contact?.LastName))); }
-
-
-
-
     }
 }

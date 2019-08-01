@@ -248,6 +248,10 @@
       <Project>{6efb4497-5179-4e43-9dd4-91141b63aba7}</Project>
       <Name>ROHV.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ROHV.EmailServiceCore\ROHV.EmailServiceCore.csproj">
+      <Project>{db45c9ed-4dba-43a3-bd94-57e904b1328e}</Project>
+      <Name>ROHV.EmailServiceCore</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

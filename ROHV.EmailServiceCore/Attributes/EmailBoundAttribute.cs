@@ -1,12 +1,8 @@
-﻿using ITCraftFrame;
-using ITCraftFrame.BoundData;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ITCraftFrame;
+using ITCraftFrame.BoundData;
 
-namespace ROHV.Core.Attributes
+namespace ROHV.EmailServiceCore.Attributes
 {
     public class EmailBoundAttribute : Attribute, IDataBindAtribute
     {

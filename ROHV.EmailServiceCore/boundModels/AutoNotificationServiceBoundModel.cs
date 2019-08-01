@@ -1,5 +1,6 @@
-using  ROHV.Core.Attributes;
-namespace ROHV.Core.Models
+using ROHV.EmailServiceCore.Attributes;
+
+namespace ROHV.EmailServiceCore.boundModels
 {
     public class AutoNotificationServiceBoundModel
     {

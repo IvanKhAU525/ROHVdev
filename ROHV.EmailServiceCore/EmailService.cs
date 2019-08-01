@@ -1,20 +1,21 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
-using System.Net;
-using System.IO;
-using ROHV.Core.Attributes;
-using ITCraftFrame.BoundData;
 using ITCraftFrame;
-using System.Web.Configuration;
-using ROHV.Core.Database;
-using ROHV.Core.User;
+using ITCraftFrame.BoundData;
 using ROHV.Core.Models;
+using ROHV.Core.Services;
+using ROHV.Core.User;
+using ROHV.EmailServiceCore.Attributes;
+using ROHV.EmailServiceCore.boundModels;
 
-namespace ROHV.Core.Services
+namespace ROHV.EmailServiceCore
 {
     public class EmailService
 
@@ -26,8 +27,8 @@ namespace ROHV.Core.Services
         {
             lock (_lock)
             {
-                _emailSeprator = WebConfigurationManager.AppSettings["EmailSeparator"] ?? ";";
-                _isOverrideSmtpSettings = Boolean.Parse(WebConfigurationManager.AppSettings["isOverrideSmtp"] ?? "false"); 
+                _emailSeprator = ConfigurationManager.AppSettings["EmailSeparator"] ?? ";";
+                _isOverrideSmtpSettings = Boolean.Parse(ConfigurationManager.AppSettings["isOverrideSmtp"] ?? "false"); 
             }
         }
         public class FileAttachment
@@ -35,16 +36,20 @@ namespace ROHV.Core.Services
             public byte[] FileBytes { get; set; }
             public String Name { get; set; }
         }
-        public static async Task Send(String to, String toName, String subject, String message, String fromEmail = null)
-        {
+
+        public static async Task Send(String to, String toName, String subject, String message, String fromEmail = null) {
             var user = UserManagment.GetUserByEmail(fromEmail);
             var mailMessage = _createMailMessageData(to, toName, subject, message, user);
 
-            using (var smtp = new SmtpClient())
-            {
+            using (var smtp = new SmtpClient()) {
                 _overrideSmtpSettings(smtp, user);
+                smtp.SendCompleted += SmtpOnSendCompleted;
                 await smtp.SendMailAsync(mailMessage);
             }
+        }
+
+        private static void SmtpOnSendCompleted(object sender, AsyncCompletedEventArgs e) {
+            var er = e.Error;
         }
 
         private static void _overrideSmtpSettings(SmtpClient smtp, UserModel user)
@@ -100,12 +105,18 @@ namespace ROHV.Core.Services
             return mailMessage;
         }
 
-        
-        
-        public static async Task SendBoundEmail(String to, String toName, String subject, String emailTemplateName, List<Object> emailInputData, String fromEmail = null)
-        {
-            List<FieldDataBindingModel> boundData = BoundDataManager.GetBoundDataList<EmailBoundAttribute>(emailInputData);
+        public static async Task SendBoundEmails(IList<BoundEmailModel> emails) {
+            await Task.Run(() => {
+                foreach (var email in emails) {
+                    SendBoundEmail(email.ToEmail, email.ReceiverName, email.Subject, email.EmailTemplateName, email.EmailInputData, email.FromEmail);
+                }
+            });
+        }
 
+        public static async Task SendBoundEmail(String to, String toName, String subject, String emailTemplateName,
+            List<Object> emailInputData, String fromEmail = null) {
+            List<FieldDataBindingModel> boundData =
+                BoundDataManager.GetBoundDataList<EmailBoundAttribute>(emailInputData);
             var bodyTemplate = GetEmailTemplate(emailTemplateName);
             var body = StringProcessor.GetStringWithSubstitutions(bodyTemplate, boundData);
             await Send(to, toName, subject, body, fromEmail);

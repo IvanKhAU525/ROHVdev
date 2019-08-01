@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using ROHV.Core.Database;
 using ROHV.Core.Models;
 
-namespace NotificationProcessor
+namespace ROHV.EmailServiceCore.boundModels
 {
     public class BoundEmailModel
     {

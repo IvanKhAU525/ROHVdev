@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Quartz;
 
-namespace NotificationProcessor.TriggerModels
+namespace NotificationProcessor.Quartz.Trigger.TriggerModels
 {
     public interface ITriggerModel 
     {

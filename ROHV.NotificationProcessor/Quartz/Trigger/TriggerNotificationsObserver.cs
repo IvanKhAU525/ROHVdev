@@ -4,18 +4,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Threading;
-using System.Threading.Tasks;
-using NotificationProcessor.TriggerModels;
-using Quartz;
-using Quartz.Util;
-using ROHV.Core;
+using NotificationProcessor.Quartz.Trigger.TriggerModels;
 
-
-namespace NotificationProcessor
+namespace NotificationProcessor.Quartz.Trigger
 {
     public static class TriggerNotificationsObserver
     {
@@ -67,18 +58,8 @@ namespace NotificationProcessor
                     break;
                 case NotifyCollectionChangedAction.Remove : RemoveOldTriggersFromScheduler(e.OldItems);
                     break;
-//                case NotifyCollectionChangedAction.Replace : UpdateTriggersInScheduler(e.NewItems, e.OldItems);
-//                    break;
             }
         }
-
-//        private static void UpdateTriggersInScheduler(IList newItems, IList oldItems) {
-//                foreach (TriggerModel item in newItems) {
-//                    var oldTriggerKey = QuartzTrigger.GetTriggerKey(item.DateStart, item.RepeatType);
-//                    var newTriggerKey = QuartzTrigger.CreateTriggerForExistedJob(item.DateStart, item.RepeatType,item.TriggerId.ToString());
-//                    QuartzScheduler.UpdateTrigger(oldTriggerKey, newTriggerKey);
-//                }
-//        }
 
         private static void RemoveOldTriggersFromScheduler(IList oldItems) {
             foreach (TriggerModel item in oldItems) {

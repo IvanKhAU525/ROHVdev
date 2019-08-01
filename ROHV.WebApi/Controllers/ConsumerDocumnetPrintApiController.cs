@@ -5,8 +5,8 @@ using ROHV.Core.Consumer;
 using System.Threading.Tasks;
 using ROHV.WebApi.ViewModels;
 using System.Collections.Generic;
-using ROHV.Core.Services;
 using System.Linq;
+using ROHV.EmailServiceCore;
 
 namespace ROHV.WebApi.Controllers
 {

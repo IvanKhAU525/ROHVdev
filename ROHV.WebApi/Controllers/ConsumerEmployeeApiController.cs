@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using ROHV.Controllers;
 using System.Web.Mvc;
 using ROHV.Core.Consumer;
@@ -10,6 +9,7 @@ using ROHV.Core.Services;
 using System.Linq;
 using System.Web.Script.Serialization;
 using ROHV.Core.Enums;
+using ROHV.EmailServiceCore;
 
 namespace ROHV.WebApi.Controllers
 {

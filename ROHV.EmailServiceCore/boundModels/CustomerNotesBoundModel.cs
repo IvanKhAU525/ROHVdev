@@ -1,11 +1,8 @@
-﻿using ROHV.Core.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ROHV.Core;
+using ROHV.Core.Models;
+using ROHV.EmailServiceCore.Attributes;
 
-namespace ROHV.Core.Models
+namespace ROHV.EmailServiceCore.boundModels
 { 
     public class CustomerNotesBoundModel : ConsumerNotesModel
     {

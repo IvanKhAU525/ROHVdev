@@ -2,18 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using NotificationProcessor.Quartz.Jobs;
 using Quartz;
 using Quartz.Impl;
-using Quartz.Impl.Matchers;
-using Quartz.Xml.JobSchedulingData20;
-using ROHV.Core.Database;
 
-namespace NotificationProcessor
+namespace NotificationProcessor.Quartz
 {
     public static class QuartzScheduler
     {
@@ -28,62 +23,20 @@ namespace NotificationProcessor
         }
 
         public static async Task StartScheduler() => await scheduler.Start();
-
-        public static void JobDisplayer() {
-            var jobGroups = scheduler.GetJobGroupNames().Result;
-            // IList<string> triggerGroups = scheduler.GetTriggerGroupNames();
-
-            foreach (string group in jobGroups)
-            {
-                var groupMatcher = GroupMatcher<JobKey>.GroupContains(group);
-                var jobKeys = scheduler.GetJobKeys(groupMatcher).Result;
-                foreach (var jobKey in jobKeys)
-                {
-                    Console.WriteLine("Job: " + jobKey.Name);
-                    var detail = scheduler.GetJobDetail(jobKey).Result;
-                    var triggers = scheduler.GetTriggersOfJob(jobKey).Result;
-                    foreach (ITrigger trigger in triggers)
-                        
-                    {
-                        Console.WriteLine("\tTrigger: " + trigger.Key.Name);
-                        Console.WriteLine("\tDescription: " + trigger.Description);
-                        DateTimeOffset? nextFireTime = trigger.GetNextFireTimeUtc();
-                        if (nextFireTime.HasValue)
-                        {
-                            Console.WriteLine("\t\tNext fire: " + nextFireTime.Value.LocalDateTime.ToString());
-                        }
-
-                        DateTimeOffset? previousFireTime = trigger.GetPreviousFireTimeUtc();
-                        if (previousFireTime.HasValue)
-                        {
-                            Console.WriteLine("\t\tPrevious fire: " + previousFireTime.Value.LocalDateTime.ToString());
-                        }
-                    }
-                    Console.WriteLine();
-                }
-            } 
-        }
         
         public static async Task ScheduleJobs(IReadOnlyDictionary<IJobDetail, IReadOnlyCollection<ITrigger>> triggersAndJobs) {
-            Console.WriteLine("____ScheduleJobs_____");
             await scheduler.ScheduleJobs(triggersAndJobs, replace: false);
-            JobDisplayer();
         }
 
         public static async Task ScheduleJob(IJobDetail jobDetail, ITrigger trigger) {
-            Console.WriteLine("____ScheduleJob_____");
             await scheduler.ScheduleJob(jobDetail, trigger);
-            JobDisplayer();
         }
 
         public static async Task DetachTrigger(TriggerKey triggerKey) {
-            Console.WriteLine("____DetachTrigger_____");
             await scheduler.UnscheduleJob(triggerKey);
-            JobDisplayer();
         }
 
         public static async Task AttachTrigger(ITrigger trigger) {
-            Console.WriteLine("____AttachTrigger_____");
             if (trigger.JobKey is null) {
                 throw new Exception("The trigger must have reference to appropriate job.\n Configure method <ForJob> in the TriggerBuilder");
             }
@@ -104,15 +57,7 @@ namespace NotificationProcessor
                 var jobDetail = QuartzJob.CreateJob((Repeat) repeatType);
                 await ScheduleJob(jobDetail, trigger);
             }
-            
-            JobDisplayer();
         }
-
-//        public static async Task UpdateTrigger(TriggerKey triggerKey, ITrigger newTrigger) {
-//            Console.WriteLine("____UpdateTrigger_____");
-//            await scheduler.RescheduleJob(triggerKey, newTrigger);
-//            JobDisplayer();
-//        }
     }
 
     public static class QuartzTrigger

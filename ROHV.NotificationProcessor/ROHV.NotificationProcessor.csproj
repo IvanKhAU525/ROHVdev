@@ -7,7 +7,7 @@
     <ProjectGuid>{A0C26333-B160-45DF-9B83-69AC0C28157F}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>NotificationProcessor</RootNamespace>
-    <AssemblyName>NotificationProcessor</AssemblyName>
+    <AssemblyName>ROHV.NotificationProcessor</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -57,18 +57,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BoundEmailModel.cs" />
-    <Compile Include="CronJob.cs" />
-    <Compile Include="DatabaseRequests.cs" />
-    <Compile Include="TriggerModels\ITriggerModel.cs" />
-    <Compile Include="TriggerModels\SimpleTriggerModel.cs" />
-    <Compile Include="TriggerModels\TriggerModel.cs" />
-    <Compile Include="TriggerNotificationsObserver.cs" />
-    <Compile Include="EmailService.cs" />
-    <Compile Include="Jobs.cs" />
+    <Compile Include="Quartz\CronJob.cs" />
+    <Compile Include="Quartz\Jobs\OnceFiredEmailNotificationsJob.cs" />
+    <Compile Include="Quartz\Jobs\RepeatedEmailNotificationsJob.cs" />
+    <Compile Include="Quartz\Jobs\UpdateNotificationJobsJob.cs" />
+    <Compile Include="Quartz\QuartzScheduler.cs" />
+    <Compile Include="Quartz\Trigger\TriggerModels\ITriggerModel.cs" />
+    <Compile Include="Quartz\Trigger\TriggerModels\SimpleTriggerModel.cs" />
+    <Compile Include="Quartz\Trigger\TriggerModels\TriggerModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QuartzScheduler.cs" />
+    <Compile Include="Quartz\Trigger\TriggerNotificationsObserver.cs" />
+    <Compile Include="Utils\DatabaseRequests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -79,10 +79,13 @@
       <Project>{6efb4497-5179-4e43-9dd4-91141b63aba7}</Project>
       <Name>ROHV.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ROHV.EmailServiceCore\ROHV.EmailServiceCore.csproj">
+      <Project>{db45c9ed-4dba-43a3-bd94-57e904b1328e}</Project>
+      <Name>ROHV.EmailServiceCore</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="quartz.config" />
-    <Content Include="Utils\ITCraftFrame.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
