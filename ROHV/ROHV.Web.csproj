@@ -226,7 +226,7 @@
     <Content Include="Content\login_style.css" />
     <Content Include="Content\images\logo_old.png" />
     <Content Include="EmailTemplates\apporved-service-email.html" />
-    <Content Include="EmailTemplates\email-auto-notification.html" />
+    <Content Include="EmailTemplates\auto-notification-email.html" />
     <Content Include="EmailTemplates\note-email.html" />
     <Content Include="favicon.ico" />
     <Content Include="favicon.png" />

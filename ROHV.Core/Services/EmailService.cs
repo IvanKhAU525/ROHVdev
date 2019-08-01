@@ -100,6 +100,8 @@ namespace ROHV.Core.Services
             return mailMessage;
         }
 
+        
+        
         public static async Task SendBoundEmail(String to, String toName, String subject, String emailTemplateName, List<Object> emailInputData, String fromEmail = null)
         {
             List<FieldDataBindingModel> boundData = BoundDataManager.GetBoundDataList<EmailBoundAttribute>(emailInputData);

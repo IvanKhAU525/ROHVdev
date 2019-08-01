@@ -347,6 +347,7 @@
     <Compile Include="Models\Audits\BaseAuditModel.cs" />
     <Compile Include="Models\Audits\ConsumerAudits.cs" />
     <Compile Include="Models\Base\BaseReportModel.cs" />
+    <Compile Include="Models\boundModels\AutoNotificationServiceBoundModel.cs" />
     <Compile Include="Models\ConsumerHabPlanSafeguardModel.cs" />
     <Compile Include="Models\ConsumerHabPlanValuedOutcomeModel.cs" />
     <Compile Include="Models\ConsumerMedicaidNumberModel.cs" />

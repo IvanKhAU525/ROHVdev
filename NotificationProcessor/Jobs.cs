@@ -1,52 +1,58 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using NotificationProcessor.TriggerModels;
 using Quartz;
+using ROHV.Core.Consumer;
 using ROHV.Core.Database;
+using ROHV.Core.Models;
 using ROHV.Core.User;
 
 namespace NotificationProcessor
 {
-    internal class FutureJob : IJob
+    internal class RepeatedEmailNotificationsJob : IJob
     {
+        private readonly DatabaseRequests _databaseRequests = new DatabaseRequests();
+
         public async Task Execute(IJobExecutionContext context) {
-            var actualTimeUtcFired = context.FireTimeUtc;
-            var scheduledTimeUtc = context.ScheduledFireTimeUtc;
-            var jobDescription = context.JobDetail.Description;
-            var triggerDescription = context.Trigger.Description;
-            var triggerkey = context.Trigger.Key;
+            var success = long.TryParse(context.Trigger.Description, out var triggerId);
+            if (!success) return;
+            var consumerNotificationSettingsIds = TriggerNotificationsObserver.GetIds(triggerId);
+            var emailsData = await _databaseRequests.GetNotificationRecipientsAsync(consumerNotificationSettingsIds);
+            var preparedEmails = emailsData.Select(x => new BoundEmailModel(x)).ToList(); 
+            await EmailService.SendBoundEmails(preparedEmails);
+        }
+    }
+    
+    internal class OnceFiredEmailNotificationsJob : IJob
+    {
+        private readonly DatabaseRequests _databaseRequests = new DatabaseRequests();
 
-            Console.WriteLine("actualTimeUtcFired - " + actualTimeUtcFired);
-            Console.WriteLine("scheduledTimeUtc - " + scheduledTimeUtc);
-            Console.WriteLine("jobDescription - " + jobDescription);
-            Console.WriteLine("triggerDescription - " + triggerDescription);
-            Console.WriteLine("triggerkey - " + triggerkey);
-            Console.ReadLine();
-            //var _context = new RayimContext();
-            //var userManagment = new UserManagment(_context);
-            //var scheduledTime = context.ScheduledFireTimeUtc.;
-            //var notifications = await userManagment.GetScheduledNotificaitonsAsync(scheduledTime);
-
+        public async Task Execute(IJobExecutionContext context) {
+            var success = long.TryParse(context.Trigger.Description, out var triggerId);
+            if (!success) return;
+            var consumerNotificationSettingsIds = TriggerNotificationsObserver.GetIds(triggerId);
+            if (consumerNotificationSettingsIds is null) 
+                throw new Exception($"The trigger with id: {triggerId} doesn't exist in the {nameof(TriggerNotificationsObserver)}");
+            var emailsData = await _databaseRequests.GetNotificationRecipientsAsync(consumerNotificationSettingsIds);
+            var consumerNotificationSettingsFromEmails = emailsData.Select(x => x.ConsumerNotificationSetting).ToList();
+            var preparedEmails = emailsData.Select(x => new BoundEmailModel(x)).ToList();
+            await EmailService.SendBoundEmails(preparedEmails);
+            var markedAsCompletedConsumerNotificationSettings = ITCraftFrame.CustomMapper.MapList<ConsumerNotificationSetting, ConsumerNotificationSettingModel>(consumerNotificationSettingsFromEmails);
+            markedAsCompletedConsumerNotificationSettings.ForEach(x => x.StatusId = 3);
+            await _databaseRequests.UpdateAsync(markedAsCompletedConsumerNotificationSettings);
         }
     }
 
-    internal class StoredAutoNotificationJob : IJob
+    internal class UpdateNotificationJobsJob : IJob
     {
-        private readonly RayimContext _context;
-        private readonly UserManagment _userManagment;
-
-        public StoredAutoNotificationJob() {
-            _context = new RayimContext();
-            _userManagment = new UserManagment(_context);
-        }
+        private readonly DatabaseRequests _databaseRequests = new DatabaseRequests();
+        
         public async Task Execute(IJobExecutionContext context) {
-            var dateNotifications = await _userManagment.GetScheduledNotificationsAsync();
-            var dictionaryNotifications = dateNotifications
-                .ToLookup(x => x.DateStart, y => y.RepetingTypeId)
-                .ToDictionary(x => x.Key, y => y.Distinct());
-            DateNotificationsObserver.Compare(dictionaryNotifications);
-            
+            var notifications = await _databaseRequests.GetNotificationsAsync();
+            TriggerNotificationsObserver.CompareAndUpdate(notifications);
         }
     }
 }

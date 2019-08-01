@@ -57,12 +57,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CollectionMethodExtension.cs" />
+    <Compile Include="BoundEmailModel.cs" />
     <Compile Include="CronJob.cs" />
-    <Compile Include="DateNotificationsObserver.cs" />
+    <Compile Include="DatabaseRequests.cs" />
+    <Compile Include="TriggerModels\ITriggerModel.cs" />
+    <Compile Include="TriggerModels\SimpleTriggerModel.cs" />
+    <Compile Include="TriggerModels\TriggerModel.cs" />
+    <Compile Include="TriggerNotificationsObserver.cs" />
     <Compile Include="EmailService.cs" />
     <Compile Include="Jobs.cs" />
-    <Compile Include="LinqExtensionMethods.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuartzScheduler.cs" />
@@ -78,6 +81,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="quartz.config" />
     <Content Include="Utils\ITCraftFrame.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

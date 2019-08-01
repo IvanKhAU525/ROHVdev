@@ -13,7 +13,8 @@ namespace NotificationProcessor
         private static readonly string _everyMonth = "{0} {1} {2} {3} {4}/1 ? {5}/1";       //  | {0} | {1} | {2}  |     {3}      | {4}/1 |      ?      | {5}/1 |
         private static readonly string _every6Month = "{0} {1} {2} {3} {4}/6 ? {5}/1";      //  | {0} | {1} | {2}  |     {3}      | {4}/6 |      ?      | {5}/1 |
         private static readonly string _everyYear = "{0} {1} {2} {3} {4} ? {5}/1";          //  | {0} | {1} | {2}  |     {3}      |  {4}  |      ?      | {5}/1 |
-                                                                                            //   ---------------------------------------------------------------
+        private static readonly string _everyMinute = "0/10 * * * * ?";                      //   ---------------------------------------------------------------
+                                                                                            
         private static string GetEveryWeekCron(DateTime startDate) {
             return string.Format(_everyWeek,
                 startDate.Second,   
@@ -57,24 +58,29 @@ namespace NotificationProcessor
                 );
         }
 
-        public static string GetCronExpression(int repeatId, DateTime startDate) {
-            switch (repeatId) {
-                case 2: return CronJob.GetEveryWeekCron(startDate);
-                case 3: return CronJob.GetEveryMonthCron(startDate);
-                case 4: return CronJob.GetEvery6MonthCron(startDate);
-                case 5: return CronJob.GetEveryYearCron(startDate);
+        private static string GetEveryMinuteCron() {
+            return _everyMinute;
+        }
+
+        public static string GetCronExpression(Repeat repeatType, DateTime startDate) {
+            switch (repeatType) {
+                case Repeat.EveryWeek: return CronJob.GetEveryWeekCron(startDate);
+                case Repeat.EveryMonth: return CronJob.GetEveryMonthCron(startDate);
+                case Repeat.Every6Month: return CronJob.GetEvery6MonthCron(startDate);
+                case Repeat.EveryYear: return CronJob.GetEveryYearCron(startDate);
+                case Repeat.EveryMinute: return CronJob.GetEveryMinuteCron();
             }
             return null;
         }
-        
-
     }
 
     public enum Repeat
     {
+        Once = 1,
         EveryWeek = 2,
         EveryMonth = 3,
         Every6Month = 4,
-        EveryYear = 5
+        EveryYear = 5,
+        EveryMinute = 6
     }
 }

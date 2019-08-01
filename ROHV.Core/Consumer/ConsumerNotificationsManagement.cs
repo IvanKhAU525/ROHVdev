@@ -98,5 +98,15 @@ namespace ROHV.Core.Consumer
             var result = await _context.NotificationStatuses.ToListAsync();
             return result;
         }
+
+        public async Task UpdateAsync(IEnumerable<ConsumerNotificationSetting> consumerNotificationSettings) {
+            var dBConsumerNotificationSettings = new List<ConsumerNotificationSetting>();
+            foreach (var cns in consumerNotificationSettings) {
+                 var consumerNotificationSetting = await _context.ConsumerNotificationSettings.FirstOrDefaultAsync(x => x.Id == cns.Id);
+                 dBConsumerNotificationSettings.Add(consumerNotificationSetting);
+            }
+            dBConsumerNotificationSettings.ForEach(x => x.StatusId = 3);
+            await _context.SaveChangesAsync();
+        }
     }
 }

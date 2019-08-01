@@ -122,12 +122,13 @@ namespace ROHV.Core.User
             return ITCraftFrame.CustomMapper.MapList<RoleModel, AspNetRole>(roles);
         }
 
-        public async Task<IEnumerable<ConsumerNotificationSettingModel>> GetScheduledNotificationsAsync(DateTime dateStart) {
-            var consumerNotificationSettings = await _context.ConsumerNotificationSettings
-                .Include(x => x.ConsumerNotificationRecipients)
-                .Where(x => x.DateStart == dateStart)
+        public async Task<IEnumerable<ConsumerNotificationRecipientModel>> GetNotificationRecipientsAsync(IEnumerable<int> ids) {
+            var consumerNotificationRecipients = await _context.ConsumerNotificationRecipients
+                .Where(x => ids.Contains(x.ConsumerNotificationSetting.Id))
+                .Include(x => x.ConsumerNotificationSetting)
+                .Include(x => x.SystemUser.AspNetUser)
                 .ToListAsync();
-            return ITCraftFrame.CustomMapper.MapList<ConsumerNotificationSettingModel, ConsumerNotificationSetting>(consumerNotificationSettings);
+            return ITCraftFrame.CustomMapper.MapList<ConsumerNotificationRecipientModel, ConsumerNotificationRecipient>(consumerNotificationRecipients);
         }
 
         public async Task<IEnumerable<ConsumerNotificationSettingModel>> GetScheduledNotificationsAsync() {

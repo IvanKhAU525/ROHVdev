@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
@@ -36,16 +37,20 @@ namespace NotificationProcessor
             public byte[] FileBytes { get; set; }
             public String Name { get; set; }
         }
-        public static async Task Send(String to, String toName, String subject, String message, String fromEmail = null)
-        {
+
+        public static async Task Send(String to, String toName, String subject, String message, String fromEmail = null) {
             var user = UserManagment.GetUserByEmail(fromEmail);
             var mailMessage = _createMailMessageData(to, toName, subject, message, user);
 
-            using (var smtp = new SmtpClient())
-            {
+            using (var smtp = new SmtpClient()) {
                 _overrideSmtpSettings(smtp, user);
+                smtp.SendCompleted += SmtpOnSendCompleted;
                 await smtp.SendMailAsync(mailMessage);
             }
+        }
+
+        private static void SmtpOnSendCompleted(object sender, AsyncCompletedEventArgs e) {
+            var er = e.Error;
         }
 
         private static void _overrideSmtpSettings(SmtpClient smtp, UserModel user)
@@ -101,10 +106,18 @@ namespace NotificationProcessor
             return mailMessage;
         }
 
-        public static async Task SendBoundEmail(String to, String toName, String subject, String emailTemplateName, List<Object> emailInputData, String fromEmail = null)
-        {
-            List<FieldDataBindingModel> boundData = BoundDataManager.GetBoundDataList<EmailBoundAttribute>(emailInputData);
+        public static async Task SendBoundEmails(IList<BoundEmailModel> emails) {
+            await Task.Run(() => {
+                foreach (var email in emails) {
+                    SendBoundEmail(email.ToEmail, email.ReceiverName, email.Subject, email.EmailTemplateName, email.EmailInputData, email.FromEmail);
+                }
+            });
+        }
 
+        public static async Task SendBoundEmail(String to, String toName, String subject, String emailTemplateName,
+            List<Object> emailInputData, String fromEmail = null) {
+            List<FieldDataBindingModel> boundData =
+                BoundDataManager.GetBoundDataList<EmailBoundAttribute>(emailInputData);
             var bodyTemplate = GetEmailTemplate(emailTemplateName);
             var body = StringProcessor.GetStringWithSubstitutions(bodyTemplate, boundData);
             await Send(to, toName, subject, body, fromEmail);
